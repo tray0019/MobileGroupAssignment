@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--We can have multiple color layout xml or one. Either way are no problem-->
+<resources>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--Rustom color are in this boundary. Do not touch!-->
+
+    <color name="example">#FFFFFFFF</color>
+
+    <!--************************************************-->
+
+
+    <!--Mahsa's color are in this boundary. Do not touch!-->
+
+    <!--************************************************-->
+
+
+    <!--Nathaniel color are in this boundary. Do not touch!-->
+
+    <!--************************************************-->
+
+
+
+    <!--Aram color are in this boundary. Do not touch!-->4
+
+    <!--************************************************-->
+
+</resources>

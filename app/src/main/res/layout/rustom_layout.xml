@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--This is Rustom xlm layout please create your own-->
+<!--Right click on layout folder -> new -> xml -> layout xml file-->
+<!--Customize your layout according to your activity specific need.-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</LinearLayout>

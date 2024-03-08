@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--This XML class provide the 4 buttons for the menu application -->
+    <!--Do not insert any of your xml code here -->
+    <!--Create your own XML in layout folder for your class activity-->
+    <!--Comment If you made any changes here -->
+    <!--This is a sample layout and not the final look-->
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MENU!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="50dp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        tools:layout_editor_absoluteY="178dp">
+
+        <Button
+            android:id="@+id/RustomButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sunrise and Sunset look up" <!--Must not hard code. Edit later-->
+            />
+
+        <Button
+            android:id="@+id/AramRustomButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activity 2" />
+
+        <Button
+            android:id="@+id/MahsaRustomButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activity 3" />
+
+        <Button
+            android:id="@+id/NathanielRustomButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activity 4" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

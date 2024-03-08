@@ -1,0 +1,33 @@
+
+<!--We can have multiple string layout xml or one. Either way are no problem-->
+<resources>
+    <string name="app_name">MobileGroupAssignment</string>
+
+
+    <!--Rustom string are in this boundary. Do not touch!-->
+
+    <string name="sunRiseSetString">Sunrise and Sunset Look</string>
+
+    <!--************************************************-->
+
+
+    <!--Mahsa's string are in this boundary. Do not touch!-->
+
+
+    <!--************************************************-->
+
+
+
+    <!--Nathaniel string are in this boundary. Do not touch!-->
+
+
+    <!--************************************************-->
+
+
+
+    <!--Aram string are in this boundary. Do not touch!-->
+
+
+    <!--************************************************-->
+
+</resources>
