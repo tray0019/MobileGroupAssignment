@@ -18,43 +18,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MENU!"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="10dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/RustomButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="50dp"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        tools:layout_editor_absoluteY="178dp">
+        android:layout_marginTop="76dp"
+        android:text="Sunrise and Sunset look up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <Button
-            android:id="@+id/RustomButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sunrise and Sunset look up" <!--Must not hard code. Edit later-->
-            />
+    <Button
+        android:id="@+id/AramButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:text="Activity 2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <Button
-            android:id="@+id/AramRustomButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Activity 2" />
+    <Button
+        android:id="@+id/MahsaButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="292dp"
+        android:text="Activity 3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <Button
-            android:id="@+id/MahsaRustomButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Activity 3" />
-
-        <Button
-            android:id="@+id/NathanielRustomButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Activity 4" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/NathanielButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="396dp"
+        android:text="Activity 4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
