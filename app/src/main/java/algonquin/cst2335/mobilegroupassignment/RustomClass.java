@@ -6,6 +6,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,12 +22,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * This class is for my Sunrise & Sunset lookup application
@@ -37,18 +41,27 @@ import java.util.List;
  * @Since March/08/2024
  */
 public class RustomClass extends AppCompatActivity {
-
+    private AppDatabase db;
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private LocationAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rustom_layout);
 
-        loadLastSearch();
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "favorites-database").build();
+        executorService = Executors.newFixedThreadPool(4);
+
+
+
+
 
         RecyclerView favoritesRecyclerView = findViewById(R.id.favoritesRecyclerView);
         favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        LocationAdapter adapter = new LocationAdapter(new ArrayList<>()); // Pass your data here
+        adapter = new LocationAdapter(new ArrayList<>()); // Pass your data here
         favoritesRecyclerView.setAdapter(adapter);
+        loadLastSearch();
+        loadFavorites();
 
         Button lookupButton = findViewById(R.id.lookupButton);
         lookupButton.setOnClickListener(v -> {
@@ -68,17 +81,28 @@ public class RustomClass extends AppCompatActivity {
             EditText longitudeEditText = findViewById(R.id.longitudeEditText);
             double latitude = Double.parseDouble(latitudeEditText.getText().toString());
             double longitude = Double.parseDouble(longitudeEditText.getText().toString());
-
+            Snackbar.make(v, "Location saved to favorites!", Snackbar.LENGTH_LONG).show();
             // Assuming you already have sunrise and sunset times from the last fetch
             String sunrise = "06:00 AM"; // Placeholder, replace with actual data
             String sunset = "06:00 PM"; // Placeholder, replace with actual data
 
             Location location = new Location(latitude, longitude, sunrise, sunset);
-            adapter.addLocation(location);
+            executorService.execute(() -> {
+                db.locationDao().insert(location);
+                // After saving to the database, update the RecyclerView on the main thread
+                runOnUiThread(() -> {
+                    adapter.addLocation(location);
+                });
+            });
         });
+       }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        executorService.shutdown(); // Shut down the executor service when the activity is destroyed
     }
+
     private void fetchSunriseSunset(double latitude, double longitude) {
         String url = "https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=today";
 
@@ -127,6 +151,14 @@ public class RustomClass extends AppCompatActivity {
         longitudeEditText.setText(String.valueOf(lastLongitude));
     }
 
+    private void loadFavorites() {
+        executorService.execute(() -> {
+            List<Location> locations = db.locationDao().getAll();
+            runOnUiThread(() -> adapter.setLocations(locations));
+        });
+    }
+
+
 
 
     class LocationViewHolder extends RecyclerView.ViewHolder {
@@ -148,6 +180,12 @@ public class RustomClass extends AppCompatActivity {
             this.locations = locations;
         }
 
+        public void setLocations(List<Location> locations) {
+            this.locations = locations;
+            notifyDataSetChanged();
+        }
+
+
         public void addLocation(Location location) {
             locations.add(location);
             notifyItemInserted(locations.size() - 1);
@@ -167,10 +205,13 @@ public class RustomClass extends AppCompatActivity {
             holder.locationTextView.setText("Lat: " + location.getLatitude() + ", Lng: " + location.getLongitude());
 
             holder.deleteButton.setOnClickListener(view -> {
-                locations.remove(position);
-                notifyItemRemoved(position);
+                Location deletedLocation = locations.get(holder.getAdapterPosition());
+                executorService.execute(() -> db.locationDao().delete(deletedLocation));
+                locations.remove(holder.getAdapterPosition());
+                runOnUiThread(() -> notifyItemRemoved(holder.getAdapterPosition()));
             });
         }
+
 
         @Override
         public int getItemCount() {

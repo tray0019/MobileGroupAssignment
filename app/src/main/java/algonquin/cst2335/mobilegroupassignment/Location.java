@@ -1,6 +1,12 @@
 package algonquin.cst2335.mobilegroupassignment;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "favorites")
 public class Location {
+    @PrimaryKey(autoGenerate = true)
+    public int id;
     private double latitude;
     private double longitude;
     private String sunrise;
