@@ -11,15 +11,6 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".RustomClass">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/favoritesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/lookupButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_weight="1"/>
-
 
     <EditText
     android:id="@+id/latitudeEditText"
@@ -41,15 +32,57 @@ tools:context=".RustomClass">
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_margin="16dp" />
 
-<Button
-    android:id="@+id/lookupButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Lookup"
-    app:layout_constraintTop_toBottomOf="@id/longitudeEditText"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginTop="16dp" />
+    <Button
+        android:id="@+id/lookupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Lookup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/longitudeEditText" />
+
+    <Button
+        android:id="@+id/saveToFavoritesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save to Favorites"
+        app:layout_constraintTop_toBottomOf="@id/lookupButton"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+
+    <TextView
+        android:id="@+id/sunriseTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="4dp"
+        android:text="Sunrise Time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lookupButton" />
+
+    <TextView
+        android:id="@+id/sunsetTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="8dp"
+        android:text="Sunset Time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunriseTimeTextView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoritesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveToFavoritesButton"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_weight="1"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
