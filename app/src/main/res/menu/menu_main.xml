@@ -2,7 +2,7 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/action_rustom"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/sun_icon"
         android:title="Sunrise and Sunset Lookup"
         app:showAsAction="ifRoom" />
 
