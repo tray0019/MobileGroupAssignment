@@ -29,10 +29,13 @@
     <string name="delete">Delete</string>
     <string name="Menu">MENU!</string>
 
-    <string name="help">Help</string>
-    <string name="SunriseSunseHelp">Sunrise and sunset application allow users to enter longitude
-        and latitude. The application will then lookup the time of the sunset and sunrise base
-        on the user input.
+    <string name="help">Sunrise
+        and Sunset</string>
+    <string name="SunriseSunseHelp">The application Sunrise
+        and Sunset Time Finder allows users to enter latitude
+        and longitude to determine the sunrise and sunset times
+        for that location. Users can save these locations and
+        times to a favorites list.
     </string>
     <!--************************************************-->
 
