@@ -1,15 +1,15 @@
 package algonquin.cst2335.mobilegroupassignment;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 /**
  * These is the Menu or dashboard of
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void showHelpDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Help")
-                .setMessage("Here's how to use the app: [Add your instructions here]")
+                .setTitle(R.string.help)
+                .setMessage(R.string.SunriseSunseHelp)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
     }
