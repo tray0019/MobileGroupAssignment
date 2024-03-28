@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.application.R;
+
 /**
  * These is the Menu or dashboard of
  * the application. This class provides the function for the
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         sunRiseSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this,RustomClass.class);//Make sure its your class from the class activity
+                    Intent intent = new Intent(MainActivity.this, DeezerRoom.class);//Make sure its your class from the class activity
                     startActivity(intent);
             }
 

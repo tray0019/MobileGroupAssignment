@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.application.R;
+
 /**
  * This class is for my Sunrise & Sunset lookup application
  * User interface to be able to enter latitude and longtitude
@@ -12,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Rustom
  * @Since March/08/2024
  */
-public class RustomClass extends AppCompatActivity {
+public class DeezerRoom extends AppCompatActivity {
 
     /**
      * Your button in the main activity must be link in your class.
