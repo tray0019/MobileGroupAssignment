@@ -5,6 +5,6 @@ import androidx.room.RoomDatabase;
 
 @Database(entities = {DeezerSong.class}, version = 1)
 public abstract class SongDatabase extends RoomDatabase {
-    public abstract DeezerSongDAO cmDAO();
+    public abstract DeezerSongDAO dsDAO();
 
 }
