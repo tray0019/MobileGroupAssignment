@@ -20,7 +20,7 @@
 
 
         <activity
-            android:name="algonquin.cst2335.mobilegroupassignment.MainActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.DeezerRoom"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
