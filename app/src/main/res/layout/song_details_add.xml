@@ -5,39 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <EditText
+    <TextView
         android:id="@+id/titleView"
         android:layout_width="385dp"
         android:layout_height="41dp"
         android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
          />
 
-    <EditText
+    <TextView
         android:id="@+id/timeView"
         android:layout_width="126dp"
         android:layout_height="43dp"
         android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="Name"
         app:layout_constraintStart_toStartOf="@+id/titleView"
         app:layout_constraintTop_toBottomOf="@+id/titleView" />
 
-    <EditText
+    <TextView
         android:id="@+id/albumView"
         android:layout_width="386dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

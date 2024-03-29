@@ -11,11 +11,9 @@ public class DeezerSong {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-
+    private String time;
     private String song;
     private boolean isSentButton;
-
-
 
     private String albumName;
 
@@ -23,8 +21,9 @@ public class DeezerSong {
 
     }
 
-    public DeezerSong(String song) {
+    public DeezerSong(String song, String time) {
         this.song = song;
+        this.time = time;
     }
 
 
@@ -49,7 +48,7 @@ public class DeezerSong {
         return albumName;
     }
 
-    private String time;
+
 
     public void setTime(String time) {
         this.time = time;
