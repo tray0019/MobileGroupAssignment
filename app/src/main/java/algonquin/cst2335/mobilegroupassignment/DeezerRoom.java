@@ -1,10 +1,13 @@
 package algonquin.cst2335.mobilegroupassignment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.application.R;
 import com.android.application.databinding.ActivityDeezerRoomBinding;
 import com.android.application.databinding.SongListBinding;
+import com.android.application.databinding.SongDetailsAddBinding;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,19 +30,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
+import java.util.HashSet;
+import java.util.Set;
 
 public class DeezerRoom extends AppCompatActivity {
 
     ActivityDeezerRoomBinding binding;
     private RecyclerView.Adapter<MyRowHolder> myAdapter;
-    private ArrayList<DeezerSong> songs;
+    private static ArrayList<DeezerSong> songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDeezerRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        DeezerSong deezerSong = new DeezerSong();
 
         binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -49,6 +55,7 @@ public class DeezerRoom extends AppCompatActivity {
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+
                 SongListBinding binding = SongListBinding.inflate(inflater);
                 return new MyRowHolder(binding.getRoot());
             }
@@ -94,13 +101,21 @@ public class DeezerRoom extends AppCompatActivity {
                                             tracklistUrl,
                                             null,
                                             tracklistResponse -> {
+                                                // Define a Set to store unique song titles
+                                                Set<String> uniqueTitles = new HashSet<>();
                                                 try {
                                                     JSONArray tracklistData = tracklistResponse.getJSONArray("data");
                                                     for (int j = 0; j < tracklistData.length(); j++) {
                                                         JSONObject trackObject = tracklistData.getJSONObject(j);
                                                         String songTitle = trackObject.getString("title");
-                                                        songs.add(new DeezerSong(idString));
-                                                        songs.add(new DeezerSong(songTitle));
+
+                                                        // Check if the title is already in the set
+                                                        if (!uniqueTitles.contains(songTitle)) {
+                                                            // If not, add it to the set and also to the list
+                                                            uniqueTitles.add(songTitle);
+                                                            songs.add(new DeezerSong(songTitle));
+                                                        }
+                                                        deezerSong.setSong(songTitle);
                                                     }
                                                     myAdapter.notifyDataSetChanged();
                                                 } catch (JSONException e) {
@@ -113,6 +128,7 @@ public class DeezerRoom extends AppCompatActivity {
                                     );
                                     Volley.newRequestQueue(this).add(tracklistRequest);
                                 }
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -126,20 +142,37 @@ public class DeezerRoom extends AppCompatActivity {
         });
     }
 
-
-
-
-
     static class MyRowHolder extends RecyclerView.ViewHolder {
         TextView songText;
 
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
 
-            itemView.setOnClickListener(clk ->{
-
+            itemView.setOnClickListener(clk -> {
+                songDetails(getAdapterPosition(), itemView);
             });
             songText = itemView.findViewById(R.id.message);
+        }
+
+        public void songDetails(int position, View itemView) {
+
+            DeezerSong deezerSong = new DeezerSong();
+            if (position != RecyclerView.NO_POSITION) {
+                String clickedSong = songs.get(position).getSong();
+                Toast.makeText(itemView.getContext(), "Clicked Song: " + clickedSong, Toast.LENGTH_SHORT).show();
+
+                // Inflate the song details layout
+                LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
+                @SuppressLint("InflateParams") View songDetailsView = inflater.inflate(R.layout.song_details_add, null);
+
+                TextView songTextView = songDetailsView.findViewById(R.id.titleView);
+                songTextView.setText(clickedSong);
+                // Replace the current layout in the RecyclerView item with the song details layout
+                ViewGroup parentView = (ViewGroup) itemView;
+                parentView.removeAllViews();
+                parentView.addView(songDetailsView);
+
+            }
         }
     }
 }

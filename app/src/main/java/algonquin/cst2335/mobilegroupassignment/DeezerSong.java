@@ -15,9 +15,18 @@ public class DeezerSong {
     private String song;
     private boolean isSentButton;
 
+
+
+    private String albumName;
+
+    public DeezerSong(){
+
+    }
+
     public DeezerSong(String song) {
         this.song = song;
     }
+
 
     public String getSong() {
         return song;
@@ -32,7 +41,23 @@ public class DeezerSong {
     public void setSong(String song) {
         this.song = song;
     }
+    public String getTime() {
+        return time;
+    }
 
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    private String time;
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
+    }
     public boolean isSentButton() {
         return isSentButton;
     }
