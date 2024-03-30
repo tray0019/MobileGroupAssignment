@@ -13,6 +13,10 @@ public class DeezerSong {
     private int id;
     private String time;
     private String song;
+
+
+
+    private String albumCoverUrl;
     private boolean isSentButton;
 
     private String albumName;
@@ -57,6 +61,14 @@ public class DeezerSong {
         this.time = time;
     }
 
+    // Method to convert time from seconds to desired format (e.g., minutes:seconds)
+    public String getFormattedTime() {
+        int totalSeconds = Integer.parseInt(time);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
     public void setAlbumName(String albumName) {
         this.albumName = albumName;
     }
@@ -67,4 +79,12 @@ public class DeezerSong {
     public void setSentButton(boolean sentButton) {
         isSentButton = sentButton;
     }
+
+    public void setAlbumCoverUrl(String albumCoverUrl) {
+    }
+    public String getAlbumCoverUrl() {
+        return albumCoverUrl;
+    }
 }
+
+

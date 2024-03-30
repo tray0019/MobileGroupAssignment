@@ -80,13 +80,6 @@ public class DeezerRoom extends AppCompatActivity {
                 // to the title of the song obtained from the DeezerSong object using the getSong() method.
                 holder.songText.setText(song.getSong());
 
-//
-//                // Load the image using Glide
-//                Glide.with(holder.itemView.getContext())
-//                        .load(deezerSong.getImageUrl())  // Replace "getImageUrl()" with the method to get the image URL from your ChatMessage object
-//                        .placeholder(R.drawable.placeholder)  // Placeholder image while loading
-//                        .error(R.drawable.error)  // Image to show if loading fails
-//                        .into(holder.imageView);
             }
 
             @Override
@@ -146,9 +139,16 @@ public class DeezerRoom extends AppCompatActivity {
                                                         String songTitle = trackObject.getString("title");
                                                         String time = trackObject.getString("duration");
 
+                                                        // Retrieve album title from the "album" object
+                                                        JSONObject albumObject = trackObject.getJSONObject("album");
+                                                        String albumTitle = albumObject.getString("title");
+                                                        String albumCoverUrl = albumObject.getString("cover_medium");
+
                                                         // Create a new Deezer song object and set its time
                                                         DeezerSong deezerSong = new DeezerSong(songTitle);
                                                         deezerSong.setTime(time);
+                                                        deezerSong.setAlbumName(albumTitle);
+                                                        deezerSong.setAlbumCoverUrl(albumCoverUrl);
 
                                                         // Add the Deezer song object to the songs array list
                                                         songs.add(deezerSong);
