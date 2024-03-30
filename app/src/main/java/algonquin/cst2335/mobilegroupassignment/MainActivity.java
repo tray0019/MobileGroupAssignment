@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private void showHelpDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.help)
