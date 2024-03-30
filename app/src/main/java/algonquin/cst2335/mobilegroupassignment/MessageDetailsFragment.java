@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.android.application.R;
 import com.android.application.databinding.SongDetailsAddBinding;
 import com.android.application.databinding.SongListBinding;
+import com.bumptech.glide.Glide;
 
 public class MessageDetailsFragment extends Fragment {
 
@@ -34,12 +35,13 @@ public class MessageDetailsFragment extends Fragment {
         // Get the albumName obtained from the setter method in the DeezerSong class
         binding.albumView.setText(selected.getAlbumName());
 
-//        // Load album cover image using Glide
-//        Glide.with(this)
-//                .load(selected.getAlbumCoverUrl())  // Load the image from the URL
-//                .placeholder(R.drawable.placeholder)  // Placeholder image while loading
-//                .error(R.drawable.error)  // Image to show if loading fails
-//                .into(binding.albumCoverImageView);  // Set the image into ImageView
+
+        // Load album cover image using Glide
+        Glide.with(requireContext())
+                .load(selected.getAlbumCoverUrl())  // Load the image from the URL
+                .placeholder(R.drawable.absent_cover)  // Placeholder image while loading
+                .error(R.drawable.app_icon)  // Image to show if loading fails
+                .into(binding.imageView);  // Set the image into ImageView
 
        // binding.timeView.setText(time);
         return binding.getRoot();

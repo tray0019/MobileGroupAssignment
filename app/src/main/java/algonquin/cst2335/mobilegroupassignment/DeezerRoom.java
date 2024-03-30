@@ -1,6 +1,8 @@
 package algonquin.cst2335.mobilegroupassignment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -142,7 +145,7 @@ public class DeezerRoom extends AppCompatActivity {
                                                         // Retrieve album title from the "album" object
                                                         JSONObject albumObject = trackObject.getJSONObject("album");
                                                         String albumTitle = albumObject.getString("title");
-                                                        String albumCoverUrl = albumObject.getString("cover_medium");
+                                                        String albumCoverUrl = albumObject.getString("cover_big");
 
                                                         // Create a new Deezer song object and set its time
                                                         DeezerSong deezerSong = new DeezerSong(songTitle);
@@ -166,6 +169,7 @@ public class DeezerRoom extends AppCompatActivity {
                                     //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
                                     Volley.newRequestQueue(this).add(tracklistRequest);
                                 }
+
 
                             }
                         } catch (JSONException e) {

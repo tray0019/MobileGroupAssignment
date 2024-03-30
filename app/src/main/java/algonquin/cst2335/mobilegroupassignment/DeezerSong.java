@@ -81,6 +81,7 @@ public class DeezerSong {
     }
 
     public void setAlbumCoverUrl(String albumCoverUrl) {
+        this.albumCoverUrl = albumCoverUrl;
     }
     public String getAlbumCoverUrl() {
         return albumCoverUrl;
