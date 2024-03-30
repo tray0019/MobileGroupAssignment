@@ -7,7 +7,37 @@
     <!--Rustom string are in this boundary. Do not touch!-->
 
     <string name="sunRiseSetString">Sunrise and Sunset Look</string>
+    <string name="locationSave">Location saved to favorites!</string>
+    <string name="prefix_sunrise">Sunrise: </string>
+    <string name="prefix_sunset">Sunset: </string>
 
+
+    <string name="confirm_delete_location">Are you sure you want to delete this location?</string>
+    <string name="delete_confirmation_title">Delete Confirmation</string>
+
+    <string name="pref_key_last_latitude">last_latitude</string>
+    <string name="pref_key_last_longitude">last_longitude</string>
+    <string name="pref_name">SunriseSunsetApp</string>
+    <string name="error_parsing_json">Error parsing JSON</string>
+    <string name="location_deleted">Location deleted</string>
+    <string name="shared_pref_name">SunriseSunsetApp</string>
+
+
+    <string name="sunrise_time">Sunrise Time</string>
+    <string name="sunset_time">Sunset Time</string>
+    <string name="location_name">Location Name</string>
+    <string name="delete">Delete</string>
+    <string name="Menu">MENU!</string>
+    <string name="InvalidNumeric">Please enter valid numeric values for latitude and longitude.</string>
+
+    <string name="help">Sunrise
+        and Sunset</string>
+    <string name="SunriseSunseHelp">The application Sunrise
+        and Sunset Time Finder allows users to enter latitude
+        and longitude to determine the sunrise and sunset times
+        for that location. Users can save these locations and
+        times to a favorites list.
+    </string>
     <!--************************************************-->
 
 

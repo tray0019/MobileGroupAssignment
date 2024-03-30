@@ -1,13 +1,5 @@
 package algonquin.cst2335.mobilegroupassignment;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,10 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,10 +51,6 @@ public class RustomClass extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "favorites-database").build();
         executorService = Executors.newFixedThreadPool(4);
 
-
-
-
-
         RecyclerView favoritesRecyclerView = findViewById(R.id.favoritesRecyclerView);
         favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new LocationAdapter(new ArrayList<>()); // Pass your data here
@@ -68,32 +63,43 @@ public class RustomClass extends AppCompatActivity {
             EditText latitudeEditText = findViewById(R.id.latitudeEditText);
             EditText longitudeEditText = findViewById(R.id.longitudeEditText);
 
-            double latitude = Double.parseDouble(latitudeEditText.getText().toString());
-            double longitude = Double.parseDouble(longitudeEditText.getText().toString());
+            String latitudeString = latitudeEditText.getText().toString();
+            String longitudeString = longitudeEditText.getText().toString();
 
-            saveLastSearch(latitude, longitude);
-            fetchSunriseSunset(latitude, longitude);
+            try {
+                double latitude = Double.parseDouble(latitudeString);
+                double longitude = Double.parseDouble(longitudeString);
+
+                saveLastSearch(latitude, longitude);
+                fetchSunriseSunset(latitude, longitude);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, R.string.InvalidNumeric, Toast.LENGTH_SHORT).show();
+            }
         });
 
         Button saveToFavoritesButton = findViewById(R.id.saveToFavoritesButton);
         saveToFavoritesButton.setOnClickListener(v -> {
             EditText latitudeEditText = findViewById(R.id.latitudeEditText);
             EditText longitudeEditText = findViewById(R.id.longitudeEditText);
-            double latitude = Double.parseDouble(latitudeEditText.getText().toString());
-            double longitude = Double.parseDouble(longitudeEditText.getText().toString());
-            Snackbar.make(v, "Location saved to favorites!", Snackbar.LENGTH_LONG).show();
-            // Assuming you already have sunrise and sunset times from the last fetch
-            String sunrise = "06:00 AM"; // Placeholder, replace with actual data
-            String sunset = "06:00 PM"; // Placeholder, replace with actual data
+            String latitudeString = latitudeEditText.getText().toString();
+            String longitudeString = longitudeEditText.getText().toString();
 
-            Location location = new Location(latitude, longitude, sunrise, sunset);
-            executorService.execute(() -> {
-                db.locationDao().insert(location);
-                // After saving to the database, update the RecyclerView on the main thread
-                runOnUiThread(() -> {
-                    adapter.addLocation(location);
+            try {
+                double latitude = Double.parseDouble(latitudeString);
+                double longitude = Double.parseDouble(longitudeString);
+                Snackbar.make(v, getString(R.string.locationSave), Snackbar.LENGTH_LONG).show();
+                // Placeholder values for sunrise and sunset, replace with actual data retrieval logic
+                String sunrise = "06:00 AM";
+                String sunset = "06:00 PM";
+
+                Location location = new Location(latitude, longitude, sunrise, sunset);
+                executorService.execute(() -> {
+                    db.locationDao().insert(location);
+                    runOnUiThread(() -> adapter.addLocation(location));
                 });
-            });
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, R.string.InvalidNumeric, Toast.LENGTH_SHORT).show();
+            }
         });
        }
 
@@ -103,6 +109,13 @@ public class RustomClass extends AppCompatActivity {
         executorService.shutdown(); // Shut down the executor service when the activity is destroyed
     }
 
+    /**
+     * Fetches sunrise and sunset times for the specified latitude and longitude from an online API.
+     * Updates the UI with the fetched times.
+     *
+     * @param latitude  The latitude of the location to lookup.
+     * @param longitude The longitude of the location to lookup.
+     */
     private void fetchSunriseSunset(double latitude, double longitude) {
         String url = "https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=today";
 
@@ -117,10 +130,11 @@ public class RustomClass extends AppCompatActivity {
 
                         TextView sunriseTextView = findViewById(R.id.sunriseTimeTextView);
                         TextView sunsetTextView = findViewById(R.id.sunsetTimeTextView);
-                        sunriseTextView.setText("Sunrise: " + sunrise);
-                        sunsetTextView.setText("Sunset: " + sunset);
+                        sunriseTextView.setText(getString(R.string.prefix_sunrise) + sunrise);
+                        sunsetTextView.setText(getString(R.string.prefix_sunset) + sunset);
+
                     } catch (JSONException e) {
-                        Toast.makeText(this, "Error parsing JSON", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getString(R.string.error_parsing_json), Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 },
@@ -132,18 +146,28 @@ public class RustomClass extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    /**
+     * Saves the last searched latitude and longitude in SharedPreferences.
+     *
+     * @param latitude  The latitude of the location to save.
+     * @param longitude The longitude of the location to save.
+     */
     private void saveLastSearch(double latitude, double longitude) {
-        SharedPreferences sharedPreferences = getSharedPreferences("SunriseSunsetApp", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_name), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putFloat("last_latitude", (float) latitude);
-        editor.putFloat("last_longitude", (float) longitude);
+        editor.putFloat(getString(R.string.pref_key_last_latitude), (float) latitude);
+        editor.putFloat(getString(R.string.pref_key_last_longitude), (float) longitude);
         editor.apply();
     }
 
+    /**
+     * Loads the last searched latitude and longitude from SharedPreferences and sets them in the EditTexts.
+     */
     private void loadLastSearch() {
-        SharedPreferences sharedPreferences = getSharedPreferences("SunriseSunsetApp", MODE_PRIVATE);
-        float lastLatitude = sharedPreferences.getFloat("last_latitude", 0);
-        float lastLongitude = sharedPreferences.getFloat("last_longitude", 0);
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_name), MODE_PRIVATE);
+        float lastLatitude = sharedPreferences.getFloat(getString(R.string.pref_key_last_latitude), 0);
+        float lastLongitude = sharedPreferences.getFloat(getString(R.string.pref_key_last_longitude), 0);
+
 
         EditText latitudeEditText = findViewById(R.id.latitudeEditText);
         EditText longitudeEditText = findViewById(R.id.longitudeEditText);
@@ -151,16 +175,20 @@ public class RustomClass extends AppCompatActivity {
         longitudeEditText.setText(String.valueOf(lastLongitude));
     }
 
+    /**
+     * Loads favorite locations from the database and updates the RecyclerView.
+     */
     private void loadFavorites() {
-        executorService.execute(() -> {
-            List<Location> locations = db.locationDao().getAll();
-            runOnUiThread(() -> adapter.setLocations(locations));
+        db.locationDao().getAll().observe(this, locations -> {
+            adapter.setLocations(locations);
         });
     }
 
 
 
-
+    /**
+     * ViewHolder for location items in the RecyclerView.
+     */
     class LocationViewHolder extends RecyclerView.ViewHolder {
         // Views in your item layout
         TextView locationTextView;
@@ -173,6 +201,10 @@ public class RustomClass extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Adapter for the RecyclerView that displays locations.
+     */
     class LocationAdapter extends RecyclerView.Adapter<LocationViewHolder> {
         List<Location> locations;
 
@@ -205,10 +237,25 @@ public class RustomClass extends AppCompatActivity {
             holder.locationTextView.setText("Lat: " + location.getLatitude() + ", Lng: " + location.getLongitude());
 
             holder.deleteButton.setOnClickListener(view -> {
-                Location deletedLocation = locations.get(holder.getAdapterPosition());
-                executorService.execute(() -> db.locationDao().delete(deletedLocation));
-                locations.remove(holder.getAdapterPosition());
-                runOnUiThread(() -> notifyItemRemoved(holder.getAdapterPosition()));
+                // Show confirmation dialog before deletion
+                new AlertDialog.Builder(view.getContext())
+                        .setTitle(R.string.delete_confirmation_title) // Set the title of the dialog box
+                        .setMessage(R.string.confirm_delete_location) // Set the message to show in the dialog box
+                        .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                            // Positive button action: Delete the location
+                            Location deletedLocation = locations.get(holder.getAdapterPosition());
+                            executorService.execute(() -> {
+                                db.locationDao().delete(deletedLocation);
+                                runOnUiThread(() -> {
+                                    locations.remove(holder.getAdapterPosition());
+                                    notifyItemRemoved(holder.getAdapterPosition());
+                                    Toast.makeText(view.getContext(), R.string.location_deleted, Toast.LENGTH_SHORT).show();
+                                });
+                            });
+                        })
+                        .setNegativeButton(android.R.string.no, null) // Negative button action: do nothing and dismiss the dialog
+                        .setIcon(R.drawable.sun_icon) // Set an icon for the dialog box
+                        .show();
             });
         }
 
