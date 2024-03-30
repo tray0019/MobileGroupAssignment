@@ -28,6 +28,7 @@
     <string name="location_name">Location Name</string>
     <string name="delete">Delete</string>
     <string name="Menu">MENU!</string>
+    <string name="InvalidNumeric">Please enter valid numeric values for latitude and longitude.</string>
 
     <string name="help">Sunrise
         and Sunset</string>

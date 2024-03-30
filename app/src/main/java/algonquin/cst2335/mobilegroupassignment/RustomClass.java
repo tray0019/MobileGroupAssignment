@@ -63,32 +63,43 @@ public class RustomClass extends AppCompatActivity {
             EditText latitudeEditText = findViewById(R.id.latitudeEditText);
             EditText longitudeEditText = findViewById(R.id.longitudeEditText);
 
-            double latitude = Double.parseDouble(latitudeEditText.getText().toString());
-            double longitude = Double.parseDouble(longitudeEditText.getText().toString());
+            String latitudeString = latitudeEditText.getText().toString();
+            String longitudeString = longitudeEditText.getText().toString();
 
-            saveLastSearch(latitude, longitude);
-            fetchSunriseSunset(latitude, longitude);
+            try {
+                double latitude = Double.parseDouble(latitudeString);
+                double longitude = Double.parseDouble(longitudeString);
+
+                saveLastSearch(latitude, longitude);
+                fetchSunriseSunset(latitude, longitude);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, R.string.InvalidNumeric, Toast.LENGTH_SHORT).show();
+            }
         });
 
         Button saveToFavoritesButton = findViewById(R.id.saveToFavoritesButton);
         saveToFavoritesButton.setOnClickListener(v -> {
             EditText latitudeEditText = findViewById(R.id.latitudeEditText);
             EditText longitudeEditText = findViewById(R.id.longitudeEditText);
-            double latitude = Double.parseDouble(latitudeEditText.getText().toString());
-            double longitude = Double.parseDouble(longitudeEditText.getText().toString());
-            Snackbar.make(v, getString(R.string.locationSave), Snackbar.LENGTH_LONG).show();
-            // Assuming you already have sunrise and sunset times from the last fetch
-            String sunrise = "06:00 AM"; // Placeholder, replace with actual data
-            String sunset = "06:00 PM"; // Placeholder, replace with actual data
+            String latitudeString = latitudeEditText.getText().toString();
+            String longitudeString = longitudeEditText.getText().toString();
 
-            Location location = new Location(latitude, longitude, sunrise, sunset);
-            executorService.execute(() -> {
-                db.locationDao().insert(location);
-                // After saving to the database, update the RecyclerView on the main thread
-                runOnUiThread(() -> {
-                    adapter.addLocation(location);
+            try {
+                double latitude = Double.parseDouble(latitudeString);
+                double longitude = Double.parseDouble(longitudeString);
+                Snackbar.make(v, getString(R.string.locationSave), Snackbar.LENGTH_LONG).show();
+                // Placeholder values for sunrise and sunset, replace with actual data retrieval logic
+                String sunrise = "06:00 AM";
+                String sunset = "06:00 PM";
+
+                Location location = new Location(latitude, longitude, sunrise, sunset);
+                executorService.execute(() -> {
+                    db.locationDao().insert(location);
+                    runOnUiThread(() -> adapter.addLocation(location));
                 });
-            });
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, R.string.InvalidNumeric, Toast.LENGTH_SHORT).show();
+            }
         });
        }
 
