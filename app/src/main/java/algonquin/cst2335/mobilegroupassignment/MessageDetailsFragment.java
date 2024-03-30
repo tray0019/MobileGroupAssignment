@@ -26,7 +26,11 @@ public class MessageDetailsFragment extends Fragment {
         SongDetailsAddBinding binding = SongDetailsAddBinding.inflate(inflater);
 
         binding.titleView.setText(selected.getSong());
+
+        // Get the time obtained from the setter method in the DeezerSong class
         binding.timeView.setText(selected.getTime());
+
+       // binding.timeView.setText(time);
         return binding.getRoot();
 
     }

@@ -21,8 +21,11 @@ public class DeezerSong {
 
     }
 
-    public DeezerSong(String song, String time) {
+    public DeezerSong(String song) {
         this.song = song;
+    }
+
+    public DeezerSong(String time, String albumName) {
         this.time = time;
     }
 

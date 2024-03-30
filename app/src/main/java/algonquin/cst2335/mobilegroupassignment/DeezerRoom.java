@@ -42,19 +42,25 @@ public class DeezerRoom extends AppCompatActivity {
     ActivityDeezerRoomBinding binding;
     private RecyclerView.Adapter<MyRowHolder> myAdapter;
     private static ArrayList<DeezerSong> songs;
-
     DeezerViewModel deezerViewModel;
 
+    //onCreate Method:
+    // This method is called when the activity is starting.
+    // It sets up the view model and binds the layout defined in ActivityDeezerRoomBinding to the activity.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         deezerViewModel = new ViewModelProvider(this).get(DeezerViewModel.class);
         binding = ActivityDeezerRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        DeezerSong deezerSong = new DeezerSong();
+       // DeezerSong deezerSong = new DeezerSong();
+
+        //RecyclerView Setup:
+        //Configures the RecyclerView to display the list of songs.
+        //Sets the layout manager and adapter for the RecyclerView.
+
 
         binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
-
         songs = deezerViewModel.songs.getValue();
         myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
@@ -69,11 +75,11 @@ public class DeezerRoom extends AppCompatActivity {
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
                 DeezerSong song = songs.get(position);
+
+                //It sets the text of the songText TextView, which is a part of the ViewHolder (holder),
+                // to the title of the song obtained from the DeezerSong object using the getSong() method.
                 holder.songText.setText(song.getSong());
-                holder.time.setText(song.getTime());
-                // Set the visibility of the time TextView to INVISIBLE
-               // holder.time.setVisibility(View.INVISIBLE);
-                //holder.album.setText(song.getAlbumName());
+
 //
 //                // Load the image using Glide
 //                Glide.with(holder.itemView.getContext())
@@ -85,9 +91,17 @@ public class DeezerRoom extends AppCompatActivity {
 
             @Override
             public int getItemCount() {
+
                 return songs.size();
             }
+
+
         };
+
+
+        //Search Button Click Listener:
+        //Defines the click listener for the search button.
+        //Handles the process of fetching songs from the Deezer API based on the user input.
 
         binding.recycleView.setAdapter(myAdapter);
 
@@ -105,6 +119,7 @@ public class DeezerRoom extends AppCompatActivity {
                     null,
                     response -> {
                         try {
+                            //method to retrieves jason array data
                             JSONArray data = response.getJSONArray("data");
                             for (int i = 0; i < data.length(); i++) {
                                 JSONObject artistObject = data.getJSONObject(i);
@@ -131,17 +146,15 @@ public class DeezerRoom extends AppCompatActivity {
                                                         String songTitle = trackObject.getString("title");
                                                         String time = trackObject.getString("duration");
 
-                                                        // Check if the title is already in the set
-                                                        if (!uniqueTitles.contains(songTitle)) {
-                                                            // If not, add it to the set and also to the list
-                                                            uniqueTitles.add(songTitle);
-                                                            songs.add(new DeezerSong(songTitle,time));
-                                                        }
-                                                       // deezerSong.setSong(songTitle);
-                                                       // deezerSong.setTime(time);
+                                                        // Create a new Deezer song object and set its time
+                                                        DeezerSong deezerSong = new DeezerSong(songTitle);
+                                                        deezerSong.setTime(time);
+
+                                                        // Add the Deezer song object to the songs array list
+                                                        songs.add(deezerSong);
+
                                                     }
                                                     myAdapter.notifyDataSetChanged();
-                                                    // Clear the previous text:
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
                                                 }
@@ -150,6 +163,7 @@ public class DeezerRoom extends AppCompatActivity {
                                                 // Handle error response from tracklist URL
                                             }
                                     );
+                                    //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
                                     Volley.newRequestQueue(this).add(tracklistRequest);
                                 }
 
@@ -162,12 +176,18 @@ public class DeezerRoom extends AppCompatActivity {
                         // Handle error response
                     }
             );
+            //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
             Volley.newRequestQueue(this).add(objectRequest);
         });
+
+        //Selected Song Observer
+        //Observes changes in the selected song LiveData.
+        //Replaces the current fragment with a details fragment when a song is selected.
 
         deezerViewModel.selectedSong.observe(this, selectedSong -> {
 
             MessageDetailsFragment chatFragment = new MessageDetailsFragment(selectedSong);  //newValue is the newly set ChatMessage
+            //chatFragment.setTime(selectedSong.getTime()); // Pass time to the fragment
             FragmentManager fMgr = getSupportFragmentManager();
             FragmentTransaction tx = fMgr.beginTransaction();
             tx.replace(R.id.fragmentLocation, chatFragment);
@@ -183,6 +203,10 @@ public class DeezerRoom extends AppCompatActivity {
 
     }
 
+    // MyRowHolder Class
+    //Represents the ViewHolder for the RecyclerView items.
+    //Holds references to the views in each item of the RecyclerView.
+
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView songText;
         TextView time;
@@ -193,42 +217,30 @@ public class DeezerRoom extends AppCompatActivity {
             super(itemView);
 
             itemView.setOnClickListener(clk -> {
+                //This line retrieves the position of the item that was clicked within the RecyclerView
                 int position = getAdapterPosition();
+                //After obtaining the position of the clicked item, this line retrieves the DeezerSong object at that position from the songs ArrayList
                 DeezerSong selected = songs.get(position);
+
+                //This line of code posts a DeezerSong object to the LiveData object selectedSong within the deezerViewModel
                 deezerViewModel.selectedSong.postValue(selected);
-                // Store the selected song in the ViewModel
-                deezerViewModel.setSelectedSong(selected);
 
                 //songDetails(getAdapterPosition(), itemView);
             });
+
+            //obtain a reference to the TextView in the item layout, which will be used to display the song title for each item in the RecyclerView
             songText = itemView.findViewById(R.id.message);
-            time = itemView.findViewById(R.id.times);
+           // time = itemView.findViewById(R.id.timeView);
             //album = itemView.findViewById(R.id.albumView);
 
             // Store the selected song in the ViewModel
         }
 
-//        public void songDetails(int position, View itemView) {
-//
-//            DeezerSong deezerSong = new DeezerSong();
-//            if (position != RecyclerView.NO_POSITION) {
-//                String clickedSong = songs.get(position).getSong();
-//                Toast.makeText(itemView.getContext(), "Clicked Song: " + clickedSong, Toast.LENGTH_SHORT).show();
-//
-//                // Inflate the song details layout
-//                LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
-//                @SuppressLint("InflateParams") View songDetailsView = inflater.inflate(R.layout.song_details_add, null);
-//
-//                TextView songTextView = songDetailsView.findViewById(R.id.titleView);
-//                songTextView.setText(clickedSong);
-//                // Replace the current layout in the RecyclerView item with the song details layout
-//                ViewGroup parentView = (ViewGroup) itemView;
-//                parentView.removeAllViews();
-//                parentView.addView(songDetailsView);
-//
-//            }
-//        }
     }
+
+    //onBackPressed Method
+    //Overrides the default behavior when the back button is pressed.
+    //Handles navigation back from fragments and shows the RecyclerView if needed.
 
     @Override
     public void onBackPressed() {
