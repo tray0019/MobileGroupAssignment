@@ -31,6 +31,26 @@
         </activity>
         <activity android:name=".RustomClass"/> <!--ADDED-->
 
+        <!--    START Activities Mahsa -->
+        <activity
+            android:name=".mahsa.StringListActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".mahsa.MeaningsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".mahsa.DefinitionsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".mahsa.MainDictionaryActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+        <!--    END Activities Mahsa -->
+
     </application>
 
 </manifest>

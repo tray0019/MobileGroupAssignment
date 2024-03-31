@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import algonquin.cst2335.mobilegroupassignment.mahsa.MainDictionaryActivity;
+
 /**
  * These is the Menu or dashboard of
  * the application. This class provides the function for the
@@ -66,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         // Handle the action for Rustom's activity
         if (item.getItemId() == R.id.action_rustom) {
             startActivity(new Intent(this, RustomClass.class));
+            return true;
+        }
+
+        // Handle the action for Mahsa's activity
+        else if (item.getItemId() == R.id.action_mahsa) {
+            startActivity(new Intent(this, MainDictionaryActivity.class));
             return true;
         }
         // Handle the action for displaying help dialog
