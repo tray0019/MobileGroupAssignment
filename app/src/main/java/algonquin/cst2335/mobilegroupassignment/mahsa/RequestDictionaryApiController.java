@@ -3,64 +3,36 @@ package algonquin.cst2335.mobilegroupassignment.mahsa;
 import android.app.Activity;
 import android.util.Log;
 
-import algonquin.cst2335.mobilegroupassignment.R;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Function;
 
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
+import algonquin.cst2335.mobilegroupassignment.R;
 
 public class RequestDictionaryApiController {
 
-    private final Activity activity;
+    private Activity activity;
 
-    private FetchWordInfo fetchWordInfo;
+    private RequestQueue requestQueue;
 
-    public RequestDictionaryApiController(final Activity activity) {
+    public RequestDictionaryApiController(Activity activity) {
         this.activity = activity;
-        setRetrofit();
-    }
-
-    private void setRetrofit() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(activity.getString(R.string.base_api_url))
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
-
-        fetchWordInfo = retrofit.create(FetchWordInfo.class);
+        requestQueue = Volley.newRequestQueue(activity);
     }
 
     public void fetch(String word, Function<String, Void> onResponse) {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(() -> {
-            try {
-                Call<String> fetchWordInfo = this.fetchWordInfo.fetch(word);
-                Response<String> execute = fetchWordInfo.execute();
-                if (execute.isSuccessful()) {
-                    onResponse.apply(execute.body());
-                } else {
-                    throw new IOException("Fail to fetch word info");
-                }
-            } catch (IOException | NullPointerException e) {
-                Log.i("FETCH_WORD_INFO__ERROR", e.getMessage() != null ? e.getMessage() : "ERROR");
-                onResponse.apply(null);
-            } finally {
-                executorService.shutdown();
-            }
+        final String url = activity.getString(R.string.base_api_url) + word;
+        Log.i("URL", url);
+        StringRequest request = new StringRequest(Request.Method.GET, url, onResponse::apply, volleyError -> {
+            Log.i("FETCH_WORD_INFO__ERROR", volleyError.getMessage() != null ? volleyError.getMessage() : "ERROR");
+            onResponse.apply(null);
         });
+        requestQueue.add(request);
     }
 
-    public interface FetchWordInfo {
-        @GET("{WORD}")
-        Call<String> fetch(@Path("WORD") String word);
-    }
 }
 
 

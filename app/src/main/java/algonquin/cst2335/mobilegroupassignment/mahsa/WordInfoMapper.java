@@ -1,5 +1,10 @@
 package algonquin.cst2335.mobilegroupassignment.mahsa;
 
+import android.app.Activity;
+import android.app.Service;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -23,6 +28,8 @@ public final class WordInfoMapper {
             log("1ERROR_RESPONSE", e.getMessage());
             return null;
         }
+
+        log("WORD_INFO", wordInfo);
 
         final List<List<MeaningsDto>> words = new ArrayList<>();
 
@@ -78,5 +85,62 @@ public final class WordInfoMapper {
             list[i] = jsonArray.getString(i);
         }
         return list;
+    }
+
+    public static List<MeaningsDto> toMeaningsDto(final String word, final List<MeaningsEntity> meaningsEntities) {
+        try {
+            final List<MeaningsDto> meaningsDtoList = new ArrayList<>();
+            for (final MeaningsEntity meaningsEntity : meaningsEntities) {
+                final MeaningsDto meaningsDto = new MeaningsDto();
+                meaningsDto.setWord(word);
+                meaningsDto.setDefinitions(toDefinitionDto(meaningsEntity.getDefinitionsEntities()));
+
+                if (meaningsEntity.getAntonyms() != null) {
+                    meaningsDto.setAntonyms(toStringList(new JSONArray(meaningsEntity.getAntonyms())));
+                } else {
+                    meaningsDto.setAntonyms(new String[0]);
+                }
+
+                if (meaningsEntity.getSynonyms() != null) {
+                    meaningsDto.setSynonyms(toStringList(new JSONArray(meaningsEntity.getSynonyms())));
+                } else {
+                    meaningsDto.setSynonyms(new String[0]);
+                }
+
+                meaningsDto.setPartOfSpeech(meaningsEntity.getPartOfSpeech());
+
+                meaningsDtoList.add(meaningsDto);
+            }
+            return meaningsDtoList;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static List<DefinitionDto> toDefinitionDto(final List<DefinitionsEntity> definitionsEntities) {
+        try {
+            final List<DefinitionDto> definitionDtoList = new ArrayList<>();
+            for (final DefinitionsEntity definitionsEntity : definitionsEntities) {
+                final DefinitionDto definitionDto = new DefinitionDto();
+                definitionDto.setDefinition(definitionsEntity.getDefinition());
+
+                if (definitionsEntity.getAntonyms() != null) {
+                    definitionDto.setAntonyms(toStringList(new JSONArray(definitionsEntity.getAntonyms())));
+                } else {
+                    definitionDto.setAntonyms(new String[0]);
+                }
+
+                if (definitionsEntity.getSynonyms() != null) {
+                    definitionDto.setSynonyms(toStringList(new JSONArray(definitionsEntity.getSynonyms())));
+                } else {
+                    definitionDto.setSynonyms(new String[0]);
+                }
+
+                definitionDtoList.add(definitionDto);
+            }
+            return definitionDtoList;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

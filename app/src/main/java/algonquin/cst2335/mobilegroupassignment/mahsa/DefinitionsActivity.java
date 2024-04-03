@@ -13,9 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import algonquin.cst2335.mobilegroupassignment.R;
 
 import java.util.List;
+
+import algonquin.cst2335.mobilegroupassignment.R;
 
 public class DefinitionsActivity extends AppCompatActivity {
 

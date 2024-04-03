@@ -1,6 +1,7 @@
 package algonquin.cst2335.mobilegroupassignment.mahsa;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class DefinitionDto {
     private String definition;

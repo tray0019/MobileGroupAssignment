@@ -3,7 +3,6 @@ package algonquin.cst2335.mobilegroupassignment.mahsa;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import org.json.JSONException;
 
@@ -26,6 +26,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import algonquin.cst2335.mobilegroupassignment.AppDatabase;
 import algonquin.cst2335.mobilegroupassignment.R;
 
 public class MainDictionaryActivity extends AppCompatActivity {
@@ -40,23 +42,27 @@ public class MainDictionaryActivity extends AppCompatActivity {
     public static List<List<MeaningsDto>> words;
     private RequestDictionaryApiController requestDictionaryApiController;
 
-    private DatabaseManager databaseManager;
 
     private SharedPreferences sharedPreferences;
+
+    private AppDatabase wordDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dictionary);
 
-        sharedPreferences = getSharedPreferences("masha.dictionary.api", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("mahsa.dictionary.api", MODE_PRIVATE);
 
-        databaseManager = new DatabaseManager(this.getApplicationContext());
         requestDictionaryApiController = new RequestDictionaryApiController(this);
 
         setTools();
         setOnClick();
         setValue();
+
+
+        wordDb = Room.databaseBuilder(this.getApplicationContext(), AppDatabase.class, "mahsa_dictionary_api_db").build();
+
     }
 
     @Override
@@ -97,8 +103,8 @@ public class MainDictionaryActivity extends AppCompatActivity {
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(() -> {
-            try (SQLiteDatabase sqLiteDatabase = databaseManager.getSqLiteDatabase()) {
-                WordDb.getWordRepository().remove(sqLiteDatabase, word);
+            try {
+                WordDb.getWordDb().remove(wordDb.wordDao(), word);
                 showToast("Successfully removed word, Word: " + word);
             } catch (SQLException | android.database.SQLException e) {
                 showToast("Fail to delete word, Message: " + e.getMessage());
@@ -106,7 +112,6 @@ public class MainDictionaryActivity extends AppCompatActivity {
                 if (!executorService.isShutdown()) {
                     executorService.shutdown();
                 }
-                databaseManager.close();
             }
         });
     }
@@ -126,24 +131,17 @@ public class MainDictionaryActivity extends AppCompatActivity {
             }
 
             showToast("Saving word, Word: " + word);
-            try (SQLiteDatabase sqLiteDatabase = databaseManager.getSqLiteDatabase()) {
-                try {
-                    WordDb.getWordRepository().saveWord(sqLiteDatabase, word, words);
-                    showToast("Successfully saved word");
-                } catch (JSONException | SQLException | android.database.SQLException e) {
-                    showToast("Fail to save word, Message: " + e.getMessage());
-                } finally {
-                    if (!executorService.isShutdown()) {
-                        executorService.shutdown();
-                    }
-                    databaseManager.close();
-                }
+            try {
+                WordDb.getWordDb().saveWord(wordDb.wordDao(), word, words);
+                showToast("Successfully saved word");
+            } catch (JSONException | SQLException | android.database.SQLException e) {
+                showToast("Fail to save word, Message: " + e.getMessage());
             } finally {
                 if (!executorService.isShutdown()) {
                     executorService.shutdown();
                 }
-                databaseManager.close();
             }
+
         });
     }
 
@@ -174,21 +172,16 @@ public class MainDictionaryActivity extends AppCompatActivity {
         if (radioBtnShowLocal.isChecked()) {
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(() -> {
-                try (SQLiteDatabase sqLiteDatabase = databaseManager.getSqLiteDatabase()) {
-                    words = WordDb.getWordRepository().fetchWords(sqLiteDatabase, word);
-                    if (words != null) {
-                        showToast("Successfully fetch words from local");
-                        handlerResponse();
-                    } else {
-                        throw new NullPointerException("Words is null");
-                    }
+                try {
+                    words = WordDb.getWordDb().fetchWords(wordDb.wordDao(), word);
+                    showToast("Successfully fetch words from local");
+                    handlerResponse();
                 } catch (JSONException | android.database.SQLException | NullPointerException e) {
                     showToast("Fail to fetch words, Message: " + e.getMessage());
                 } finally {
                     if (!executorService.isShutdown()) {
                         executorService.shutdown();
                     }
-                    databaseManager.close();
                 }
             });
         }

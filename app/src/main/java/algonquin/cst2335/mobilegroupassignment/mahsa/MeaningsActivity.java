@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
 import algonquin.cst2335.mobilegroupassignment.R;
+
 
 public class MeaningsActivity extends AppCompatActivity {
 
@@ -64,7 +66,7 @@ public class MeaningsActivity extends AppCompatActivity {
     public static class MeaningsAdapter extends RecyclerView.Adapter<MeaningsAdapter.ViewHolder> {
 
         private MeaningsActivity activity;
-        private List<MeaningsDto> meaningsDtoList;
+        private final List<MeaningsDto> meaningsDtoList;
 
         public MeaningsAdapter(MeaningsActivity activity, List<MeaningsDto> meaningsDtoList) {
             this.activity = activity;
@@ -85,6 +87,7 @@ public class MeaningsActivity extends AppCompatActivity {
             activity.runOnUiThread(() -> {
                 holder.txtPartOfSpeech.setText(meaningsDto.getPartOfSpeech());
                 holder.txtNumberOfDefinitions.setText(String.valueOf(meaningsDto.getDefinitions().size()));
+
                 holder.txtNumberOfSynonyms.setText(String.valueOf(meaningsDto.getSynonyms().length));
                 holder.txtNumberOfAntonyms.setText(String.valueOf(meaningsDto.getAntonyms().length));
 
