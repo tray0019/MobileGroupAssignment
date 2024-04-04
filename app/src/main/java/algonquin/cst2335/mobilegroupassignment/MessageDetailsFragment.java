@@ -1,31 +1,96 @@
 package algonquin.cst2335.mobilegroupassignment;
 
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.android.application.R;
 import com.android.application.databinding.SongDetailsAddBinding;
-import com.android.application.databinding.SongListBinding;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInput;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import algonquin.cst2335.mobilegroupassignment.DeezerSong;
+import algonquin.cst2335.mobilegroupassignment.DeezerSongDAO;
+import algonquin.cst2335.mobilegroupassignment.DeezerViewModel;
+import algonquin.cst2335.mobilegroupassignment.SongDatabase;
 
 public class MessageDetailsFragment extends Fragment {
+    private RecyclerView recyclerView;
 
-    DeezerSong selected;
+    private DeezerSong selected;
 
-    public MessageDetailsFragment(DeezerSong m){
-        selected = m;
+    private byte[] imageByteArray; // Declare imageByteArray as a member variable
+    private DeezerViewModel deezerViewModel;
+    private DeezerSongDAO dDAO;
+    private SongAdapter songAdapter;
+
+    DeezerRoom droom = new DeezerRoom();
+
+
+    public MessageDetailsFragment() {
     }
+
+    public MessageDetailsFragment(DeezerSong selected) {
+        this.selected = selected;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Initialize the ViewModel
+        deezerViewModel = new ViewModelProvider(requireActivity()).get(DeezerViewModel.class);
+        // Initialize the DAO
+        dDAO = Room.databaseBuilder(requireContext(), SongDatabase.class, "favourite_songs2").build().dsDAO();
+
+
+        // Initialize your SongAdapter with an empty list initially
+        songAdapter = new SongAdapter(new ArrayList<>());
+
+    }
+
+
+    @SuppressLint("WrongViewCast")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        SongDetailsAddBinding binding = SongDetailsAddBinding.inflate(inflater);
+        // Inflate the layout for this fragment
+        SongDetailsAddBinding binding = SongDetailsAddBinding.inflate(inflater, container, false);
+        View rootView = binding.getRoot();
+
+        // Hide the ImageView
+        //binding.imageView.setVisibility(View.GONE);
+
 
         binding.titleView.setText(selected.getSong());
 
@@ -35,16 +100,96 @@ public class MessageDetailsFragment extends Fragment {
         // Get the albumName obtained from the setter method in the DeezerSong class
         binding.albumView.setText(selected.getAlbumName());
 
-
-        // Load album cover image using Glide
         Glide.with(requireContext())
-                .load(selected.getAlbumCoverUrl())  // Load the image from the URL
-                .placeholder(R.drawable.absent_cover)  // Placeholder image while loading
-                .error(R.drawable.app_icon)  // Image to show if loading fails
-                .into(binding.imageView);  // Set the image into ImageView
+                .asBitmap()
 
-       // binding.timeView.setText(time);
-        return binding.getRoot();
 
+                .load(selected.getAlbumCoverUrl())
+                .placeholder(R.drawable.absent_cover)
+                .error(R.drawable.app_icon)
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                        resource.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                        imageByteArray = outputStream.toByteArray(); // Assign imageByteArray here
+
+                        binding.imageView.setImageBitmap(resource);
+                    }
+                });
+
+
+
+        // Get reference to the favouriteButton
+        ImageButton favouriteButton = rootView.findViewById(R.id.favouriteButton);
+        favouriteButton.setOnClickListener(v -> {
+            DeezerSong songDetails = getSongDetails();
+
+            // Insert the new DeezerSong into the database
+            Executor thread = Executors.newSingleThreadExecutor();
+            thread.execute(() -> {
+                dDAO.insertMessage(songDetails);
+            });
+        });
+
+
+        // Find the favorite button by its ID
+        Button favouriteView = rootView.findViewById(R.id.favouriteView);
+
+        // Set click listener for the favorite button
+        favouriteView.setOnClickListener(v -> {
+            // Call the updateAdapter method to fetch songs from the database and update the adapter
+            updateAdapter();
+
+        });
+        return rootView;
     }
+
+
+
+    // Method to get all song details and cover image as one object
+    public DeezerSong getSongDetails() {
+
+        // Retrieve song details
+        String title = selected.getSong();
+        String time = selected.getFormattedTime();
+        String album = selected.getAlbumName();
+
+        // Return all song details and cover image as one object
+        return new DeezerSong(title,time,album,imageByteArray);
+    }
+
+    // Update the adapter with songs from the database
+    private void updateAdapter() {
+        // Fetch songs from the database
+        Executors.newSingleThreadExecutor().execute(() -> {
+            List<DeezerSong> songs = dDAO.getAllSongs();
+            requireActivity().runOnUiThread(() -> {
+                // Pass the list of songs to the SongListFragment and replace the current fragment
+                SongListFragment listFragment = new SongListFragment();
+                listFragment.setSongs(songs); // Pass the list of songs to the fragment
+                // Replace the current fragment with SongListFragment
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragmentLocation, listFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+
+                // Set the visibility of the RecyclerView to invisible
+//                droom.binding.editText.setVisibility(View.INVISIBLE);
+//                droom.binding.recycleView.setVisibility(View.INVISIBLE);
+//                droom.binding.searchButton.setVisibility(View.INVISIBLE);
+            });
+        });
+    }
+    // Method to hide the views
+//    public void hideViews() {
+//
+//        // Hide the views
+//       // editText.setVisibility(View.INVISIBLE);
+//       // recyclerView.setVisibility(View.INVISIBLE);
+//        //searchButton.setVisibility(View.INVISIBLE);
+//    }
+
 }

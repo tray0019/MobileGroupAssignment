@@ -1,25 +1,27 @@
 package algonquin.cst2335.mobilegroupassignment;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class DeezerSong {
 
-
-
-
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
-    private String time;
+    @ColumnInfo(name = "Title")
     private String song;
+    @ColumnInfo(name = "Period")
 
-
-
-    private String albumCoverUrl;
-    private boolean isSentButton;
+    private String time;
+    @ColumnInfo(name = "Album_name")
 
     private String albumName;
+    @ColumnInfo(name = "Cover_image")
+
+    private byte[] coverImage;
+
 
     public DeezerSong(){
 
@@ -29,10 +31,19 @@ public class DeezerSong {
         this.song = song;
     }
 
+    public DeezerSong(String title, String time, String album, byte[] coverImage) {
+        this.song = title;
+        this.time = time;
+        this.albumName = album;
+        this.coverImage = coverImage;
+    }
+
     public DeezerSong(String time, String albumName) {
         this.time = time;
     }
 
+    private String albumCoverUrl;
+    private boolean isSentButton;
 
     public String getSong() {
         return song;
@@ -45,6 +56,7 @@ public class DeezerSong {
         return id;
     }
     public void setSong(String song) {
+
         this.song = song;
     }
     public String getTime() {
@@ -86,6 +98,14 @@ public class DeezerSong {
     public String getAlbumCoverUrl() {
         return albumCoverUrl;
     }
+    public byte[] getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(byte[] coverImage) {
+        this.coverImage = coverImage;
+    }
 }
+
 
 
