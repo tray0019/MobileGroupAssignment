@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_margin="10sp"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/recipe_item_image"
+                        android:src="@drawable/food2"
+                        android:layout_width="250sp"
+                        android:layout_height="250sp"
+                        android:contentDescription="@string/item_image" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/id"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_id"
+                        android:text="@string/_0"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/aisle"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_aisle"
+                        android:text="@string/example_aisle"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/consistency"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_consistency"
+                        android:text="@string/example_consistency"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/name_lower"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_name"
+                        android:text="@string/example_name"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/name_clean"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_name_clean"
+                        android:text="@string/example_name_clean"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/original"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_original"
+                        android:text="@string/example_original"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/original_name"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_original_name"
+                        android:text="@string/example_original_name"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/amount"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_amount"
+                        android:text="@string/example_amount"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/meta"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="@string/line"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_meta"
+                        android:text="@string/example_meta"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

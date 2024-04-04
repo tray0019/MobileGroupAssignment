@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="3sp"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/item_info_image"
+            android:src="@drawable/food2"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:contentDescription="@string/item_info_image" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="3sp"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="@string/id"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/txt_id"
+                    android:text="@string/example_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.9"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="3sp"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="@string/name_lower"
+                    android:layout_width="0dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/txt_name"
+                    android:text="@string/example_item_info_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.9"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="3sp"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="@string/localized_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/txt_localized_name"
+                    android:text="@string/example_item_info_localized_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.9"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

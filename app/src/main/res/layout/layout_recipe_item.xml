@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/recipe_image"
+                        android:src="@drawable/food2"
+                        android:layout_width="250sp"
+                        android:layout_height="250sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="10sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/id"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="----------------------------------"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_id"
+                        android:text="@string/_0"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="10sp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="@string/title"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:text="----------------------------------"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        android:id="@+id/txt_title"
+                        android:text="Recipe"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="20sp"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                    <Button
+                            android:text="@string/add"
+                            android:id="@+id/btn_add"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/buttonBarButtonStyle" />
+
+                    <Button
+                            android:text="@string/remove"
+                            android:id="@+id/btn_remove"
+                            android:layout_width="0dp"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:layout_weight="0.5"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/buttonBarButtonStyle" />
+
+                </LinearLayout>
+
+                <Button
+                        android:text="@string/extended_ingredients"
+                        android:id="@+id/btn_extended_ingredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <Button
+                        android:text="@string/analyzed_instructions"
+                        android:id="@+id/btn_analyzed_instructions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

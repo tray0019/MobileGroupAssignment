@@ -1,4 +1,3 @@
-
 <!--We can have multiple string layout xml or one. Either way are no problem-->
 <resources>
     <string name="app_name">MobileGroupAssignment</string>
@@ -17,16 +16,77 @@
     <!--************************************************-->
 
 
-
     <!--Nathaniel string are in this boundary. Do not touch!-->
 
 
     <!--************************************************-->
 
 
-
     <!--Aram string are in this boundary. Do not touch!-->
+    <string name="base_recipe_api_url">https://api.spoonacular.com/recipes/</string>
+    <string name="base_recipe_ingredients_image_url">https://spoonacular.com/cdn/ingredients_500x500/</string>
+    <string name="recipe_token">e5306fca9c4b49c39fff5d596af82b7f</string>
 
+    <string name="recipe_search">Recipe Search</string>
+    <string name="open">OPEN</string>
+    <string name="id">Id</string>
+    <string name="_0">0</string>
+    <string name="title">Title</string>
+    <string name="pre_page">Pre Page</string>
+    <string name="next_page">Next Page</string>
+    <string name="example_text_350">350</string>
+    <string name="slash">/</string>
+    <string name="ten_number">10</string>
+    <string name="extended_ingredients">Extended Ingredients</string>
+    <string name="analyzed_instructions">Analyzed Instructions</string>
+    <string name="recipe">RECIPE</string>
+    <string name="example_aisle">Produce</string>
+    <string name="example_consistency">SOLID</string>
+    <string name="example_name">onion</string>
+    <string name="example_name_clean">onion</string>
+    <string name="example_original">2 tablespoons Onion, minced</string>
+    <string name="name_clean">Name Clean</string>
+    <string name="original">Original</string>
+    <string name="line">----------------</string>
+    <string name="item_image">Item Image</string>
+    <string name="aisle">Aisle</string>
+    <string name="consistency">Consistency</string>
+    <string name="name_lower">name</string>
+    <string name="original_name">Original Name</string>
+    <string name="example_original_name">Onion, minced</string>
+    <string name="amount">Amount</string>
+    <string name="example_amount">2.0</string>
+    <string name="meta">Meta</string>
+<!-- test  <-->
+    <string name="example_meta">minced, minced, minced, minced, minced, minced</string>
+    <string name="example_step">Cook pasta in a large pot of boiling water until al dente.</string>
+    <string name="step">Step</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="equipment">Equipment</string>
+    <string name="example_id">20420</string>
+    <string name="example_item_info_name">pasta</string>
+    <string name="localized_name">Localized Name</string>
+    <string name="example_item_info_localized_name">pasta</string>
+    <string name="item_info_image">Item Info Image</string>
+    <string name="show_steps">Show Steps</string>
+    <string name="remove">Remove</string>
+    <string name="add">Add</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="please_enter_recipe">Please Enter Recipe</string>
+    <string name="get_recipe_info">Get Recipe Info</string>
+    <string name="from_server">From Server</string>
+    <string name="from_local">From Local</string>
+
+    <string name="help_dialog">Help dialog</string>
+    <string name="help_dialog_message">Steps to follow:\n\n
+    1- Write the name of the food you would like to see the recipe for\n\n
+    2-Click on From Server or Local (Local will only shows previously saved recipes)\n\n
+    3-You can add or remove the recipe\n\n
+    4-Click on Analyzed Instruction to see the step by step instruction\n\n
+    5-Click on Extended the Ingredients to see the ingredients</string>
+    <string name="help_dialog_title">Help</string>
+    <string name="aram_recipe">Aram Recipe</string>
 
     <!--************************************************-->
 
