@@ -1,10 +1,5 @@
 package algonquin.cst2335.mobilegroupassignment.mahsa;
 
-import android.app.Activity;
-import android.app.Service;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -14,6 +9,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Mahsa
+ * Wednesday, April 3, 2024
+ * lab section: 021
+ * --
+ * Tuesday, March 19, 2024
+ */
 public final class WordInfoMapper {
 
     private WordInfoMapper() {

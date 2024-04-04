@@ -12,6 +12,13 @@ import java.util.function.Function;
 
 import algonquin.cst2335.mobilegroupassignment.R;
 
+/**
+ * @author Mahsa
+ * Monday, March 18, 2024
+ * lab section: 021
+ * --
+ * Management of sending and receiving http requests
+ */
 public class RequestDictionaryApiController {
 
     private Activity activity;

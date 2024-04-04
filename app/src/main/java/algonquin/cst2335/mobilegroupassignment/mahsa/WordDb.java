@@ -7,6 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Mahsa
+ * Tuesday, March 19, 2024
+ * lab section: 021
+ * --
+ * Database management
+ */
 public class WordDb {
 
     private static WordDb wordRepository;

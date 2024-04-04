@@ -17,6 +17,13 @@ import java.util.Arrays;
 
 import algonquin.cst2335.mobilegroupassignment.R;
 
+/**
+ * @author Mahsa
+ * Tuesday, March 19, 2024
+ * lab section: 021
+ * --
+ * Display a list of string representations
+ */
 public class StringListActivity extends AppCompatActivity {
 
     private String name;

@@ -10,26 +10,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONException;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import algonquin.cst2335.mobilegroupassignment.AppDatabase;
 import algonquin.cst2335.mobilegroupassignment.R;
 
+/**
+ * @author Mahsa
+ * Saturday, March 16, 2024
+ * lab section: 021
+ * --
+ * The main activity of the program
+ */
 public class MainDictionaryActivity extends AppCompatActivity {
     private EditText txtWord;
     private RadioButton radioBtnShowServer;
@@ -37,7 +46,7 @@ public class MainDictionaryActivity extends AppCompatActivity {
     private RecyclerView listView;
     private ImageButton btnFetchWordInfo;
 
-    private ImageButton btnAdd, btnRemove;
+    private ImageButton btnAdd, btnRemove, btnHelp;
 
     public static List<List<MeaningsDto>> words;
     private RequestDictionaryApiController requestDictionaryApiController;
@@ -47,12 +56,14 @@ public class MainDictionaryActivity extends AppCompatActivity {
 
     private AppDatabase wordDb;
 
+    private LinearLayout mainLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dictionary);
 
-        sharedPreferences = getSharedPreferences("mahsa.dictionary.api", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(getString(R.string.mahsa_shareprefrence_name), MODE_PRIVATE);
 
         requestDictionaryApiController = new RequestDictionaryApiController(this);
 
@@ -61,7 +72,7 @@ public class MainDictionaryActivity extends AppCompatActivity {
         setValue();
 
 
-        wordDb = Room.databaseBuilder(this.getApplicationContext(), AppDatabase.class, "mahsa_dictionary_api_db").build();
+        wordDb = Room.databaseBuilder(this.getApplicationContext(), AppDatabase.class, getString(R.string.mahsa_db_name)).build();
 
     }
 
@@ -79,16 +90,20 @@ public class MainDictionaryActivity extends AppCompatActivity {
         btnFetchWordInfo = findViewById(R.id.btn_fetch_word_info);
         btnAdd = findViewById(R.id.btn_add);
         btnRemove = findViewById(R.id.btn_remove);
+        btnHelp = findViewById(R.id.btn_help);
+
+        mainLayout = findViewById(R.id.main);
     }
 
     private void setOnClick() {
         btnFetchWordInfo.setOnClickListener(e -> onClickBtnFetchWordInfo());
         btnAdd.setOnClickListener(e -> onClickBtnAdd());
         btnRemove.setOnClickListener(e -> onClickBtnRemove());
+        btnHelp.setOnClickListener(e -> onClickBtnHelp());
     }
 
     private void setValue() {
-        String word = sharedPreferences.getString("word", null);
+        String word = sharedPreferences.getString(getString(R.string.share_preference_key), null);
         if (word != null) {
             runOnUiThread(() -> txtWord.setText(word));
         }
@@ -100,49 +115,57 @@ public class MainDictionaryActivity extends AppCompatActivity {
         if (word == null) {
             return;
         }
-
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(() -> {
+        new Thread(() -> {
             try {
                 WordDb.getWordDb().remove(wordDb.wordDao(), word);
-                showToast("Successfully removed word, Word: " + word);
+                showSnack(getString(R.string.mahsa_remove_word) + word);
             } catch (SQLException | android.database.SQLException e) {
-                showToast("Fail to delete word, Message: " + e.getMessage());
-            } finally {
-                if (!executorService.isShutdown()) {
-                    executorService.shutdown();
-                }
+                showToast(getString(R.string.mahsa_fail_delete) + e.getMessage());
             }
-        });
+        }).start();
+
+    }
+
+    /**
+     * Display help alert dialog
+     */
+    private void onClickBtnHelp() {
+        runOnUiThread(() -> new AlertDialog.Builder(MainDictionaryActivity.this)
+                .setTitle(R.string.help_dialog_title)
+                .setMessage(R.string.help_dialog_message)
+                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                    dialog.dismiss();
+                    dialog.cancel();
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show());
     }
 
     private void onClickBtnAdd() {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(() -> {
-
+        new Thread(() -> {
             String word = getWord();
             if (word == null) {
                 return;
             }
 
             if (words == null || words.isEmpty()) {
-                showToast("Please enter word and search");
+                showToast(getString(R.string.mahsa_enter_word_search));
                 return;
             }
 
-            showToast("Saving word, Word: " + word);
+            showToast(getString(R.string.mahsa_saving_word_word) + word);
             try {
                 WordDb.getWordDb().saveWord(wordDb.wordDao(), word, words);
-                showToast("Successfully saved word");
+                showSnack(getString(R.string.mahsa_successfully_saved_word));
             } catch (JSONException | SQLException | android.database.SQLException e) {
-                showToast("Fail to save word, Message: " + e.getMessage());
-            } finally {
-                if (!executorService.isShutdown()) {
-                    executorService.shutdown();
-                }
+                showSnack(getString(R.string.mahsa_fail_to_save_word_message) + e.getMessage());
             }
+        }).start();
 
-        });
+    }
+
+    private void showSnack(String text) {
+        runOnUiThread(() -> Snackbar.make(mainLayout, text, Snackbar.LENGTH_SHORT).show());
     }
 
     private void showToast(String text) {
@@ -157,7 +180,7 @@ public class MainDictionaryActivity extends AppCompatActivity {
         }
 
         if (!radioBtnShowLocal.isChecked() && !radioBtnShowServer.isChecked()) {
-            showToast("Please check server or local");
+            showToast(getString(R.string.mahsa_please_check_server_or_local));
             return;
         }
 
@@ -170,39 +193,36 @@ public class MainDictionaryActivity extends AppCompatActivity {
         }
 
         if (radioBtnShowLocal.isChecked()) {
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
-            executorService.execute(() -> {
+            new Thread(() -> {
                 try {
                     words = WordDb.getWordDb().fetchWords(wordDb.wordDao(), word);
-                    showToast("Successfully fetch words from local");
+                    showSnack(getString(R.string.mahsa_successfully_fetch_words_from_local));
                     handlerResponse();
-                } catch (JSONException | android.database.SQLException | NullPointerException e) {
-                    showToast("Fail to fetch words, Message: " + e.getMessage());
-                } finally {
-                    if (!executorService.isShutdown()) {
-                        executorService.shutdown();
-                    }
+                } catch (JSONException | android.database.SQLException |
+                         NullPointerException e) {
+                    showSnack(getString(R.string.mahsa_fail_to_fetch_words_message) + e.getMessage());
                 }
-            });
+            }).start();
+
         }
 
     }
 
     private void saveSharedPreference(String word) {
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("word", word);
+        edit.putString(getString(R.string.share_preference_key), word);
         edit.apply();
     }
 
     private String getWord() {
         if (txtWord.getText() == null || txtWord.getText().toString().isEmpty()) {
-            showToast("Please enter word");
+            showToast(getString(R.string.mahsa_please_enter_word));
             return null;
         }
 
         String word = txtWord.getText().toString();
         if (word.isEmpty()) {
-            showToast("Please enter word");
+            showToast(getString(R.string.mahsa_please_enter_word));
             return null;
         }
 
@@ -216,7 +236,7 @@ public class MainDictionaryActivity extends AppCompatActivity {
         words = WordInfoMapper.toList(res);
         log("RESPONSE_OBJECT", words);
         if (words == null) {
-            showToast("Fail to response handler");
+            showSnack(getString(R.string.mahsa_fail_to_response_handler));
             return;
         }
         handlerResponse();
@@ -236,7 +256,7 @@ public class MainDictionaryActivity extends AppCompatActivity {
 
     public void onItemClick(int selectedIndex) {
         Intent intent = new Intent(this, MeaningsActivity.class);
-        intent.putExtra("selectedIndex", selectedIndex);
+        intent.putExtra(getString(R.string.mahsa_intent_index_key), selectedIndex);
         runOnUiThread(() -> startActivity(intent));
     }
 

@@ -5,6 +5,13 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+/**
+ * @author Mahsa
+ * Tuesday, April 2, 2024
+ * lab section: 021
+ * --
+ * entity definition info
+ */
 @Entity(tableName = "definitions")
 public class DefinitionsEntity {
     @PrimaryKey(autoGenerate = true)

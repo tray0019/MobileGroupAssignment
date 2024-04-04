@@ -3,6 +3,13 @@ package algonquin.cst2335.mobilegroupassignment.mahsa;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Mahsa
+ * Monday, March 18, 2024
+ * lab section: 021
+ * --
+ * dto definition info
+ */
 public class DefinitionDto {
     private String definition;
     private String[] synonyms;

@@ -19,7 +19,13 @@ import java.util.List;
 
 import algonquin.cst2335.mobilegroupassignment.R;
 
-
+/**
+ * @author Mahsa
+ * Tuesday, March 19, 2024
+ * lab section: 021
+ * --
+ * Meanings information display
+ */
 public class MeaningsActivity extends AppCompatActivity {
 
     private RecyclerView listViewMeaningsList;
@@ -37,7 +43,7 @@ public class MeaningsActivity extends AppCompatActivity {
             return;
         }
 
-        int selectedIndex = extras.getInt("selectedIndex");
+        int selectedIndex = extras.getInt(getString(R.string.mahsa_intent_index_key));
         Log.i("SELECTED_INDEX", String.valueOf(selectedIndex));
 
         meaningsDtoList = MainDictionaryActivity.words.get(selectedIndex);
@@ -59,14 +65,14 @@ public class MeaningsActivity extends AppCompatActivity {
 
     public void onItemClick(int selectedIndex) {
         Intent intent = new Intent(this, DefinitionsActivity.class);
-        intent.putExtra("selectedIndex", selectedIndex);
+        intent.putExtra(getString(R.string.mahsa_intent_index_key), selectedIndex);
         runOnUiThread(() -> startActivity(intent));
     }
 
     public static class MeaningsAdapter extends RecyclerView.Adapter<MeaningsAdapter.ViewHolder> {
 
         private MeaningsActivity activity;
-        private final List<MeaningsDto> meaningsDtoList;
+        private List<MeaningsDto> meaningsDtoList;
 
         public MeaningsAdapter(MeaningsActivity activity, List<MeaningsDto> meaningsDtoList) {
             this.activity = activity;
@@ -106,7 +112,7 @@ public class MeaningsActivity extends AppCompatActivity {
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
 
-            private final TextView txtPartOfSpeech, txtNumberOfDefinitions, txtNumberOfSynonyms, txtNumberOfAntonyms;
+            private TextView txtPartOfSpeech, txtNumberOfDefinitions, txtNumberOfSynonyms, txtNumberOfAntonyms;
 
             public ViewHolder(View itemView) {
                 super(itemView);

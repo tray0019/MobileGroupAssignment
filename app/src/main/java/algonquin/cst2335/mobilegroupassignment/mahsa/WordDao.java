@@ -6,6 +6,13 @@ import androidx.room.Query;
 
 import java.util.List;
 
+/**
+ * @author Mahsa
+ * Tuesday, April 2, 2024
+ * lab section: 021
+ * --
+ * Database management
+ */
 @Dao
 public interface WordDao {
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="15sp"
     android:orientation="vertical"
-    tools:context=".MainDictionaryActivity">
+    tools:context=".mahsa.MainDictionaryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,6 +51,17 @@
             android:background="@null"
             android:scaleType="centerCrop"
             android:src="@drawable/recycle_bin_ic" />
+
+        <ImageButton
+                android:id="@+id/btn_help"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:layout_margin="2sp"
+                android:background="@null"
+                android:contentDescription="@string/help_dialog"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_help" />
 
     </LinearLayout>
 

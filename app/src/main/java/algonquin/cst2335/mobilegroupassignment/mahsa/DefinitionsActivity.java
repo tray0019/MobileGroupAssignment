@@ -18,6 +18,13 @@ import java.util.List;
 
 import algonquin.cst2335.mobilegroupassignment.R;
 
+/**
+ * @author Mahsa
+ * Monday, March 18, 2024
+ * lab section: 021
+ * --
+ * View Definitions information
+ */
 public class DefinitionsActivity extends AppCompatActivity {
 
     private RecyclerView definitionsList;

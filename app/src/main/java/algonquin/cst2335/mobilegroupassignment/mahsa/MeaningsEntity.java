@@ -7,6 +7,13 @@ import androidx.room.PrimaryKey;
 
 import java.util.List;
 
+/**
+ * @author Mahsa
+ * Tuesday, April 2, 2024
+ * lab section: 021
+ * --
+ * entity Meanings info
+ */
 @Entity(tableName = "meanings")
 public class MeaningsEntity {
     @PrimaryKey(autoGenerate = true)
