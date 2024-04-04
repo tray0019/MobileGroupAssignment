@@ -13,50 +13,58 @@
         >
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="algonquin.cst2335.mobilegroupassignment.DeezerRoom">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="algonquin.cst2335.mobilegroupassignment.DeezerRoom">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/myToolbar"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="5dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText"
-                    app:layout_constraintVertical_bias="0.0" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-                <EditText
-                    android:id="@+id/editText"
-                    android:layout_width="350dp"
-                    android:layout_height="41dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:hint="Please enter artist name..."
-                    android:ems="10"
-                    android:inputType="text"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:autofillHints="text" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="350dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="text"
+                android:ems="10"
+                android:hint="Please enter artist name..."
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myToolbar" />
 
-                <ImageButton
-                    android:id="@+id/searchButton"
-                    android:layout_width="49dp"
-                    android:layout_height="37dp"
-                    android:contentDescription="search"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/editText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.005"
-                    app:srcCompat="@android:drawable/ic_menu_search" />
+            <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="49dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="search"
+                app:layout_constraintStart_toEndOf="@+id/editText"
+                app:layout_constraintTop_toBottomOf="@+id/myToolbar"
+                app:srcCompat="@android:drawable/ic_menu_search" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </LinearLayout>
 

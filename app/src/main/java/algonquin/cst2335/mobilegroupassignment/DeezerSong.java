@@ -4,6 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Represents a song obtained from Deezer API.
+ * This class is used to store information about a song, including its title, duration, album name, and cover image.
+ */
 @Entity
 public class DeezerSong {
 
@@ -38,6 +42,11 @@ public class DeezerSong {
         this.coverImage = coverImage;
     }
 
+    /**
+     * Constructor for DeezerSong with duration and album name.
+     * @param time The duration of the song in seconds.
+     * @param albumName The name of the album containing the song.
+     */
     public DeezerSong(String time, String albumName) {
         this.time = time;
     }

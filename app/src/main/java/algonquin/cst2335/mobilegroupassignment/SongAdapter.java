@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,24 +16,20 @@ import com.android.application.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
 
-    static DeezerViewModel deezerViewModel;
-
     private static List<DeezerSong> songs;
+    private static FragmentManager fragmentManager; // Add FragmentManager member variable
+    private View songListFragmentView; // Add member variable for the SongListFragment view
 
-    // Constructor to initialize the list of songs
-    public SongAdapter(List<DeezerSong> songs) {
+    static SongListFragment songListFragment = new SongListFragment();
+    // Constructor to initialize the list of songs and the FragmentManager
+    public SongAdapter(List<DeezerSong> songs, FragmentManager fragmentManager,SongListFragment songListFragment) {
         this.songs = songs != null ? songs : new ArrayList<>();
-    }
+        this.fragmentManager = fragmentManager;
+        this.songListFragment = songListFragment;
 
-    // Method to set the list of songs
-//    public void setSongs(List<DeezerSong> songs) {
-//        this.songs = songs != null ? songs : new ArrayList<>();
-//        notifyDataSetChanged(); // Notify RecyclerView that the dataset has changed
-//    }
+    }
 
     @NonNull
     @Override
@@ -64,20 +61,23 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             super(itemView);
 
             itemView.setOnClickListener(clk -> {
+
                 //This line retrieves the position of the item that was clicked within the RecyclerView
                 int position = getAdapterPosition();
                 //After obtaining the position of the clicked item, this line retrieves the DeezerSong object at that position from the songs ArrayList
                 DeezerSong selected = songs.get(position);
 
-                //This line of code posts a DeezerSong object to the LiveData object selectedSong within the deezerViewModel
-                deezerViewModel.selectedSong.postValue(selected);
+                // Replace the current fragment with SongDetailsFragmentDBS
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragmentLocation2, new SongDetailsFragmentDBS(selected));
+                transaction.addToBackStack(null);
+                transaction.commit();
 
-                //songDetails(getAdapterPosition(), itemView);
             });
+
             // Initialize views
             songTitleTextView = itemView.findViewById(R.id.message);
         }
-
         // Method to bind data to the views
         public void bind(DeezerSong song) {
             songTitleTextView.setText(song.getSong());

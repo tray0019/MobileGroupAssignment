@@ -1,16 +1,14 @@
 package algonquin.cst2335.mobilegroupassignment;
 
-import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,34 +20,32 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.android.application.R;
 import com.android.application.databinding.ActivityDeezerRoomBinding;
-import com.android.application.databinding.FavouriteSongListBinding;
 import com.android.application.databinding.SongListBinding;
-import com.android.application.databinding.SongDetailsAddBinding;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
-public class DeezerRoom extends AppCompatActivity  {
+/**
+ * This class represents the DeezerRoom activity, which allows users to search for songs from Deezer API.
+ * Author: Yandom Youmbi Farock Natanael
+ * Date : 04/04/2024
+ * Version: 01
+ */
+
+public class DeezerRoom extends AppCompatActivity {
+
+
 
     ActivityDeezerRoomBinding binding;
 
@@ -61,6 +57,12 @@ public class DeezerRoom extends AppCompatActivity  {
 
     DeezerSong deezerSong;
 
+    /**
+     * This method is called when the activity is starting.
+     * It sets up the view model and binds the layout defined in ActivityDeezerRoomBinding to the activity.
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down
+     *         then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     */
     //onCreate Method:
     // This method is called when the activity is starting.
     // It sets up the view model and binds the layout defined in ActivityDeezerRoomBinding to the activity.
@@ -70,38 +72,24 @@ public class DeezerRoom extends AppCompatActivity  {
         binding = ActivityDeezerRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        MessageDetailsFragment messageDetailsFragment = new MessageDetailsFragment();
-//        messageDetailsFragment.setOnFavoriteButtonClickListener(this);
+        setSupportActionBar(binding.myToolbar);
 
-//        // Initialize the DAO
-//        dDAO = Room.databaseBuilder(getApplicationContext(), SongDatabase.class, "favourite_songs").build().dsDAO();
-//
-//        // Initialize the songAdapter
-//        songAdapter = new SongAdapter(dDAO);
-
-        // Initialize an empty ArrayList for songs
-        //songs = new ArrayList<>();
-
-//        newBinding = ActivityDeezerRoomBinding.inflate(getLayoutInflater());
-//        setContentView(newBinding.getRoot());
+    // Retrieve the artist name from SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        String savedArtistName = prefs.getString("LoginName", ""); // Use the same key "LoginName" for retrieval
+        binding.editText.setText(savedArtistName); // Set the retrieved artist name to the EditText view
 
 
         deezerViewModel = new ViewModelProvider(this).get(DeezerViewModel.class);
+
         binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
         //binding.recycleView2.setLayoutManager(new LinearLayoutManager(this));
 
-        // Create an instance of MessageDetailsFragment
-        //MessageDetailsFragment messageDetailsFragment = new MessageDetailsFragment(songAdapter);
-       // DeezerSong deezerSong = new DeezerSong();
-       // create database connection
-//        SongDatabase db = Room.databaseBuilder(getApplicationContext(), SongDatabase.class, "favourite_songs").build();
-//        dDAO = db.dsDAO();
-
-
-
-        //RecyclerView Setup:
-        //Configures the RecyclerView to display the list of songs.
-        //Sets the layout manager and adapter for the RecyclerView.
+        songs = deezerViewModel.songs.getValue();
+        if (songs == null) {
+            songs = new ArrayList<>();
+            deezerViewModel.songs.postValue(songs);
+        }
 
 
         songs = deezerViewModel.songs.getValue();
@@ -142,14 +130,13 @@ public class DeezerRoom extends AppCompatActivity  {
         binding.recycleView.setAdapter(myAdapter);
 
 
-
         binding.searchButton.setOnClickListener(click -> {
             // Clear the previous list of songs
             songs.clear();
 
             // Get the artist name entered by the user
             String artistName = binding.editText.getText().toString();
-            binding.editText.setText("");
+            //binding.editText.setText("");
             String url = "https://api.deezer.com/search/artist/?q=" + artistName;
             JsonObjectRequest objectRequest = new JsonObjectRequest(
                     Request.Method.GET,
@@ -228,6 +215,8 @@ public class DeezerRoom extends AppCompatActivity  {
         });
 
 
+
+
         //Selected Song Observer
         //Observes changes in the selected song LiveData.
         //Replaces the current fragment with a details fragment when a song is selected.
@@ -248,19 +237,31 @@ public class DeezerRoom extends AppCompatActivity  {
             binding.editText.setVisibility(View.INVISIBLE);
             binding.recycleView.setVisibility(View.INVISIBLE);
             binding.searchButton.setVisibility(View.INVISIBLE);
+            binding.myToolbar.setVisibility(View.INVISIBLE);
         });
 
 
     }
 
-//    @Override
-//    public void onFavoriteButtonClick() {
-//        // Call the method in the adapter when the favorite button is clicked in the fragment
-////        if (songAdapter != null) {
-////            songAdapter.updateAdapter(this);
-////        }
-//    }
+    /**
+     * Called when the activity is paused.
+     * It saves the artist name to SharedPreferences.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
 
+        // Save the artist name to SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("LoginName", binding.editText.getText().toString()); // Use the same key "LoginName" for saving
+        editor.apply();
+    }
+
+    /**
+     * Represents the ViewHolder for the RecyclerView items.
+     * Holds references to the views in each item of the RecyclerView.
+     */
     // MyRowHolder Class
     //Represents the ViewHolder for the RecyclerView items.
     //Holds references to the views in each item of the RecyclerView.
@@ -288,44 +289,27 @@ public class DeezerRoom extends AppCompatActivity  {
 
             //obtain a reference to the TextView in the item layout, which will be used to display the song title for each item in the RecyclerView
             songText = itemView.findViewById(R.id.message);
-           // time = itemView.findViewById(R.id.timeView);
+            // time = itemView.findViewById(R.id.timeView);
             //album = itemView.findViewById(R.id.albumView);
 
             // Store the selected song in the ViewModel
         }
 
+
     }
-
-    //onBackPressed Method
-    //Overrides the default behavior when the back button is pressed.
-    //Handles navigation back from fragments and shows the RecyclerView if needed.
-//
-//    @Override
-//    public void onBackPressed() {
-//        // Check if any fragments are in the back stack
-//        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-//            // Show the RecyclerView
-//            binding.recycleView.setVisibility(View.VISIBLE);
-//            binding.searchButton.setVisibility(View.VISIBLE);
-//            binding.editText.setVisibility(View.VISIBLE);
-//
-//            // Pop the back stack to navigate back
-//            getSupportFragmentManager().popBackStack();
-//        } else {
-//            // If no fragments in the back stack, perform default back action
-//            super.onBackPressed();
-//        }
-//    }
-
+    /**
+     * Overrides the onBackPressed method.
+     * Checks if the current fragment is MessageDetailsFragment and handles the back navigation accordingly.
+     */
     public void onBackPressed() {
-
-            // Check if the current fragment is MessageDetailsFragment
-            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentLocation);
-            if (fragment instanceof MessageDetailsFragment && getSupportFragmentManager().getBackStackEntryCount() > 0) {
-                // Show the RecyclerView
+        // Check if the current fragment is MessageDetailsFragment
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentLocation);
+        if (fragment instanceof MessageDetailsFragment && getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            // Show the RecyclerView
             binding.recycleView.setVisibility(View.VISIBLE);
             binding.searchButton.setVisibility(View.VISIBLE);
             binding.editText.setVisibility(View.VISIBLE);
+            binding.myToolbar.setVisibility(View.VISIBLE);
 
             // Pop the back stack to navigate back
             getSupportFragmentManager().popBackStack();
@@ -335,6 +319,43 @@ public class DeezerRoom extends AppCompatActivity  {
         }
 
     }
+    /**
+     * Inflates the options menu for the activity.
+     * @param menu The options menu in which you place your items.
+     * @return True if the menu is inflated successfully; otherwise, false.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return true;
+    }
 
+    /**
+     * Handles the selection of menu items.
+     * @param item The menu item that was selected.
+     * @return True if the item is selected successfully; otherwise, false.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.item_1) {
+            // Show an AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("This is how to use the application");
+            builder.setMessage("This is application is an application that helps you to navigate and delete songs");
+            builder.setPositiveButton("Done", (dialog, which) -> {
 
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return true; // Event consumed
+        } else if (item.getItemId() == R.id.About) {
+            // Handle the About item click here
+            Toast.makeText(this, "Created by farock natanael", Toast.LENGTH_LONG).show();
+            return true; // Event consumed
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
+

@@ -40,10 +40,6 @@ import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import algonquin.cst2335.mobilegroupassignment.DeezerSong;
-import algonquin.cst2335.mobilegroupassignment.DeezerSongDAO;
-import algonquin.cst2335.mobilegroupassignment.DeezerViewModel;
-import algonquin.cst2335.mobilegroupassignment.SongDatabase;
 
 public class MessageDetailsFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -54,7 +50,6 @@ public class MessageDetailsFragment extends Fragment {
     private DeezerViewModel deezerViewModel;
     private DeezerSongDAO dDAO;
     private SongAdapter songAdapter;
-
     DeezerRoom droom = new DeezerRoom();
 
 
@@ -73,9 +68,9 @@ public class MessageDetailsFragment extends Fragment {
         // Initialize the DAO
         dDAO = Room.databaseBuilder(requireContext(), SongDatabase.class, "favourite_songs2").build().dsDAO();
 
-
+        SongListFragment songListFragment = new SongListFragment();
         // Initialize your SongAdapter with an empty list initially
-        songAdapter = new SongAdapter(new ArrayList<>());
+        songAdapter = new SongAdapter(new ArrayList<>(),getChildFragmentManager(),songListFragment);
 
     }
 
@@ -146,7 +141,6 @@ public class MessageDetailsFragment extends Fragment {
     }
 
 
-
     // Method to get all song details and cover image as one object
     public DeezerSong getSongDetails() {
 
@@ -175,21 +169,15 @@ public class MessageDetailsFragment extends Fragment {
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-
-                // Set the visibility of the RecyclerView to invisible
-//                droom.binding.editText.setVisibility(View.INVISIBLE);
-//                droom.binding.recycleView.setVisibility(View.INVISIBLE);
-//                droom.binding.searchButton.setVisibility(View.INVISIBLE);
             });
         });
     }
-    // Method to hide the views
-//    public void hideViews() {
-//
-//        // Hide the views
-//       // editText.setVisibility(View.INVISIBLE);
-//       // recyclerView.setVisibility(View.INVISIBLE);
-//        //searchButton.setVisibility(View.INVISIBLE);
-//    }
+
+    // Method to set the view to invisible
+    public void setViewInvisible() {
+        if (getView() != null) {
+            getView().setVisibility(View.GONE);
+        }
+    }
 
 }

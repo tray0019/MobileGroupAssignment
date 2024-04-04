@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SongListFragment extends Fragment {
+    private static FragmentManager fragmentManager;
 
     private List<DeezerSong> songs;
+
+    public SongListFragment() {
+
+    }
 
     // Method to set the list of songs received from MessageDetailsFragment
     public void setSongs(List<DeezerSong> songs) {
@@ -42,7 +48,8 @@ public class SongListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Create an adapter
-        SongAdapter adapter = new SongAdapter(songs);
+        SongListFragment songListFragment = new SongListFragment();
+        SongAdapter adapter = new SongAdapter(songs, getChildFragmentManager(), songListFragment);
 
         // Set the adapter to the RecyclerView
         recyclerView.setAdapter(adapter);
@@ -50,4 +57,5 @@ public class SongListFragment extends Fragment {
         // Return the root view of the binding
         return binding.getRoot();
     }
+
 }
