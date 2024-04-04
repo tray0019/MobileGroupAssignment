@@ -1,0 +1,65 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="es">
+
+    <string name="base_recipe_api_url_es">https://api.spoonacular.com/recipes/</string>
+    <string name="base_recipe_ingredients_image_url_es">https://spoonacular.com/cdn/ingredients_500x500/</string>
+    <string name="recipe_token_es">e5306fca9c4b49c39fff5d596af82b7f</string>
+    <string name="recipe_search_es">Búsqueda de Recetas</string>
+    <string name="open_es">Abrir</string>
+    <string name="id_es">ID</string>
+    <string name="_0_es">0</string>
+    <string name="title_es">Título</string>
+    <string name="pre_page_es">Página Anterior</string>
+    <string name="next_page_es">Página Siguiente</string>
+    <string name="example_text_350_es">350</string>
+    <string name="slash_es">/</string>
+    <string name="ten_number_es">10</string>
+    <string name="extended_ingredients_es">Ingredientes Extendidos</string>
+    <string name="analyzed_instructions_es">Instrucciones Analizadas</string>
+    <string name="recipe_es">Receta</string>
+    <string name="example_aisle_es">Pasillo</string>
+    <string name="example_consistency_es">Consistencia</string>
+    <string name="example_name_es">Cebolla</string>
+    <string name="example_name_clean_es">Cebolla</string>
+    <string name="example_original_es">2 cucharadas de cebolla picada</string>
+    <string name="name_clean_es">Nombre Limpio</string>
+    <string name="original_es">Original</string>
+    <string name="line_es">----------------</string>
+    <string name="item_image_es">Imagen del Artículo</string>
+    <string name="aisle_es">Pasillo</string>
+    <string name="consistency_es">Consistencia</string>
+    <string name="name_lower_es">Nombre</string>
+    <string name="original_name_es">Nombre Original</string>
+    <string name="example_original_name_es">Cebolla picada</string>
+    <string name="amount_es">Cantidad</string>
+    <string name="example_amount_es">2.0</string>
+    <string name="meta_es">Meta</string>
+    <string name="example_meta_es">Picada, Picada, Picada, Picada, Picada, Picada</string>
+    <string name="example_step_es">Cocine la pasta en una olla grande de agua hirviendo hasta que esté al dente.</string>
+    <string name="step_es">Paso</string>
+    <string name="ingredients_es">Ingredientes</string>
+    <string name="equipment_es">Equipo</string>
+    <string name="example_id_es">20420</string>
+    <string name="example_item_info_name_es">Pasta</string>
+    <string name="localized_name_es">Nombre Localizado</string>
+    <string name="example_item_info_localized_name_es">Pasta</string>
+    <string name="item_info_image_es">Imagen de la Información del Artículo</string>
+    <string name="show_steps_es">Mostrar Pasos</string>
+    <string name="remove_es">Eliminar</string>
+    <string name="add_es">Agregar</string>
+    <string name="next_es">Siguiente</string>
+    <string name="previous_es">Anterior</string>
+    <string name="please_enter_recipe_es">Por favor, ingrese una receta</string>
+    <string name="get_recipe_info_es">Obtener información de la receta</string>
+    <string name="from_server_es">Del Servidor</string>
+    <string name="from_local_es">Local</string>
+
+    <string name="help_dialog_es">Ventana de Ayuda</string>
+    <string name="help_dialog_message_es">Pasos a seguir:\n\n
+    1- Escriba el nombre del plato para el cual desea ver la receta\n\n
+    2- Haga clic en "Del Servidor" o "Local" (Local mostrará solo recetas guardadas previamente)\n\n
+    3- Puede agregar o eliminar la receta\n\n
+    4- Haga clic en "Instrucciones Analizadas" para ver las instrucciones paso a paso\n\n
+    5- Haga clic en "Ingredientes Extendidos" para ver los ingredientes</string>
+    <string name="help_dialog_title_es">Ayuda</string>
+    <string name="aram_recipe_es">Receta Aram</string>
+</resources>
