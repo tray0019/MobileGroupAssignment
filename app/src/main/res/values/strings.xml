@@ -1,11 +1,11 @@
 <!--We can have multiple string layout xml or one. Either way are no problem-->
 <resources>
-    <string name="app_name">MobileGroupAssignment</string>
+    <string name="app_name" translatable="false">MobileGroupAssignment</string>
 
 
     <!--Rustom string are in this boundary. Do not touch!-->
 
-    <string name="sunRiseSetString">Sunrise and Sunset Look</string>
+    <string name="sunRiseSetString" translatable="false">Sunrise and Sunset Look</string>
 
     <!--************************************************-->
 
@@ -54,20 +54,20 @@
 
 
     <!--Aram string are in this boundary. Do not touch!-->
-    <string name="base_recipe_api_url">https://api.spoonacular.com/recipes/</string>
-    <string name="base_recipe_ingredients_image_url">https://spoonacular.com/cdn/ingredients_500x500/</string>
-    <string name="recipe_token">e5306fca9c4b49c39fff5d596af82b7f</string>
+    <string name="base_recipe_api_url" translatable="false">https://api.spoonacular.com/recipes/</string>
+    <string name="base_recipe_ingredients_image_url" translatable="false">https://spoonacular.com/cdn/ingredients_500x500/</string>
+    <string name="recipe_token" translatable="false">e5306fca9c4b49c39fff5d596af82b7f</string>
 
     <string name="recipe_search">Recipe Search</string>
     <string name="open">OPEN</string>
-    <string name="id">Id</string>
-    <string name="_0">0</string>
+    <string name="id" translatable="false">Id</string>
+    <string name="_0" translatable="false">0</string>
     <string name="title">Title</string>
     <string name="pre_page">Pre Page</string>
     <string name="next_page">Next Page</string>
-    <string name="example_text_350">350</string>
-    <string name="slash">/</string>
-    <string name="ten_number">10</string>
+    <string name="example_text_350" translatable="false">350</string>
+    <string name="slash" translatable="false">/</string>
+    <string name="ten_number" translatable="false">10</string>
     <string name="extended_ingredients">Extended Ingredients</string>
     <string name="analyzed_instructions">Analyzed Instructions</string>
     <string name="recipe">RECIPE</string>
@@ -77,8 +77,8 @@
     <string name="example_name_clean">onion</string>
     <string name="example_original">2 tablespoons Onion, minced</string>
     <string name="name_clean">Name Clean</string>
-    <string name="original">Original</string>
-    <string name="line">----------------</string>
+    <string name="original" translatable="false">Original</string>
+    <string name="line" translatable="false">----------------</string>
     <string name="item_image">Item Image</string>
     <string name="aisle">Aisle</string>
     <string name="consistency">Consistency</string>
@@ -86,18 +86,18 @@
     <string name="original_name">Original Name</string>
     <string name="example_original_name">Onion, minced</string>
     <string name="amount">Amount</string>
-    <string name="example_amount">2.0</string>
-    <string name="meta">Meta</string>
+    <string name="example_amount" translatable="false">2.0</string>
+    <string name="meta" translatable="false">Meta</string>
 <!-- test  <-->
     <string name="example_meta">minced, minced, minced, minced, minced, minced</string>
     <string name="example_step">Cook pasta in a large pot of boiling water until al dente.</string>
     <string name="step">Step</string>
     <string name="ingredients">Ingredients</string>
     <string name="equipment">Equipment</string>
-    <string name="example_id">20420</string>
-    <string name="example_item_info_name">pasta</string>
+    <string name="example_id" translatable="false">20420</string>
+    <string name="example_item_info_name" translatable="false">pasta</string>
     <string name="localized_name">Localized Name</string>
-    <string name="example_item_info_localized_name">pasta</string>
+    <string name="example_item_info_localized_name" translatable="false">pasta</string>
     <string name="item_info_image">Item Info Image</string>
     <string name="show_steps">Show Steps</string>
     <string name="remove">Remove</string>
@@ -107,7 +107,7 @@
     <string name="please_enter_recipe">Please Enter Recipe</string>
     <string name="get_recipe_info">Get Recipe Info</string>
     <string name="from_server">From Server</string>
-    <string name="from_local">From Local</string>
+    <string name="from_local" translatable="false">From Local</string>
 
     <string name="help_dialog">Help dialog</string>
     <string name="help_dialog_message">Steps to follow:\n\n
@@ -119,6 +119,24 @@
     <string name="help_dialog_title">Help</string>
     <string name="aram_recipe">Aram Recipe</string>
 
+
+
+
+
+
+    <string name="recipe_shared_preference_key">recipe</string>
+    <string name="recipe_search_shared_preference_key" translatable="false">aram.recipe.search</string>
+    <string name="not_found_recipe_message">Not found recipe</string>
+    <string name="please_enter_recipe_message">Please enter recipe</string>
+    <string name="please_check_server_or_local_message">Please check server or local</string>
+    <string name="fail_to_response_handler_message">Fail to response handler</string>
+    <string name="fetching_information_message">Fetching information...</string>
+    <string name="successfully_fetch_information_message">Successfully fetch information</string>
+    <string name="adding_item_message">Adding item</string>
+    <string name="duplicate_recipe_message">Duplicate recipe</string>
+    <string name="successfully_save_recipe_message">Successfully save recipe</string>
+    <string name="removing_recipe_item_message">Removing recipe item</string>
+    <string name="successfully_removed_recipe_item_message">Successfully removed recipe item</string>
     <!--************************************************-->
 
 </resources>

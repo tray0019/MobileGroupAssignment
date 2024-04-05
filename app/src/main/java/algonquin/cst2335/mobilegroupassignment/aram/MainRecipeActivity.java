@@ -58,7 +58,6 @@ public class MainRecipeActivity extends AppCompatActivity {
 
     private RequestRecipeSearchController requestRecipeSearchController;
 
-
     private LinearLayout layoutManagementPage;
     private ImageButton btnPrePage, btnNextPage;
     private EditText txtCurrentPage;
@@ -82,7 +81,7 @@ public class MainRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_recipe);
 
-        sharedPreferences = getSharedPreferences("aram.recipe.search", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(getString(R.string.recipe_search_shared_preference_key), MODE_PRIVATE);
 
         requestRecipeSearchController = new RequestRecipeSearchController(this);
 
@@ -91,12 +90,8 @@ public class MainRecipeActivity extends AppCompatActivity {
         setOnClick();
 
         aramDb = Room.databaseBuilder(this.getApplicationContext(), AppDatabase.class, "aram_db").build();
-
     }
 
-    /**
-     * Setting the tools defined in xml
-     */
     private void setTools() {
         txtRecipe = findViewById(R.id.txt_recipe);
         radioBtnShowServer = findViewById(R.id.radio_btn_show_server);
@@ -115,19 +110,13 @@ public class MainRecipeActivity extends AppCompatActivity {
         mainLayout = findViewById(R.id.main);
     }
 
-    /**
-     * Initialization
-     */
     private void setValue() {
-        String recipe = sharedPreferences.getString("recipe", null);
+        String recipe = sharedPreferences.getString(getString(R.string.recipe_shared_preference_key), null);
         if (recipe != null) {
             runOnUiThread(() -> txtRecipe.setText(recipe));
         }
     }
 
-    /**
-     * Setting on click
-     */
     private void setOnClick() {
         btnFetchRecipeInfo.setOnClickListener(e -> onClickBtnFetchRecipeInfo());
         btnNextPage.setOnClickListener(e -> onClickBtnNextPage());
@@ -135,9 +124,6 @@ public class MainRecipeActivity extends AppCompatActivity {
         btnHelp.setOnClickListener(e -> onClickBtnHelp());
     }
 
-    /**
-     * Display help alert dialog
-     */
     private void onClickBtnHelp() {
         runOnUiThread(() -> new AlertDialog.Builder(MainRecipeActivity.this)
                 .setTitle(R.string.help_dialog_title)
@@ -150,33 +136,21 @@ public class MainRecipeActivity extends AppCompatActivity {
                 .show());
     }
 
-    /**
-     * Clip for the next page
-     */
     private void onClickBtnNextPage() {
         setOffsetNext();
         search();
     }
 
-    /**
-     * Clip for the pre page
-     */
     private void onClickBtnPrePage() {
         setOffsetPre();
         search();
     }
 
-    /*
-     * Get recipe information
-     */
     private void onClickBtnFetchRecipeInfo() {
         setOffset();
         search();
     }
 
-    /**
-     * Recipe search
-     */
     private synchronized void search() {
         String recipeText = getRecipeText();
         if (recipeText == null) {
@@ -184,7 +158,7 @@ public class MainRecipeActivity extends AppCompatActivity {
         }
 
         if (!radioBtnShowLocal.isChecked() && !radioBtnShowServer.isChecked()) {
-            showToast("Please check server or local");
+            showToast(getString(R.string.please_check_server_or_local_message));
             return;
         }
 
@@ -202,11 +176,12 @@ public class MainRecipeActivity extends AppCompatActivity {
                     List<RecipeDto> recipeDtoList = RecipeDb.getRecipeRepository().fetchRecipeByName(aramDb.recipeDao(), recipeText);
 
                     if (recipeDtoList == null || recipeDtoList.isEmpty()) {
-                        showToast("Not found recipe");
+                        showToast(getString(R.string.not_found_recipe_message));
                         return;
                     }
 
-                    showSnack("Successfully fetch recipe");
+                    showSnack(getString(R.string.successfully_fetch_information_message));
+
 
                     if (recipeResponse == null) {
                         recipeResponse = new RecipeResponse();
@@ -218,7 +193,7 @@ public class MainRecipeActivity extends AppCompatActivity {
                     recipeResponse.setRecipeDto(recipeDtoList);
                     handlerResponse();
                 } catch (JSONException e) {
-                    showSnack("Fail to fetch recipe, Message: " + e.getMessage());
+                    showSnack(getString(R.string.fail_to_response_handler_message) + e.getMessage());
                 }
             }).start();
         }
@@ -227,7 +202,6 @@ public class MainRecipeActivity extends AppCompatActivity {
     private void setOffset() {
         offset = 0;
         totalPage = 0;
-        currentPage = 0;
         runOnUiThread(() -> {
             txtCurrentPage.setText(String.valueOf(currentPage));
             txtTotalPages.setText(String.valueOf(totalPage));
@@ -235,7 +209,6 @@ public class MainRecipeActivity extends AppCompatActivity {
     }
 
     private void setOffsetAfterSearch() {
-
         currentPage = 1;
 
         if (recipeResponse == null || recipeResponse.getTotalResults() == 0 || recipeResponse.getTotalResults() < number) {
@@ -269,13 +242,22 @@ public class MainRecipeActivity extends AppCompatActivity {
                 offset = newOffset;
             }
         }
-
         runOnUiThread(() -> {
             txtCurrentPage.setText(String.valueOf(currentPage));
             txtTotalPages.setText(String.valueOf(totalPage));
         });
     }
 
+
+
+
+
+
+
+
+
+
+    //changed
     private void setOffsetPre() {
         if (recipeResponse == null || recipeResponse.getTotalResults() == 0 || recipeResponse.getTotalResults() < number) {
             runOnUiThread(() -> layoutManagementPage.setVisibility(View.INVISIBLE));
@@ -296,12 +278,6 @@ public class MainRecipeActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * After receiving information from the server, this method is called
-     *
-     * @see RequestRecipeSearchController#fetchByRecipe(String, int, long, Function)
-     * @see RequestRecipeSearchController#fetchRecipeInformation(long, Function)
-     */
     private void onRecipeResponse(String res) {
         log("71RESPONSE71", res);
         recipeResponse = new Gson().fromJson(res, RecipeResponse.class);
@@ -310,7 +286,7 @@ public class MainRecipeActivity extends AppCompatActivity {
             log("TOTAL_RESULTS", recipeResponse.getTotalResults());
         }
         if (recipeResponse == null || recipeResponse.getTotalResults() == 0) {
-            showSnack("Fail to response handler");
+            showSnack(getString(R.string.fail_to_response_handler_message));
             return;
         }
 
@@ -329,19 +305,19 @@ public class MainRecipeActivity extends AppCompatActivity {
 
     private void saveSharedPreference(String recipe) {
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("recipe", recipe);
+        edit.putString(getString(R.string.recipe_shared_preference_key), recipe);
         edit.apply();
     }
 
     private String getRecipeText() {
         if (txtRecipe.getText() == null || txtRecipe.getText().toString().isEmpty()) {
-            showToast("Please enter recipe");
+            showToast(getString(R.string.please_enter_recipe_message));
             return null;
         }
 
         String recipe = txtRecipe.getText().toString();
         if (recipe.isEmpty()) {
-            showToast("Please enter recipe");
+            showToast(getString(R.string.please_enter_recipe_message));
             return null;
         }
 
@@ -396,9 +372,9 @@ public class MainRecipeActivity extends AppCompatActivity {
 
         RecipeDto recipeDto = recipeResponse.getRecipeDto().get(index);
         if (recipeDto.getExtendedIngredients() == null || recipeDto.getAnalyzedInstructions() == null) {
-            showToast("Fetching information...");
+            showToast(getString(R.string.fetching_information_message));
             requestRecipeSearchController.fetchRecipeInformation(recipeDto.getId(), res -> {
-                showSnack("Successfully fetch information");
+                showSnack(getString(R.string.successfully_fetch_information_message));
 
                 Gson gson = new Gson();
                 RecipeDto recipeItemInfo = gson.fromJson(res, RecipeDto.class);
@@ -422,15 +398,15 @@ public class MainRecipeActivity extends AppCompatActivity {
             return;
         }
 
-        showToast("Adding item");
+        showToast(getString(R.string.adding_item_message));
         new Thread(() -> {
             try {
                 if (RecipeDb.getRecipeRepository().hasRecipe(aramDb.recipeDao(), (int) recipeResponse.getRecipeDto().get(index).getId())) {
-                    showToast("Duplicate recipe");
+                    showToast(getString(R.string.duplicate_recipe_message));
                     return;
                 }
                 RecipeDb.getRecipeRepository().saveRecipe(aramDb.recipeDao(), recipeText, recipeResponse.getRecipeDto().get(index));
-                showSnack("Successfully save recipe");
+                showSnack(getString(R.string.successfully_save_recipe_message));
             } catch (SQLException | JSONException e) {
                 showToast(e.getMessage());
             }
@@ -438,11 +414,11 @@ public class MainRecipeActivity extends AppCompatActivity {
     }
 
     public void onClickRemoveItem(int index) {
-        showToast("Removing recipe item");
+        showToast(getString(R.string.removing_recipe_item_message));
         new Thread(() -> {
             try {
                 RecipeDb.getRecipeRepository().removeRemoveRecipe(aramDb.recipeDao(), recipeResponse.getRecipeDto().get(index).getId());
-                showSnack("Successfully removed recipe item");
+                showSnack(getString(R.string.successfully_removed_recipe_item_message));
             } catch (SQLException e) {
                 showToast(e.getMessage());
             }
@@ -462,6 +438,23 @@ public class MainRecipeActivity extends AppCompatActivity {
             this.activity = activity;
             this.recipeDtoList = recipeDtoList;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //changed
 
         @NonNull
         @Override
