@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".RustomClass"/> <!--ADDED-->
 
-        <!--    START Activities Mahsa -->
+
         <activity
             android:name=".mahsa.StringListActivity"
             android:exported="false"
@@ -49,7 +49,24 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>
-        <!--    END Activities Mahsa -->
+
+        <activity
+            android:name=".aram.AnalyzedInstructionsItemStepRecipeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".aram.AnalyzedInstructionsRecipeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".aram.ExtendedIngredientsRecipeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".aram.MainRecipeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
 
     </application>
 

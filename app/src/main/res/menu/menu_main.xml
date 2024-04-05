@@ -16,5 +16,10 @@
         android:title="test"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_aram"
+        android:title="Aram - Recipe"
+        app:showAsAction="never" />
+
 
 </menu>
