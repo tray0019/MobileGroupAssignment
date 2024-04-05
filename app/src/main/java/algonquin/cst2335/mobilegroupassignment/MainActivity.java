@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // ARAM RECIPE BTN (When this button is clicked, it launches an activity represented by the MainRecipeActivity class.)
-        findViewById(R.id.AramButton).setOnClickListener(e -> startActivity(new Intent(this, MainRecipeActivity.class)));
+        findViewById(R.id.action_aram).setOnClickListener(e -> startActivity(new Intent(this, MainRecipeActivity.class)));
 
         // MAHSA Dictionary API
         findViewById(R.id.MahsaButton).setOnClickListener(e -> startActivity(new Intent(this, MainDictionaryActivity.class)));
@@ -80,21 +80,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, RustomClass.class));
             return true;
         }
-
+// Handle the action for Aram's activity
+        if (item.getItemId() == R.id.aramm) {
+            startActivity(new Intent(this, MainRecipeActivity.class));
+            return true;
+        }
         // Handle the action for Mahsa's activity
         else if (item.getItemId() == R.id.action_mahsa) {
             startActivity(new Intent(this, MainDictionaryActivity.class));
 
-            // Handle the action for Aram's activity
-            if (item.getItemId() == R.id.action_aram) {
-                startActivity(new Intent(this, MainRecipeActivity.class));
-                return true;
-            }
-            // Handle the action for displaying help dialog
-            else if (item.getItemId() == R.id.action_help) {
-                showHelpDialog();
-                return true;
-            }
+
+
             // Handle other menu items if there are any
 
         }
