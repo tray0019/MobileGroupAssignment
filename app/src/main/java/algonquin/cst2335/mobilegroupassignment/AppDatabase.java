@@ -4,15 +4,8 @@ package algonquin.cst2335.mobilegroupassignment;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-/**
- * Defines the database configuration for the application using Room.
- * It encapsulates the database setup and serves as the main access point for persisted data operations.
- */
-@Database(entities = {Location.class}, version = 1)
-
 import algonquin.cst2335.mobilegroupassignment.aram.AnalyzedEntity;
 import algonquin.cst2335.mobilegroupassignment.aram.AnalyzedStepEntity;
-import algonquin.cst2335.mobilegroupassignment.aram.AnalyzedStepEquipmentEntity;
 import algonquin.cst2335.mobilegroupassignment.aram.AnalyzedStepIngredientsEntity;
 import algonquin.cst2335.mobilegroupassignment.aram.ExtendedEntity;
 import algonquin.cst2335.mobilegroupassignment.aram.RecipeDao;
@@ -22,6 +15,10 @@ import algonquin.cst2335.mobilegroupassignment.mahsa.MeaningsEntity;
 import algonquin.cst2335.mobilegroupassignment.mahsa.WordDao;
 import algonquin.cst2335.mobilegroupassignment.mahsa.WordEntity;
 
+/**
+ * Defines the database configuration for the application using Room.
+ * It encapsulates the database setup and serves as the main access point for persisted data operations.
+ */
 
 @Database(entities = {
         Location.class,

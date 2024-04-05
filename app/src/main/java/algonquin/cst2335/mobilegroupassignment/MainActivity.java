@@ -11,6 +11,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import algonquin.cst2335.mobilegroupassignment.aram.MainRecipeActivity;
+import algonquin.cst2335.mobilegroupassignment.mahsa.MainDictionaryActivity;
+
 /**
  * These is the Menu or dashboard of
  * the application. This class provides the function for the

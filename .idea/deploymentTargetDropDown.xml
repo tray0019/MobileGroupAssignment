@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="SunriseSunsetTest">
+      <entry key="RustomClass">
         <State />
       </entry>
       <entry key="app">
@@ -20,9 +20,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-04-05T17:07:05.818315500Z" />
         </State>
-      </entry>
-      <entry key="testDeleteFromFavorites()">
-        <State />
       </entry>
       <entry key="testInputValidation()">
         <State />
