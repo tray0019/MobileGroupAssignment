@@ -6,7 +6,7 @@
 
     <!--Rustom string are in this boundary. Do not touch!-->
 
-    <string name="sunRiseSetString" translatable="true" >Sunrise and Sunset Look</string>
+    <string name="sunRiseSetString">Sunrise and Sunset Look</string>
     <string name="sunRiseSetlook" translatable="true" >Sunrise and Sunset Lookup</string>
 
     <string name="locationSave" translatable="true">Location saved to favorites!</string>
