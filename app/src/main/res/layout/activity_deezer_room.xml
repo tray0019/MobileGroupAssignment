@@ -49,7 +49,7 @@
                 android:layout_marginTop="5dp"
                 android:autofillHints="text"
                 android:ems="10"
-                android:hint="Please enter artist name..."
+                android:hint="@string/place_holder"
                 android:inputType="text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myToolbar" />
@@ -59,7 +59,7 @@
                 android:layout_width="49dp"
                 android:layout_height="37dp"
                 android:layout_marginTop="5dp"
-                android:contentDescription="search"
+                android:contentDescription="@string/search"
                 app:layout_constraintStart_toEndOf="@+id/editText"
                 app:layout_constraintTop_toBottomOf="@+id/myToolbar"
                 app:srcCompat="@android:drawable/ic_menu_search" />

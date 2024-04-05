@@ -50,7 +50,7 @@ public class DeezerRoomTest {
         materialButton.perform(click());
 
         ViewInteraction textView = onView(withId(R.id.editText));
-        textView.check(matches(withHint("Please enter artist name...")));
+        textView.check(matches(withHint("Please enter artist name")));
     }
     @Test
     public void testNonEmptyField() {
@@ -62,7 +62,7 @@ public class DeezerRoomTest {
         materialButton.perform(click());
 
         ViewInteraction textView = onView(withId(R.id.editText));
-        textView.check(matches(withHint("Please enter artist name...")));
+        textView.check(matches(withHint("Please enter artist name")));
     }
     @Test
     public void testNonEmptyFieldNum() {
@@ -74,7 +74,7 @@ public class DeezerRoomTest {
         materialButton.perform(click());
 
         ViewInteraction textView = onView(withId(R.id.editText));
-        textView.check(matches(withHint("Please enter artist name...")));
+        textView.check(matches(withHint("Please enter artist name")));
     }
 
     @Test
@@ -87,7 +87,7 @@ public class DeezerRoomTest {
         materialButton.perform(click());
 
         ViewInteraction textView = onView(withId(R.id.editText));
-        textView.check(matches(withHint("Please enter artist name...")));
+        textView.check(matches(withHint("Please enter artist name")));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class DeezerRoomTest {
         materialButton.perform(click());
 
         ViewInteraction textView = onView(withId(R.id.editText));
-        textView.check(matches(withHint("Please enter artist name...")));
+        textView.check(matches(withHint("Please enter artist name")));
     }
 
 

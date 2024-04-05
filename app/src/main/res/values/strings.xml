@@ -23,10 +23,15 @@
     <string name="empty_field">Empty field</string>
     <string name="ce">Correct entry</string>
     <string name="help">This is how to use the application</string>
-    <string name="help_body">This is application is an application that helps you to search for songs through the internet, " +
-                    "select and save it to your device\n On start, Navigate to the search bar and enter the artist name\n After you will have a list of your artist songs " +
-                    "Select a song and you will view the details.\n To add a song to your device, click on the star icon and click on the view button to see your list of favourite songs\n" +
-                    "Finally, you can delete the song from the list by clicking thee delete button</string>
+    <string name="help_body">This application allows you to search for songs online, select them, and save them to your device.
+
+To use the app:
+1. Navigate to the search bar and enter the artist\'s name.
+2. Once you\'ve entered the artist\'s name, you\'ll see a list of songs by that artist.
+3. Select a song from the list to view its details.
+4. To add a song to your device, click on the star icon. You can then view your list of favorite songs by clicking on the "View" button.
+5. Finally, you can delete a song from the list by clicking on the delete button.</string>
+
     <string name="done">Done</string>
     <string name="question">Are you sure you want to delete this item?</string>
     <string name="yes">Yes</string>
@@ -35,6 +40,14 @@
     <string name="author">Created by farock natanael</string>
     <string name="error1">Error fetching track list: </string>
     <string name="error2">Error fetching data: </string>
+    <string name="search">search</string>
+    <string name="list">These are your favourite songs</string>
+    <string name="view_list">View favourite list</string>
+    <string name="place_holder">Please enter artist name</string>
+    <string name="del">Delete Favourite Song</string>
+    <string name="my_hint">song list goes here</string>
+
+
 
 
 
