@@ -30,8 +30,27 @@
             </intent-filter>
         </activity>
         <activity android:name=".RustomClass"/> <!--ADDED-->
-
-<!--        ARAM-->
+        
+        <!--        Mahsa-->
+        <activity
+            android:name=".mahsa.StringListActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".mahsa.MeaningsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".mahsa.DefinitionsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".mahsa.MainDictionaryActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+        <!--        Mahsa-->
+        <!--        ARAM-->
         <activity
             android:name=".aram.AnalyzedInstructionsItemStepRecipeActivity"
             android:exported="false"
@@ -49,7 +68,7 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>
-<!--        ARAM-->
+        <!--        ARAM-->
 
     </application>
 

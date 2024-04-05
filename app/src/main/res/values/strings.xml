@@ -11,7 +11,38 @@
 
 
     <!--Mahsa's string are in this boundary. Do not touch!-->
-
+    <string name="please_enter_word">Please enter word…</string>
+    <string name="part_of_speech">Part Of Speech</string>
+    <string name="definitions_0">Definitions: 0</string>
+    <string name="from_server">From Server</string>
+    <string name="from_local">From Local</string>
+    <string name="base_api_url">https://api.dictionaryapi.dev/api/v2/entries/en/</string>
+    <string name="get_word_info">Get word info</string>
+    <string name="name">NAME</string>
+    <string name="definitions">Definitions</string>
+    <string name="help_dialog">Help dialog</string>
+    <string name="help_dialog_title">Title dialog</string>
+    <string name="help_dialog_message">
+        1. write the name of words when you like to find meaning of words\n\n
+        2. Click on from sever or local (local will only for save words)\n\n
+        3. you can see synonyms or opposite words\n\n
+        3. you can add or remove words
+    </string>
+    <string name="mahsa_shareprefrence_name">mahsa.dictionary.api</string>
+    <string name="mahsa_db_name">mahsa_dictionary_api_db</string>
+    <string name="share_preference_key">word</string>
+    <string name="mahsa_remove_word">"Successfully removed word, Word: "</string>
+    <string name="mahsa_fail_delete">"Fail to delete word, Message: "</string>
+    <string name="mahsa_enter_word_search">Please enter word and search</string>
+    <string name="mahsa_saving_word_word">"Saving word, Word: "</string>
+    <string name="mahsa_successfully_saved_word">Successfully saved word</string>
+    <string name="mahsa_fail_to_save_word_message">"Fail to save word, Message: "</string>
+    <string name="mahsa_please_check_server_or_local">Please check server or local</string>
+    <string name="mahsa_successfully_fetch_words_from_local">Successfully fetch words from local</string>
+    <string name="mahsa_fail_to_fetch_words_message">"Fail to fetch words, Message: "</string>
+    <string name="mahsa_please_enter_word">Please enter word</string>
+    <string name="mahsa_fail_to_response_handler">Fail to response handler</string>
+    <string name="mahsa_intent_index_key">selectedIndex</string>
 
     <!--************************************************-->
 

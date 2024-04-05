@@ -47,10 +47,23 @@ dependencies {
 
     implementation("com.android.volley:volley:1.2.1")//ADDED
 
-    // ARAM
+
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-scalars
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+
+    // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation("com.google.code.gson:gson:2.10.1")
+
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
+    implementation("com.squareup.retrofit2:converter-gson:2.0.0-beta3")
+
     // https://mvnrepository.com/artifact/com.android.volley/volley
     implementation("com.android.volley:volley:1.2.1")
-    // ARAM
+
 }

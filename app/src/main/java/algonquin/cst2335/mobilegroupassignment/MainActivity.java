@@ -11,7 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import algonquin.cst2335.mobilegroupassignment.mahsa.MainDictionaryActivity;
 import algonquin.cst2335.mobilegroupassignment.aram.MainRecipeActivity;
+
 
 /**
  * These is the Menu or dashboard of
@@ -75,9 +77,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, RustomClass.class));
             return true;
         }
+
+        // Handle the action for Mahsa's activity
+        if (item.getItemId() == R.id.action_mahsa) {
+            startActivity(new Intent(this, MainDictionaryActivity.class));
+
         // Handle the action for Aram's activity
         if (item.getItemId() == R.id.action_aram) {
             startActivity(new Intent(this, MainRecipeActivity.class));
+
             return true;
         }
         // Handle the action for displaying help dialog
