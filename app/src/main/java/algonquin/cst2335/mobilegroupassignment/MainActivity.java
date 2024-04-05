@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 
 import algonquin.cst2335.mobilegroupassignment.mahsa.MainDictionaryActivity;
+import algonquin.cst2335.mobilegroupassignment.aram.MainRecipeActivity;
+
 
 /**
  * These is the Menu or dashboard of
@@ -26,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     /**DO NOT CODE IN THis CLASS! Only code, when you link the button to your activity **/
     /**These class provide the function to launch your class **/
     /**Provide comment for your changes**/
-    /**Create a class for your own activity. Check RustomActivity class Example**/
+    /**
+     * Create a class for your own activity. Check RustomActivity class Example
+     **/
 
 
     @Override
@@ -46,16 +50,19 @@ public class MainActivity extends AppCompatActivity {
         sunRiseSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this,RustomClass.class);//Make sure its your class from the class activity
-                    startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, RustomClass.class);//Make sure its your class from the class activity
+                startActivity(intent);
             }
 
             /********** CODE BELOW inside the onCreate ************/
 
 
-        }) ;
+        });
 
-        }
+        // ARAM RECIPE BTN
+        findViewById(R.id.AramButton).setOnClickListener(e -> startActivity(new Intent(this, MainRecipeActivity.class)));
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,8 +79,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Handle the action for Mahsa's activity
-        else if (item.getItemId() == R.id.action_mahsa) {
+        if (item.getItemId() == R.id.action_mahsa) {
             startActivity(new Intent(this, MainDictionaryActivity.class));
+
+        // Handle the action for Aram's activity
+        if (item.getItemId() == R.id.action_aram) {
+            startActivity(new Intent(this, MainRecipeActivity.class));
+
             return true;
         }
         // Handle the action for displaying help dialog
