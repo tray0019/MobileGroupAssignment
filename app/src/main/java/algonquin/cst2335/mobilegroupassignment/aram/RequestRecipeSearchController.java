@@ -26,17 +26,23 @@ public class RequestRecipeSearchController {
 
     private final String token;
 
+
     private RequestQueue requestQueue;
 
+
+    // fetches the token so the user can see the recipes from API and manages network
     public RequestRecipeSearchController(Activity activity) {
         this.activity = activity;
         token = activity.getString(R.string.recipe_token);
+        //this creates a queue request to manage network through android
         requestQueue = Volley.newRequestQueue(activity);
     }
 
     /**
-     * Get a list of recipes with one word
+     * Gets a list of recipes with one word
      */
+    //This method gets the recipe asked by use, returns in page by page
+    //and handles possible errors, in case API did not fetch the recipe
     public void fetchByRecipe(String recipe, int number, long offset, Function<String, Void> onResponse) {
         final String url = String.format(Locale.getDefault(), "%s/complexSearch?query=%s&number=%d&offset=%d&apiKey=%s", activity.getString(R.string.base_recipe_api_url), recipe, number, offset, token);
         StringRequest request = new StringRequest(Request.Method.GET, url, onResponse::apply, volleyError -> {
@@ -47,10 +53,14 @@ public class RequestRecipeSearchController {
     }
 
     /*
-     * Get the information of a recipe
+     * Makes a url for the asked recipe, gets the response from API and passes it to onResponse
      */
     public void fetchRecipeInformation(long id, Function<String, Void> onResponse) {
+        //assembles the URL using  base URL, the recipe ID %d, and the API token %S
         final String url = String.format(Locale.getDefault(), "%s%d/information?apiKey=%s", activity.getString(R.string.base_recipe_api_url), id, token);
+
+        // creates a request object, if the response from API was good, it passes it to OnResponse,
+        // if there was an error, it passes null to OnResponse
         StringRequest request = new StringRequest(Request.Method.GET, url, res -> {
             Log.i("RECIPE_INFORMATION_RESPONSE", res);
             onResponse.apply(res);
