@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/action_rustom"
         android:icon="@drawable/sun_icon"
-        android:title="Sunrise and Sunset Lookup"
+        android:title="@string/sunRiseSetlook"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_help"
-        android:title="Sunrise and Sunset"
+        android:title="@string/sunRiseSetString"
         app:showAsAction="never"/>
 
 
