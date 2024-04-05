@@ -173,6 +173,7 @@ public class MainRecipeActivity extends AppCompatActivity {
             return;
         }
 
+        //this gets triggered when the user clicks on Retrieve from server button
         if (radioBtnShowServer.isChecked()) {
             requestRecipeSearchController.fetchByRecipe(recipeText, number, offset, res -> {
                 runOnUiThread(() -> onRecipeResponse(res));
@@ -181,6 +182,7 @@ public class MainRecipeActivity extends AppCompatActivity {
             return;
         }
 
+        //this gets triggered when the user clicks on Retrieve from Local button
         if (radioBtnShowLocal.isChecked()) {
             new Thread(() -> {
                 try {
@@ -219,6 +221,7 @@ public class MainRecipeActivity extends AppCompatActivity {
         });
     }
 
+    //sets the offset to zero and fetches from the beginning. This is for thebeginning of the search
     private void setOffsetAfterSearch() {
         currentPage = 1;
 
@@ -237,6 +240,7 @@ public class MainRecipeActivity extends AppCompatActivity {
         });
     }
 
+    // handles pagintation of the next page
     private void setOffsetNext() {
         if (recipeResponse == null || recipeResponse.getTotalResults() == 0 || recipeResponse.getTotalResults() < number) {
             runOnUiThread(() -> layoutManagementPage.setVisibility(View.INVISIBLE));
@@ -261,14 +265,7 @@ public class MainRecipeActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-    //changed
+ // handles pagintation of the previous page
     private void setOffsetPre() {
         if (recipeResponse == null || recipeResponse.getTotalResults() == 0 || recipeResponse.getTotalResults() < number) {
             runOnUiThread(() -> layoutManagementPage.setVisibility(View.INVISIBLE));
@@ -289,6 +286,7 @@ public class MainRecipeActivity extends AppCompatActivity {
         });
     }
 
+    //handles the response, check for validation, etc
     private void onRecipeResponse(String res) {
         log("71RESPONSE71", res);
         recipeResponse = new Gson().fromJson(res, RecipeResponse.class);
@@ -307,6 +305,8 @@ public class MainRecipeActivity extends AppCompatActivity {
         handlerResponse();
     }
 
+
+    //makes sure relevant data is fetched
     private void handlerResponse() {
         runOnUiThread(() -> {
             listView.setLayoutManager(new LinearLayoutManager(this));
@@ -314,12 +314,14 @@ public class MainRecipeActivity extends AppCompatActivity {
         });
     }
 
+    //stores the recipe in shared preferences
     private void saveSharedPreference(String recipe) {
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString(getString(R.string.recipe_shared_preference_key), recipe);
         edit.apply();
     }
 
+//retrieves the text input in edittext
     private String getRecipeText() {
         if (txtRecipe.getText() == null || txtRecipe.getText().toString().isEmpty()) {
             showToast(getString(R.string.please_enter_recipe_message));

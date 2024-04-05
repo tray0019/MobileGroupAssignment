@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey;
  * lab section: 021
  * --
  * entity recipe info
+ *  defines the structure of the recipe table in the database
  */
 @Entity(tableName = "recipe")
 public class RecipeEntity {

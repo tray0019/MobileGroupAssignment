@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey;
  * lab section: 021
  * --
  * entity recipe info
+ * stores extended information of a recipe ingredients
  */
 @Entity(tableName = "extended")
 public class ExtendedEntity {

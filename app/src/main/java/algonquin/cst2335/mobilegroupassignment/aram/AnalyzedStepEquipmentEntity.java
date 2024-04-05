@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
  * Wednesday, April 3, 2024
  * lab section: 021
  * --
- * entity recipe info
+ *  equipment used in an analyzed step of a recipe
  */
 @Entity(tableName = "analyzed_step_equipment")
 public class AnalyzedStepEquipmentEntity {

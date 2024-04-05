@@ -24,7 +24,7 @@ import algonquin.cst2335.mobilegroupassignment.aram.dto.AnalyzedInstructions;
  * Wednesday, April 3, 2024
  * lab section: 021
  * --
- * activity to display recipe analyze information
+ * activity to display step by step of a recipe
  */
 public class AnalyzedInstructionsRecipeActivity extends AppCompatActivity {
 

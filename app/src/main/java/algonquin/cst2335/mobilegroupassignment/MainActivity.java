@@ -18,6 +18,9 @@ import algonquin.cst2335.mobilegroupassignment.mahsa.MainDictionaryActivity;
  * These is the Menu or dashboard of
  * the application. This class provides the function for the
  * 4 buttons, when click it launches an activity.
+ * manages the navigation between different parts of your application,
+ * including launching the activities for different features such as Rustom's activity,
+ * Mahsa's dictionary activity, Farock,  and Aram's recipe activity.
  *
  * @Author Rustom
  * @Since March/08/2024
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        // ARAM RECIPE BTN
+        // ARAM RECIPE BTN (When this button is clicked, it launches an activity represented by the MainRecipeActivity class.)
         findViewById(R.id.AramButton).setOnClickListener(e -> startActivity(new Intent(this, MainRecipeActivity.class)));
 
         // MAHSA Dictionary API
