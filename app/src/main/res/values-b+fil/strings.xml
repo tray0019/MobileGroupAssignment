@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MobileGroupAssignment</string>
+    <string name="sunRiseSetString">Araw at  paglubog ng araw</string>
+    <string name="locationSave">Na-save ang lokasyon sa mga paborito!</string>
+    <string name="prefix_sunrise">Araw:</string>
+    <string name="prefix_sunset">Paglubog ng araw:</string>
+    <string name="confirm_delete_location">Sigurado ka bang gusto mong tanggalin ang lokasyong ito?</string>
+    <string name="delete_confirmation_title">" Tanggalin ang Kumpirmasyon"</string>
+    <string name="pref_key_last_latitude">" huling_latitude"</string>
+    <string name="pref_key_last_longitude">" last_longitude"</string>
+    <string name="location_deleted">Tinanggal ang lokasyon</string>
+    <string name="sunrise_time">Oras ng Pagsikat ng Araw</string>
+    <string name="sunset_time">Paglubog ng araw</string>
+    <string name="location_name">Pangalan ng lugar</string>
+    <string name="delete">" Tanggalin"</string>
+    <string name="InvalidNumeric">Mangyaring magpasok ng wastong mga numerong halaga para sa latitude at longitude.</string>
+    <string name="help">Pagsikat at Paglubog ng araw</string>
+    <string name="SunriseSunseHelp">Ang application na Sunrise and Sunset Time Finder ay nagbibigay-daan sa mga user na magpasok ng latitude at longitude upang matukoy ang mga oras ng pagsikat at paglubog ng araw para sa lokasyong iyon. Maaaring i-save ng mga user ang mga lokasyon at oras na ito sa isang listahan ng mga paborito.</string>
+    <string name="save2fav">Paborito nang Tao</string>
+    <string name="sunRiseSetlook">Paglubog ng araw sa mnga tanga</string>
+</resources>
