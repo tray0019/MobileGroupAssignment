@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <string name="please_enter_word_fr">Veuillez entrer un mot…</string>
+    <string name="part_of_speech_fr">Partie du discours</string>
+    <string name="definitions_0_fr">Définitions : 0</string>
+    <string name="from_server_fr">Depuis le serveur</string>
+    <string name="from_local_fr">Depuis local</string>
+    <string name="base_api_url_fr">https://api.dictionaryapi.dev/api/v2/entries/en/</string>
+    <string name="get_word_info_fr">Obtenir des infos sur le mot</string>
+    <string name="name_fr">NOM</string>
+    <string name="definitions_fr">Définitions</string>
+    <string name="help_dialog_fr">Dialogue d\'aide</string>
+    <string name="help_dialog_title_fr">Titre du dialogue</string>
+    <string name="help_dialog_message_fr">
+        1. écrivez le nom des mots lorsque vous souhaitez trouver le sens des mots\n\n
+        2. Cliquez sur depuis le serveur ou local (local sera seulement pour les mots sauvegardés)\n\n
+        3. vous pouvez voir des synonymes ou des mots opposés\n\n
+        3. vous pouvez ajouter ou supprimer des mots
+</string>
+
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15sp"
+    android:orientation="vertical"
+    tools:context=".mahsa.MainDictionaryActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/txt_word"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:hint="@string/mahsa_please_enter_word"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/btn_fetch_word_info"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_margin="2sp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:contentDescription="@string/get_word_info"
+            android:scaleType="centerCrop"
+            android:src="@drawable/search_icon" />
+
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_margin="2sp"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/add_create_new_ic" />
+
+        <ImageButton
+            android:id="@+id/btn_remove"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_gravity="center"
+            android:layout_margin="2sp"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/recycle_bin_ic" />
+
+        <ImageButton
+                android:id="@+id/btn_help"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:layout_margin="2sp"
+                android:background="@null"
+                android:contentDescription="@string/help_dialog"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_help" />
+
+    </LinearLayout>
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_btn_show_server"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mahsa_from_server" />
+
+        <RadioButton
+            android:id="@+id/radio_btn_show_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mahsa_from_local" />
+
+    </RadioGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10sp" />
+
+</LinearLayout>

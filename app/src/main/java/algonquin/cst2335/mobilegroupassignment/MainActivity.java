@@ -44,16 +44,22 @@ public class MainActivity extends AppCompatActivity {
         sunRiseSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this,RustomClass.class);//Make sure its your class from the class activity
-                    startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, RustomClass.class);//Make sure its your class from the class activity
+                startActivity(intent);
             }
 
             /********** CODE BELOW inside the onCreate ************/
 
 
-        }) ;
+        });
 
-        }
+        // ARAM RECIPE BTN
+        findViewById(R.id.AramButton).setOnClickListener(e -> startActivity(new Intent(this, MainRecipeActivity.class)));
+
+        // MAHSA Dictionary API
+        findViewById(R.id.MahsaButton).setOnClickListener(e -> startActivity(new Intent(this, MainDictionaryActivity.class)));
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,26 +74,32 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, RustomClass.class));
             return true;
         }
-        // Handle the action for displaying help dialog
-        else if (item.getItemId() == R.id.action_help) {
-            showHelpDialog();
-            return true;
+
+        // Handle the action for Mahsa's activity
+        else if (item.getItemId() == R.id.action_mahsa) {
+            startActivity(new Intent(this, MainDictionaryActivity.class));
+
+            // Handle the action for Aram's activity
+            if (item.getItemId() == R.id.action_aram) {
+                startActivity(new Intent(this, MainRecipeActivity.class));
+                return true;
+            }
+            // Handle the action for displaying help dialog
+            else if (item.getItemId() == R.id.action_help) {
+                showHelpDialog();
+                return true;
+            }
+            // Handle other menu items if there are any
+
         }
-        // Handle other menu items if there are any
-
         return super.onOptionsItemSelected(item);
+
     }
-
-
     private void showHelpDialog() {
         new AlertDialog.Builder(this)
-                .setTitle(R.string.help)
-                .setMessage(R.string.SunriseSunseHelp)
+                .setTitle("Help")
+                .setMessage("Here's how to use the app: [Add your instructions here]")
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
     }
 }
-
-
-
-

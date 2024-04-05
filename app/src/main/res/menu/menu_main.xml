@@ -6,10 +6,20 @@
         android:title="Sunrise and Sunset Lookup"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/action_mahsa"
+        android:icon="@drawable/sun_icon"
+        android:title="Dictionary Api"
+         />
+
     <item
         android:id="@+id/action_help"
         android:title="App Help"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_aram"
+        android:title="Aram - Recipe"
+        app:showAsAction="never" />
 
 
 </menu>
