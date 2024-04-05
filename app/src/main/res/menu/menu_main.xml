@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item android:id="@+id/action_rustom"
         android:icon="@drawable/sun_icon"
+        android:title="Sunrise and Sunset Lookup"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/aramm"
+        android:icon="@drawable/recipe"
         android:title="Sunrise and Sunset Lookup"
         app:showAsAction="ifRoom" />
 
@@ -17,10 +23,19 @@
         and Sunset"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_aram"
-        android:title="Aram - Recipe"
-        app:showAsAction="never" />
+<!--    <item-->
+<!--        android:id="@+id/action_aram"-->
+<!--        android:title="Aram - Recipe"-->
+<!--        app:showAsAction="never" />-->
+
+<!--    <item android:id="@+id/icon_aram"-->
+<!--        android:icon="@drawable/recipe"-->
+<!--        android:title="Dictionary Api"-->
+<!--        />-->
+
+
+
+
 
 
 </menu>
