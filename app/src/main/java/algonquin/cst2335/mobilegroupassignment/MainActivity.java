@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         // ARAM RECIPE BTN
         findViewById(R.id.AramButton).setOnClickListener(e -> startActivity(new Intent(this, MainRecipeActivity.class)));
 
+        // Mahsa Dictionary API
+        findViewById(R.id.MahsaButton).setOnClickListener(e -> startActivity(new Intent(this, MainDictionaryActivity.class)));
+
     }
 
     @Override
@@ -82,24 +85,25 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_mahsa) {
             startActivity(new Intent(this, MainDictionaryActivity.class));
 
-        // Handle the action for Aram's activity
-        if (item.getItemId() == R.id.action_aram) {
-            startActivity(new Intent(this, MainRecipeActivity.class));
+            // Handle the action for Aram's activity
+            if (item.getItemId() == R.id.action_aram) {
+                startActivity(new Intent(this, MainRecipeActivity.class));
 
-            return true;
-        }
-        // Handle the action for displaying help dialog
-        else if (item.getItemId() == R.id.action_help) {
-            showHelpDialog();
-            return true;
-        }
-        // Handle other menu items if there are any
+                return true;
+            }
+            // Handle the action for displaying help dialog
+            else if (item.getItemId() == R.id.action_help) {
+                showHelpDialog();
+                return true;
+            }
+            // Handle other menu items if there are any
 
+        }
         return super.onOptionsItemSelected(item);
+
     }
 
-
-    private void showHelpDialog() {
+    private void showHelpDialog () {
         new AlertDialog.Builder(this)
                 .setTitle("Help")
                 .setMessage("Here's how to use the app: [Add your instructions here]")
@@ -107,7 +111,3 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 }
-
-
-
-

@@ -31,7 +31,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.6"
-                        android:text="Number of synonyms"
+                        android:text="@string/number_of_synonyms"
                         android:textColor="@color/black" />
 
                 <TextView
@@ -52,7 +52,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.6"
-                        android:text="Number of antonyms"
+                        android:text="@string/number_of_antonyms"
                         android:textColor="@color/black" />
 
                 <TextView

@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Mahsa es lang strings   -->
+    <string name="please_enter_word">Por favor, ingresa una palabra…</string>
+    <string name="part_of_speech">Parte de la oración</string>
+    <string name="definitions_0">Definiciones: 0</string>
+    <string name="mahsa_from_server">Del servidor</string>
+    <string name="mahsa_from_local">De Local</string>
+    <string name="base_api_url">https://api.dictionaryapi.dev/api/v2/entries/en/</string>
+    <string name="get_word_info">Obtener información de la palabra</string>
+    <string name="name">NOMBRE</string>
+    <string name="definitions">Definiciones</string>
+    <string name="mahsa_help_dialog">Diálogo de ayuda</string>
+    <string name="mahsa_help_dialog_title">Título del diálogo</string>
+    <string name="mahsa_help_dialog_message">
+        1. escribe el nombre de las palabras cuando quieras encontrar el significado de las palabras\n\n
+        2. Haz clic en desde el servidor o local (local solo para palabras guardadas)\n\n
+        3. puedes ver sinónimos o palabras opuestas\n\n
+        3. puedes agregar o eliminar palabras
+    </string>
+    <string name="mahsa_shareprefrence_name">mahsa.dictionary.api</string>
+    <string name="mahsa_db_name">mahsa_dictionary_api_db</string>
+    <string name="share_preference_key">palabra</string>
+    <string name="mahsa_remove_word">"Palabra eliminada exitosamente, Palabra: "</string>
+    <string name="mahsa_fail_delete">"Fallo al eliminar palabra, Mensaje: "</string>
+    <string name="mahsa_enter_word_search">Por favor ingresa una palabra y busca</string>
+    <string name="mahsa_saving_word_word">"Guardando palabra, Palabra: "</string>
+    <string name="mahsa_successfully_saved_word">Palabra guardada exitosamente</string>
+    <string name="mahsa_fail_to_save_word_message">"Fallo al guardar palabra, Mensaje: "</string>
+    <string name="mahsa_please_check_server_or_local">Por favor verifica servidor o local</string>
+    <string name="mahsa_successfully_fetch_words_from_local">Palabras obtenidas exitosamente desde local</string>
+    <string name="mahsa_fail_to_fetch_words_message">"Fallo al obtener palabras, Mensaje: "</string>
+    <string name="mahsa_please_enter_word">Por favor ingresa una palabra</string>
+    <string name="mahsa_fail_to_response_handler">Fallo al manejar la respuesta</string>
+    <string name="mahsa_intent_index_key">selectedIndex</string>
+    <string name="mahsa_dictionary_api">Mahsa - API de Diccionario</string>
+    <string name="number_of_synonyms">Número de sinónimos</string>
+    <string name="number_of_antonyms">Número de antónimos</string>
+    <string name="number_of_definitions">Número de definiciones</string>
+    <string name="mahsa_synonyms">Sinónimos</string>
+    <string name="mahsa_antonyms">Antónimos</string>
+
+    <!-- Aram es lang strings -->
     <string name="app_name">MobileGroupAssignment</string>
     <string name="recipe_search">Búsqueda de Recetas</string>
     <string name="open">Abrir</string>

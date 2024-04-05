@@ -19,9 +19,13 @@ import algonquin.cst2335.mobilegroupassignment.aram.RecipeEntity;
 
 @Database(entities = {
         Location.class,
+
+        // Mahsa
         WordEntity.class,
         MeaningsEntity.class,
         DefinitionsEntity.class,
+
+        // Aram
         RecipeEntity.class, 
         AnalyzedEntity.class,
         ExtendedEntity.class,
@@ -32,6 +36,7 @@ import algonquin.cst2335.mobilegroupassignment.aram.RecipeEntity;
 public abstract class AppDatabase extends RoomDatabase {
     public abstract LocationDao locationDao();
     public abstract RecipeDao recipeDao();
+    public abstract WordDao wordDao();
 
 }
 

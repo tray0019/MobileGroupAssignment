@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StringListActivity">
+    tools:context=".mahsa.StringListActivity">
 
     <TextView
         android:id="@+id/txt_name"
