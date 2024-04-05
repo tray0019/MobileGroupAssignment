@@ -44,7 +44,7 @@ import algonquin.cst2335.mobilegroupassignment.aram.dto.RecipeResponse;
  * Wednesday, April 3, 2024
  * lab section: 021
  * --
- * The main activity of the program
+ * The main activity of the recipe program
  */
 public class MainRecipeActivity extends AppCompatActivity {
 
@@ -77,10 +77,15 @@ public class MainRecipeActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
     @Override
+    //onCreate method, starts the lifesycle of the code
     protected void onCreate(Bundle savedInstanceState) {
+        //calls the superclass
         super.onCreate(savedInstanceState);
+
+        //sets the layout of the screen
         setContentView(R.layout.activity_main_recipe);
 
+        //keeps track of user preferences
         sharedPreferences = getSharedPreferences(getString(R.string.recipe_search_shared_preference_key), MODE_PRIVATE);
 
         requestRecipeSearchController = new RequestRecipeSearchController(this);
@@ -91,7 +96,7 @@ public class MainRecipeActivity extends AppCompatActivity {
 
         aramDb = Room.databaseBuilder(this.getApplicationContext(), AppDatabase.class, "aram_db").build();
     }
-
+// initializes all of the user interface elements so we can use them later in the code
     private void setTools() {
         txtRecipe = findViewById(R.id.txt_recipe);
         radioBtnShowServer = findViewById(R.id.radio_btn_show_server);
@@ -110,6 +115,7 @@ public class MainRecipeActivity extends AppCompatActivity {
         mainLayout = findViewById(R.id.main);
     }
 
+    //puts the previously saved value of EditText in the EditText box. Related to Shared Preference code
     private void setValue() {
         String recipe = sharedPreferences.getString(getString(R.string.recipe_shared_preference_key), null);
         if (recipe != null) {
@@ -117,6 +123,7 @@ public class MainRecipeActivity extends AppCompatActivity {
         }
     }
 
+    // Adds the click listener to buttons
     private void setOnClick() {
         btnFetchRecipeInfo.setOnClickListener(e -> onClickBtnFetchRecipeInfo());
         btnNextPage.setOnClickListener(e -> onClickBtnNextPage());
@@ -124,6 +131,7 @@ public class MainRecipeActivity extends AppCompatActivity {
         btnHelp.setOnClickListener(e -> onClickBtnHelp());
     }
 
+    //displays a help dialog
     private void onClickBtnHelp() {
         runOnUiThread(() -> new AlertDialog.Builder(MainRecipeActivity.this)
                 .setTitle(R.string.help_dialog_title)
@@ -136,26 +144,29 @@ public class MainRecipeActivity extends AppCompatActivity {
                 .show());
     }
 
+    //this is triggered when the user click on next page
     private void onClickBtnNextPage() {
         setOffsetNext();
         search();
     }
-
+    //this is triggered when the user click on previous page
     private void onClickBtnPrePage() {
         setOffsetPre();
         search();
     }
-
+    //this is triggered when the user click on get recipe button
     private void onClickBtnFetchRecipeInfo() {
         setOffset();
         search();
     }
 
+    //Starts searching for recipe
     private synchronized void search() {
         String recipeText = getRecipeText();
         if (recipeText == null) {
             return;
         }
+
 
         if (!radioBtnShowLocal.isChecked() && !radioBtnShowServer.isChecked()) {
             showToast(getString(R.string.please_check_server_or_local_message));
