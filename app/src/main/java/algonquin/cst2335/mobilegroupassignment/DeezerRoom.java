@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +49,6 @@ import java.util.Set;
 public class DeezerRoom extends AppCompatActivity {
 
 
-
     ActivityDeezerRoomBinding binding;
 
     public RecyclerView.Adapter<MyRowHolder> myAdapter;
@@ -57,6 +59,19 @@ public class DeezerRoom extends AppCompatActivity {
 
     DeezerSong deezerSong;
 
+    /**
+     * This holds the text at the centre of the screen
+     */
+    TextView li = null;
+    /**
+     * This holds the password
+     */
+    EditText et = null;
+    /**
+     * This holds the text at te bottom of the screen
+     */
+
+    ImageButton btn = null;
     /**
      * This method is called when the activity is starting.
      * It sets up the view model and binds the layout defined in ActivityDeezerRoomBinding to the activity.
@@ -137,84 +152,91 @@ public class DeezerRoom extends AppCompatActivity {
             // Get the artist name entered by the user
             String artistName = binding.editText.getText().toString();
             //binding.editText.setText("");
-            String url = "https://api.deezer.com/search/artist/?q=" + artistName;
-            JsonObjectRequest objectRequest = new JsonObjectRequest(
-                    Request.Method.GET,
-                    url,
-                    null,
-                    response -> {
-                        try {
-                            //method to retrieves jason array data
-                            JSONArray data = response.getJSONArray("data");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject artistObject = data.getJSONObject(i);
-                                String serverArtistName = artistObject.getString("name");
-                                String modifiedServerArtistName = serverArtistName.toLowerCase().replaceAll("\\s", "");
-                                String modifiedArtistName = artistName.toLowerCase().replaceAll("\\s", "");
-                                int id = artistObject.getInt("id");
-                                String tracklistUrl = artistObject.getString("tracklist");
-                                // Convert the ID to a string
-                                String idString = String.valueOf(id);
+            if (isFieldEmpty(artistName)) {
+                // Show toast message for correct entry
+                showToast("Empty field");
+            }else {
+                // Show toast message for empty field
+                showToast("Correct entry");
 
-                                if (tracklistUrl.contains(idString) && modifiedArtistName.equals(modifiedServerArtistName)) {
-                                    JsonObjectRequest tracklistRequest = new JsonObjectRequest(
-                                            Request.Method.GET,
-                                            tracklistUrl,
-                                            null,
-                                            tracklistResponse -> {
-                                                // Define a Set to store unique song titles
-                                                Set<String> uniqueTitles = new HashSet<>();
-                                                try {
-                                                    JSONArray tracklistData = tracklistResponse.getJSONArray("data");
-                                                    for (int j = 0; j < tracklistData.length(); j++) {
-                                                        JSONObject trackObject = tracklistData.getJSONObject(j);
-                                                        String songTitle = trackObject.getString("title");
-                                                        String time = trackObject.getString("duration");
+                String url = "https://api.deezer.com/search/artist/?q=" + artistName;
+                JsonObjectRequest objectRequest = new JsonObjectRequest(
+                        Request.Method.GET,
+                        url,
+                        null,
+                        response -> {
+                            try {
+                                //method to retrieves jason array data
+                                JSONArray data = response.getJSONArray("data");
+                                for (int i = 0; i < data.length(); i++) {
+                                    JSONObject artistObject = data.getJSONObject(i);
+                                    String serverArtistName = artistObject.getString("name");
+                                    String modifiedServerArtistName = serverArtistName.toLowerCase().replaceAll("\\s", "");
+                                    String modifiedArtistName = artistName.toLowerCase().replaceAll("\\s", "");
+                                    int id = artistObject.getInt("id");
+                                    String tracklistUrl = artistObject.getString("tracklist");
+                                    // Convert the ID to a string
+                                    String idString = String.valueOf(id);
 
-                                                        // Retrieve album title from the "album" object
-                                                        JSONObject albumObject = trackObject.getJSONObject("album");
-                                                        String albumTitle = albumObject.getString("title");
-                                                        String albumCoverUrl = albumObject.getString("cover_big");
+                                    if (tracklistUrl.contains(idString) && modifiedArtistName.equals(modifiedServerArtistName)) {
+                                        JsonObjectRequest tracklistRequest = new JsonObjectRequest(
+                                                Request.Method.GET,
+                                                tracklistUrl,
+                                                null,
+                                                tracklistResponse -> {
+                                                    // Define a Set to store unique song titles
+                                                    Set<String> uniqueTitles = new HashSet<>();
+                                                    try {
+                                                        JSONArray tracklistData = tracklistResponse.getJSONArray("data");
+                                                        for (int j = 0; j < tracklistData.length(); j++) {
+                                                            JSONObject trackObject = tracklistData.getJSONObject(j);
+                                                            String songTitle = trackObject.getString("title");
+                                                            String time = trackObject.getString("duration");
 
-                                                        // Create a new Deezer song object and set its time
-                                                        DeezerSong deezerSong = new DeezerSong(songTitle);
-                                                        deezerSong.setTime(time);
-                                                        deezerSong.setAlbumName(albumTitle);
-                                                        deezerSong.setAlbumCoverUrl(albumCoverUrl);
+                                                            // Retrieve album title from the "album" object
+                                                            JSONObject albumObject = trackObject.getJSONObject("album");
+                                                            String albumTitle = albumObject.getString("title");
+                                                            String albumCoverUrl = albumObject.getString("cover_big");
 
-                                                        // Add the Deezer song object to the songs array list
-                                                        songs.add(deezerSong);
+                                                            // Create a new Deezer song object and set its time
+                                                            DeezerSong deezerSong = new DeezerSong(songTitle);
+                                                            deezerSong.setTime(time);
+                                                            deezerSong.setAlbumName(albumTitle);
+                                                            deezerSong.setAlbumCoverUrl(albumCoverUrl);
 
+                                                            // Add the Deezer song object to the songs array list
+                                                            songs.add(deezerSong);
+
+                                                        }
+                                                        // After updating songs, notify the adapter
+                                                        myAdapter.notifyDataSetChanged();
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
                                                     }
-                                                    // After updating songs, notify the adapter
-                                                    myAdapter.notifyDataSetChanged();
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
+                                                },
+                                                error -> {
+                                                    // Handle error response from tracklist URL
                                                 }
-                                            },
-                                            error -> {
-                                                // Handle error response from tracklist URL
-                                            }
-                                    );
-                                    //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
-                                    Volley.newRequestQueue(this).add(tracklistRequest);
+                                        );
+                                        //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
+                                        Volley.newRequestQueue(this).add(tracklistRequest);
+                                    }
+
+
                                 }
-
-
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        },
+                        error -> {
+                            // Handle error response
                         }
-                    },
-                    error -> {
-                        // Handle error response
-                    }
-            );
-            //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
-            Volley.newRequestQueue(this).add(objectRequest);
-        });
+                );
+                //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
+                Volley.newRequestQueue(this).add(objectRequest);
+            }
 
-
+            });
 
 
         //Selected Song Observer
@@ -239,6 +261,23 @@ public class DeezerRoom extends AppCompatActivity {
             binding.searchButton.setVisibility(View.INVISIBLE);
             binding.myToolbar.setVisibility(View.INVISIBLE);
         });
+
+//        li = findViewById(R.id.message);
+//        et = findViewById(R.id.editText);
+//        btn = findViewById(R.id.searchButton);
+//
+//        btn.setOnClickListener( clk ->{
+//            String name = et.getText().toString();
+//
+//            // Check if the password is complex enough
+//            if (isFieldEmpty(name)) {
+//                // Set the TextView to "Your password meets the requirements"
+//                li.setText("correct_entry");
+//            } else {
+//                // Set the TextView to "You shall not pass!"
+//                li.setText("empty_field");
+//            }
+//        });
 
 
     }
@@ -357,5 +396,15 @@ public class DeezerRoom extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public boolean isFieldEmpty(String fieldValue) {
+        // Check if the fieldValue is null or empty
+        return fieldValue == null || fieldValue.trim().isEmpty();
+    }
+        // Method to show a toast message
+        private void showToast(String message) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
+
 }
 
