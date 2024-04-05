@@ -5,17 +5,17 @@
     <item android:id="@+id/action_rustom"
         android:icon="@drawable/sun_icon"
         android:title="@string/sunRiseSetlook"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item android:id="@+id/aramm"
         android:icon="@drawable/recipe"
         android:title="Sunrise and Sunset Lookup"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item android:id="@+id/action_mahsa"
         android:icon="@drawable/icondic"
         android:title="Sunrise and Sunset Lookup"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
 <!--    <item android:id="@+id/action_mahsa"-->
 <!--        android:icon="@drawable/sun_icon"-->
