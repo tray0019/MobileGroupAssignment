@@ -24,6 +24,9 @@
       <entry key="testNonEmptyField()">
         <State />
       </entry>
+      <entry key="testNonEmptyFieldMix()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

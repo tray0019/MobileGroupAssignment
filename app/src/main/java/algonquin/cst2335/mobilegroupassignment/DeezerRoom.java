@@ -1,4 +1,10 @@
 package algonquin.cst2335.mobilegroupassignment;
+/**
+ * This class represents the DeezerRoom activity, which allows users to search for songs from Deezer API.
+ * Author: Yandom Youmbi Farock Natanael
+ * Date : 04/04/2024
+ * Version: 01
+ */
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -39,12 +45,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * This class represents the DeezerRoom activity, which allows users to search for songs from Deezer API.
- * Author: Yandom Youmbi Farock Natanael
- * Date : 04/04/2024
- * Version: 01
- */
+
 
 public class DeezerRoom extends AppCompatActivity {
 
@@ -53,7 +54,6 @@ public class DeezerRoom extends AppCompatActivity {
 
     public RecyclerView.Adapter<MyRowHolder> myAdapter;
     private static ArrayList<DeezerSong> songs;
-    //private static  ArrayList<DeezerSong> songsDetails;
     DeezerViewModel deezerViewModel;
     DeezerSongDAO dDAO;
 
@@ -154,10 +154,10 @@ public class DeezerRoom extends AppCompatActivity {
             //binding.editText.setText("");
             if (isFieldEmpty(artistName)) {
                 // Show toast message for correct entry
-                showToast("Empty field");
+                showToast(String.valueOf(R.string.empty_field));
             }else {
                 // Show toast message for empty field
-                showToast("Correct entry");
+                showToast(String.valueOf(R.string.ce));
 
                 String url = "https://api.deezer.com/search/artist/?q=" + artistName;
                 JsonObjectRequest objectRequest = new JsonObjectRequest(
@@ -216,7 +216,7 @@ public class DeezerRoom extends AppCompatActivity {
                                                 },
                                                 error -> {
                                                     // Handle error response from tracklist URL
-                                                }
+                                                    showToast(R.string.error1 + error.getMessage());                                                }
                                         );
                                         //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
                                         Volley.newRequestQueue(this).add(tracklistRequest);
@@ -230,7 +230,7 @@ public class DeezerRoom extends AppCompatActivity {
                         },
                         error -> {
                             // Handle error response
-                        }
+                            showToast(R.string.error2 + error.getMessage());                        }
                 );
                 //performs a network request using Volley, an HTTP library for Android, to fetch data from a remote server.
                 Volley.newRequestQueue(this).add(objectRequest);
@@ -362,12 +362,9 @@ public class DeezerRoom extends AppCompatActivity {
         if (item.getItemId() == R.id.item_1) {
             // Show an AlertDialog
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("This is how to use the application");
-            builder.setMessage("This is application is an application that helps you to search for songs through the internet, " +
-                    "select and save it to your device\n On start, Navigate to the search bar and enter the artist name\n After you will have a list of your artist songs " +
-                    "Select a song and you will view the details.\n To add a song to your device, click on the star icon and click on the view button to see your list of favourite songs\n" +
-                    "Finally, you can delete the song from the list by clicking thee delete button ");
-            builder.setPositiveButton("Done", (dialog, which) -> {
+            builder.setTitle(R.string.help);
+            builder.setMessage(R.string.help_body);
+            builder.setPositiveButton(R.string.done, (dialog, which) -> {
 
             });
 
@@ -376,7 +373,7 @@ public class DeezerRoom extends AppCompatActivity {
             return true; // Event consumed
         } else if (item.getItemId() == R.id.About) {
             // Handle the About item click here
-            Toast.makeText(this, "Created by farock natanael", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.author, Toast.LENGTH_LONG).show();
             return true; // Event consumed
         }
         return super.onOptionsItemSelected(item);

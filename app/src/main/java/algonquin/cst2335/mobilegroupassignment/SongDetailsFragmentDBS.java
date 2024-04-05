@@ -1,4 +1,10 @@
 package algonquin.cst2335.mobilegroupassignment;
+/**
+ * This class represents the DeezerRoom activity, which allows users to search for songs from Deezer API.
+ * Author: Yandom Youmbi Farock Natanael
+ * Date : 04/04/2024
+ * Version: 01
+ */
 
 import android.app.AlertDialog;
 import android.graphics.Bitmap;
@@ -109,14 +115,14 @@ public class SongDetailsFragmentDBS extends Fragment {
 private void deleteSelectedItem() {
     // Build the AlertDialog
     AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-    builder.setMessage("Are you sure you want to delete this item?")
-            .setPositiveButton("Yes", (dialog, which) -> {
+    builder.setMessage(R.string.question)
+            .setPositiveButton(R.string.yes, (dialog, which) -> {
                 // User clicked Yes, perform delete operation
                 performDeleteOperation();
                 showToast();
 
             })
-            .setNegativeButton("No", (dialog, which) -> {
+            .setNegativeButton(R.string.no, (dialog, which) -> {
                 // User clicked No, do nothing
             });
 
@@ -168,7 +174,7 @@ private void deleteSelectedItem() {
      */
     private void showToast() {
         // Show a Toast message
-        Toast.makeText(requireContext(), "Song succesfully deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), R.string.adding_song, Toast.LENGTH_SHORT).show();
     }
 
 

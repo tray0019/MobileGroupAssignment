@@ -1,8 +1,15 @@
 package algonquin.cst2335.mobilegroupassignment;
+/**
+ * This class represents the DeezerRoom activity, which allows users to search for songs from Deezer API.
+ * Author: Yandom Youmbi Farock Natanael
+ * Date : 04/04/2024
+ * Version: 01
+ */
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
 
 /**
  * Represents a song obtained from Deezer API.
