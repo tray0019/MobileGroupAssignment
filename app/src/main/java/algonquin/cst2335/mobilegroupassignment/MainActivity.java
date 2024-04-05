@@ -11,9 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+
 import algonquin.cst2335.mobilegroupassignment.mahsa.MainDictionaryActivity;
 import algonquin.cst2335.mobilegroupassignment.aram.MainRecipeActivity;
-
 
 /**
  * These is the Menu or dashboard of
@@ -62,9 +62,6 @@ public class MainActivity extends AppCompatActivity {
         // ARAM RECIPE BTN
         findViewById(R.id.AramButton).setOnClickListener(e -> startActivity(new Intent(this, MainRecipeActivity.class)));
 
-        // Mahsa Dictionary API
-        findViewById(R.id.MahsaButton).setOnClickListener(e -> startActivity(new Intent(this, MainDictionaryActivity.class)));
-
     }
 
     @Override
@@ -82,28 +79,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Handle the action for Mahsa's activity
-        if (item.getItemId() == R.id.action_mahsa) {
+        else if (item.getItemId() == R.id.action_mahsa) {
             startActivity(new Intent(this, MainDictionaryActivity.class));
 
-            // Handle the action for Aram's activity
-            if (item.getItemId() == R.id.action_aram) {
-                startActivity(new Intent(this, MainRecipeActivity.class));
-
-                return true;
-            }
-            // Handle the action for displaying help dialog
-            else if (item.getItemId() == R.id.action_help) {
-                showHelpDialog();
-                return true;
-            }
-            // Handle other menu items if there are any
-
+        // Handle the action for Aram's activity
+        if (item.getItemId() == R.id.action_aram) {
+            startActivity(new Intent(this, MainRecipeActivity.class));
+            return true;
         }
-        return super.onOptionsItemSelected(item);
+        // Handle the action for displaying help dialog
+        else if (item.getItemId() == R.id.action_help) {
+            showHelpDialog();
+            return true;
+        }
+        // Handle other menu items if there are any
 
+        return super.onOptionsItemSelected(item);
     }
 
-    private void showHelpDialog () {
+
+    private void showHelpDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Help")
                 .setMessage("Here's how to use the app: [Add your instructions here]")
@@ -111,3 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 }
+
+
+
+

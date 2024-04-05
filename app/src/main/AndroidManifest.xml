@@ -30,8 +30,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RustomClass"/> <!--ADDED-->
-        
-        <!--        Mahsa-->
+
+
         <activity
             android:name=".mahsa.StringListActivity"
             android:exported="false"
@@ -49,8 +49,7 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>
-        <!--        Mahsa-->
-        <!--        ARAM-->
+
         <activity
             android:name=".aram.AnalyzedInstructionsItemStepRecipeActivity"
             android:exported="false"
@@ -68,7 +67,6 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>
-        <!--        ARAM-->
 
     </application>
 
