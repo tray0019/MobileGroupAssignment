@@ -19,6 +19,7 @@ import algonquin.cst2335.mobilegroupassignment.aram.dto.RecipeDto;
  * lab section: 021
  * --
  * Database management
+ * serves as a manager for saving, removing, and fetching recipe-related data from the database
  */
 public class RecipeDb {
 

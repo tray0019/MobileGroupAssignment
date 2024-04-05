@@ -19,6 +19,7 @@ import algonquin.cst2335.mobilegroupassignment.R;
  * lab section: 021
  * --
  * Management of sending and receiving http information
+ * lass is responsible for managing HTTP requests to fetch recipe information from an API
  */
 public class RequestRecipeSearchController {
 

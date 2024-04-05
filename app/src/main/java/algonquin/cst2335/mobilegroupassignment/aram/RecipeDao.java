@@ -12,6 +12,7 @@ import java.util.List;
  * lab section: 021
  * --
  * Database management
+ * this itneracts with underlying database
  */
 @Dao
 public interface RecipeDao {
