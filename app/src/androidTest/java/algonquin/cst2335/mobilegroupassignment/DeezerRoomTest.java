@@ -41,7 +41,7 @@ public class DeezerRoomTest {
             new ActivityScenarioRule<>(DeezerRoom.class);
 
     @Test
-    public void testIsFieldEmptyPlaceHolder() {
+    public void testEmptyField() {
 
         ViewInteraction appCompatEditText = onView(withId(R.id.editText));
         appCompatEditText.perform(replaceText(""), closeSoftKeyboard());
@@ -53,10 +53,10 @@ public class DeezerRoomTest {
         textView.check(matches(withHint("Please enter artist name...")));
     }
     @Test
-    public void testIsFieldEmptyToast() {
+    public void testNonEmptyField() {
 
         ViewInteraction appCompatEditText = onView(withId(R.id.editText));
-        appCompatEditText.perform(replaceText(""), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("Dido"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(withId(R.id.searchButton));
         materialButton.perform(click());
@@ -64,6 +64,45 @@ public class DeezerRoomTest {
         ViewInteraction textView = onView(withId(R.id.editText));
         textView.check(matches(withHint("Please enter artist name...")));
     }
+    @Test
+    public void testNonEmptyFieldNum() {
+
+        ViewInteraction appCompatEditText = onView(withId(R.id.editText));
+        appCompatEditText.perform(replaceText("45698"), closeSoftKeyboard());
+
+        ViewInteraction materialButton = onView(withId(R.id.searchButton));
+        materialButton.perform(click());
+
+        ViewInteraction textView = onView(withId(R.id.editText));
+        textView.check(matches(withHint("Please enter artist name...")));
+    }
+
+    @Test
+    public void testNonEmptyFieldSpecial() {
+
+        ViewInteraction appCompatEditText = onView(withId(R.id.editText));
+        appCompatEditText.perform(replaceText("/././."), closeSoftKeyboard());
+
+        ViewInteraction materialButton = onView(withId(R.id.searchButton));
+        materialButton.perform(click());
+
+        ViewInteraction textView = onView(withId(R.id.editText));
+        textView.check(matches(withHint("Please enter artist name...")));
+    }
+
+    @Test
+    public void testNonEmptyFieldMix() {
+
+        ViewInteraction appCompatEditText = onView(withId(R.id.editText));
+        appCompatEditText.perform(replaceText("Di452/,/."), closeSoftKeyboard());
+
+        ViewInteraction materialButton = onView(withId(R.id.searchButton));
+        materialButton.perform(click());
+
+        ViewInteraction textView = onView(withId(R.id.editText));
+        textView.check(matches(withHint("Please enter artist name...")));
+    }
+
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {

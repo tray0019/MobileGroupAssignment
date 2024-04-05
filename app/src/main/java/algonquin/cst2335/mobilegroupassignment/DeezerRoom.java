@@ -262,24 +262,6 @@ public class DeezerRoom extends AppCompatActivity {
             binding.myToolbar.setVisibility(View.INVISIBLE);
         });
 
-//        li = findViewById(R.id.message);
-//        et = findViewById(R.id.editText);
-//        btn = findViewById(R.id.searchButton);
-//
-//        btn.setOnClickListener( clk ->{
-//            String name = et.getText().toString();
-//
-//            // Check if the password is complex enough
-//            if (isFieldEmpty(name)) {
-//                // Set the TextView to "Your password meets the requirements"
-//                li.setText("correct_entry");
-//            } else {
-//                // Set the TextView to "You shall not pass!"
-//                li.setText("empty_field");
-//            }
-//        });
-
-
     }
 
     /**
@@ -381,7 +363,10 @@ public class DeezerRoom extends AppCompatActivity {
             // Show an AlertDialog
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("This is how to use the application");
-            builder.setMessage("This is application is an application that helps you to navigate and delete songs");
+            builder.setMessage("This is application is an application that helps you to search for songs through the internet, " +
+                    "select and save it to your device\n On start, Navigate to the search bar and enter the artist name\n After you will have a list of your artist songs " +
+                    "Select a song and you will view the details.\n To add a song to your device, click on the star icon and click on the view button to see your list of favourite songs\n" +
+                    "Finally, you can delete the song from the list by clicking thee delete button ");
             builder.setPositiveButton("Done", (dialog, which) -> {
 
             });

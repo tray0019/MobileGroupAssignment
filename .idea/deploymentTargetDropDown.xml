@@ -18,6 +18,12 @@
           <timeTargetWasSelectedWithDropDown value="2024-04-01T20:01:47.221957600Z" />
         </State>
       </entry>
+      <entry key="testForNonEmptyField()">
+        <State />
+      </entry>
+      <entry key="testNonEmptyField()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
