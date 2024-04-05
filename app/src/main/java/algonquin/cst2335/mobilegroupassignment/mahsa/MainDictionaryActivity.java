@@ -131,8 +131,8 @@ public class MainDictionaryActivity extends AppCompatActivity {
      */
     private void onClickBtnHelp() {
         runOnUiThread(() -> new AlertDialog.Builder(MainDictionaryActivity.this)
-                .setTitle(R.string.help_dialog_title)
-                .setMessage(R.string.help_dialog_message)
+                .setTitle(R.string.mahsa_help_dialog_title)
+                .setMessage(R.string.mahsa_help_dialog_message)
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                     dialog.dismiss();
                     dialog.cancel();

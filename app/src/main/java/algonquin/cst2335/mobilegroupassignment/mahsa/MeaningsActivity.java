@@ -124,13 +124,13 @@ public class MeaningsActivity extends AppCompatActivity {
 
             private void setOnSynonymsClickListener(Activity activity, String[] synonyms) {
                 if (synonyms.length > 0) {
-                    txtNumberOfSynonyms.setOnClickListener(e -> showStringList(activity, "Synonyms", synonyms));
+                    txtNumberOfSynonyms.setOnClickListener(e -> showStringList(activity, activity.getString(R.string.mahsa_synonyms), synonyms));
                 }
             }
 
             private void setOnAntonymsClickListener(Activity activity, String[] antonyms) {
                 if (antonyms.length > 0) {
-                    txtNumberOfAntonyms.setOnClickListener(e -> showStringList(activity, "Antonyms", antonyms));
+                    txtNumberOfAntonyms.setOnClickListener(e -> showStringList(activity, activity.getString(R.string.mahsa_antonyms), antonyms));
                 }
             }
 

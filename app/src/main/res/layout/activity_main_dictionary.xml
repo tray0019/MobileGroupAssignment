@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
-            android:hint="@string/please_enter_word"
+            android:hint="@string/mahsa_please_enter_word"
             android:importantForAutofill="no"
             android:inputType="text" />
 
@@ -76,13 +76,13 @@
             android:id="@+id/radio_btn_show_server"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/from_server" />
+            android:text="@string/mahsa_from_server" />
 
         <RadioButton
             android:id="@+id/radio_btn_show_local"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/from_local" />
+            android:text="@string/mahsa_from_local" />
 
     </RadioGroup>
 

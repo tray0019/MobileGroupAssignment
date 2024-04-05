@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Mahsa es lang strings   -->
+    <string name="please_enter_word">Por favor, ingresa una palabra…</string>
+    <string name="part_of_speech">Parte de la oración</string>
+    <string name="definitions_0">Definiciones: 0</string>
+    <string name="mahsa_from_server">Del servidor</string>
+    <string name="mahsa_from_local">De Local</string>
+    <string name="base_api_url">https://api.dictionaryapi.dev/api/v2/entries/en/</string>
+    <string name="get_word_info">Obtener información de la palabra</string>
+    <string name="name">NOMBRE</string>
+    <string name="definitions">Definiciones</string>
+    <string name="mahsa_help_dialog">Diálogo de ayuda</string>
+    <string name="mahsa_help_dialog_title">Título del diálogo</string>
+    <string name="mahsa_help_dialog_message">
+        1. escribe el nombre de las palabras cuando quieras encontrar el significado de las palabras\n\n
+        2. Haz clic en desde el servidor o local (local solo para palabras guardadas)\n\n
+        3. puedes ver sinónimos o palabras opuestas\n\n
+        3. puedes agregar o eliminar palabras
+    </string>
+    <string name="mahsa_shareprefrence_name">mahsa.dictionary.api</string>
+    <string name="mahsa_db_name">mahsa_dictionary_api_db</string>
+    <string name="share_preference_key">palabra</string>
+    <string name="mahsa_remove_word">"Palabra eliminada exitosamente, Palabra: "</string>
+    <string name="mahsa_fail_delete">"Fallo al eliminar palabra, Mensaje: "</string>
+    <string name="mahsa_enter_word_search">Por favor ingresa una palabra y busca</string>
+    <string name="mahsa_saving_word_word">"Guardando palabra, Palabra: "</string>
+    <string name="mahsa_successfully_saved_word">Palabra guardada exitosamente</string>
+    <string name="mahsa_fail_to_save_word_message">"Fallo al guardar palabra, Mensaje: "</string>
+    <string name="mahsa_please_check_server_or_local">Por favor verifica servidor o local</string>
+    <string name="mahsa_successfully_fetch_words_from_local">Palabras obtenidas exitosamente desde local</string>
+    <string name="mahsa_fail_to_fetch_words_message">"Fallo al obtener palabras, Mensaje: "</string>
+    <string name="mahsa_please_enter_word">Por favor ingresa una palabra</string>
+    <string name="mahsa_fail_to_response_handler">Fallo al manejar la respuesta</string>
+    <string name="mahsa_intent_index_key">selectedIndex</string>
+    <string name="mahsa_dictionary_api">Mahsa - API de Diccionario</string>
+    <string name="number_of_synonyms">Número de sinónimos</string>
+    <string name="number_of_antonyms">Número de antónimos</string>
+    <string name="number_of_definitions">Número de definiciones</string>
+    <string name="mahsa_synonyms">Sinónimos</string>
+    <string name="mahsa_antonyms">Antónimos</string>
+
+    <!-- Aram es lang strings -->
+    <string name="app_name">MobileGroupAssignment</string>
+    <string name="recipe_search">Búsqueda de Recetas</string>
+    <string name="open">Abrir</string>
+    <string name="title">Título</string>
+    <string name="pre_page">Página Anterior</string>
+    <string name="next_page">Página Siguiente</string>
+    <string name="extended_ingredients">Ingredientes Extendidos</string>
+    <string name="analyzed_instructions">Instrucciones Analizadas</string>
+    <string name="recipe">Receta</string>
+    <string name="example_aisle">Pasillo</string>
+    <string name="example_consistency">Consistencia</string>
+    <string name="example_name">Cebolla</string>
+    <string name="example_name_clean">Cebolla</string>
+    <string name="example_original">2 cucharadas de cebolla picada</string>
+    <string name="name_clean">Nombre Limpio</string>
+    <string name="item_image">Imagen del Artículo</string>
+    <string name="aisle">Pasillo</string>
+    <string name="consistency">Consistencia</string>
+    <string name="name_lower">Nombre</string>
+    <string name="original_name">Nombre Original</string>
+    <string name="example_original_name">Cebolla picada</string>
+
+    <string name="amount">Cantidad</string>
+
+    <string name="example_meta">Picada, Picada, Picada, Picada, Picada, Picada</string>
+    <string name="example_step">Cocine la pasta en una olla grande de agua hirviendo hasta que esté al dente.</string>
+
+    <string name="step">Paso</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="equipment">Equipo</string>
+    <string name="localized_name">Nombre Localizado</string>
+    <string name="item_info_image">Imagen de la Información del Artículo</string>
+    <string name="show_steps">Mostrar Pasos</string>
+    <string name="remove">Eliminar</string>
+    <string name="add">Agregar</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+    <string name="please_enter_recipe">Por favor, ingrese una receta</string>
+    <string name="get_recipe_info">Obtener información de la receta</string>
+    <string name="from_server">Del Servidor</string>
+    <string name="help_dialog">Ventana de Ayuda</string>
+    <string name="help_dialog_message">Pasos a seguir:\\n\\n     1- Escriba el nombre del plato para el cual desea ver la receta\\n\\n     2- Haga clic en \"Del Servidor\" o \"Local\" (Local mostrará solo recetas guardadas previamente)\\n\\n     3- Puede agregar o eliminar la receta\\n\\n     4- Haga clic en \"Instrucciones Analizadas\" para ver las instrucciones paso a paso\\n\\n     5- Haga clic en \"Ingredientes Extendidos\" para ver los ingredientes</string>
+    <string name="help_dialog_title">Ayuda</string>
+    <string name="aram_recipe">Receta Aram</string>
+    <string name="recipe_shared_preference_key">receta</string>
+    <string name="not_found_recipe_message">Receta no encontrada</string>
+    <string name="please_enter_recipe_message">Por favor, ingrese la receta</string>
+    <string name="please_check_server_or_local_message">Por favor, verifique el servidor o local</string>
+    <string name="fail_to_response_handler_message">Error al manejar la respuesta</string>
+    <string name="fetching_information_message">Obteniendo información...</string>
+    <string name="successfully_fetch_information_message">Información obtenida exitosamente</string>
+    <string name="adding_item_message">Agregando ítem</string>
+    <string name="duplicate_recipe_message">Receta duplicada</string>
+    <string name="successfully_save_recipe_message">Receta guardada exitosamente</string>
+    <string name="removing_recipe_item_message">Eliminando ítem de la receta</string>
+    <string name="successfully_removed_recipe_item_message">Ítem de la receta eliminado exitosamente</string>
+
+</resources>
