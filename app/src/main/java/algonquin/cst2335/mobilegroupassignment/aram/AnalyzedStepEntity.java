@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
  * Wednesday, April 3, 2024
  * lab section: 021
  * --
- * entity recipe info
+ * stores step by step of a recipe into database
  */
 @Entity(tableName = "analyzed_step")
 public class AnalyzedStepEntity {

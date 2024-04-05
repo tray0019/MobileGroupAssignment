@@ -17,7 +17,7 @@ import algonquin.cst2335.mobilegroupassignment.mahsa.MeaningsEntity;
 import algonquin.cst2335.mobilegroupassignment.mahsa.WordDao;
 import algonquin.cst2335.mobilegroupassignment.mahsa.WordEntity;
 
-
+//This class represents the database for the mobile group assignment application
 @Database(entities = {
         Location.class,
         WordEntity.class, MeaningsEntity.class, DefinitionsEntity.class,
