@@ -15,7 +15,10 @@ import com.android.application.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * RecyclerView adapter for displaying a list of Deezer songs.
+ * This adapter binds DeezerSong objects to views in the RecyclerView and handles item click events.
+ */
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
 
     private static List<DeezerSong> songs;

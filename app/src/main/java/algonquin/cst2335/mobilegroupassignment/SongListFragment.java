@@ -19,16 +19,24 @@ import com.android.application.databinding.SongDetailsAddBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Fragment for displaying a list of Deezer songs.
+ * This fragment displays a list of Deezer songs using a RecyclerView and an adapter.
+ */
 public class SongListFragment extends Fragment {
     private static FragmentManager fragmentManager;
 
     private List<DeezerSong> songs;
-
+    /**
+     * Default constructor for the SongListFragment.
+     */
     public SongListFragment() {
 
     }
-
+    /**
+     * Method to set the list of songs received from another fragment.
+     * @param songs The list of Deezer songs to be displayed.
+     */
     // Method to set the list of songs received from MessageDetailsFragment
     public void setSongs(List<DeezerSong> songs) {
         this.songs = songs;

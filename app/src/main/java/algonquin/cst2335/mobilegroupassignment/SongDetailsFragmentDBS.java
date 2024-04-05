@@ -25,7 +25,11 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
+/**
+ * Fragment for displaying details of a selected Deezer song with delete option.
+ * This fragment allows users to view details of a selected Deezer song, including title, duration, album name, and cover image.
+ * Users can also delete the selected song from the database.
+ */
 public class SongDetailsFragmentDBS extends Fragment {
 
     private RecyclerView recyclerView;
@@ -43,10 +47,15 @@ public class SongDetailsFragmentDBS extends Fragment {
 
     SongListFragment songListFragment = new SongListFragment();
 
-
+    /**
+     * Default constructor for the SongDetailsFragmentDBS.
+     */
     public SongDetailsFragmentDBS() {
     }
-
+    /**
+     * Constructor for the SongDetailsFragmentDBS with a selected Deezer song.
+     * @param selected The selected Deezer song to display details for.
+     */
     public SongDetailsFragmentDBS(DeezerSong selected) {
         this.selected = selected;
     }
@@ -80,13 +89,13 @@ public class SongDetailsFragmentDBS extends Fragment {
         // Get reference to the favouriteButton
         //Button delete = rootView.findViewById(R.id.deleteButton);
         // Set OnClickListener on the delete button
+
         binding.deleteButton.setOnClickListener(v -> {
             // Perform delete operation here
             deleteSelectedItem();
         });
 
         return rootView;
-
 
     }
 
@@ -97,27 +106,6 @@ public class SongDetailsFragmentDBS extends Fragment {
         dDAO = Room.databaseBuilder(requireContext(), SongDatabase.class, "favourite_songs2").build().dsDAO();
     }
 
-//    private void deleteSelectedItem() {
-//
-//
-//        // Insert the new DeezerSong into the database
-//        Executor thread = Executors.newSingleThreadExecutor();
-//        thread.execute(() -> {
-//            // Perform delete operation for the selected item from the database
-//            dDAO.deleteMessage(selected);
-//
-//            // Hide the current layout
-//            getActivity().runOnUiThread(() -> {
-//                View rootView = getView();
-//                if (rootView != null) {
-//                    rootView.setVisibility(View.GONE);
-//                }
-//            });
-//
-//
-//        });
-//
-//    }
 private void deleteSelectedItem() {
     // Build the AlertDialog
     AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
@@ -136,7 +124,9 @@ private void deleteSelectedItem() {
     AlertDialog alertDialog = builder.create();
     alertDialog.show();
 }
-
+    /**
+     * Method to perform the delete operation for the selected item from the database.
+     */
     private void performDeleteOperation() {
 
         // Insert the new DeezerSong into the database
@@ -157,7 +147,9 @@ private void deleteSelectedItem() {
             reloadSongList();
         });
     }
-
+    /**
+     * Method to reload the SongListFragment after deleting a song.
+     */
     private void reloadSongList() {
         // Retrieve the parent FragmentManager
         FragmentManager fragmentManager = getParentFragmentManager();
@@ -171,6 +163,9 @@ private void deleteSelectedItem() {
         // Commit the transaction
         transaction.commit();
     }
+    /**
+     * Method to show a Toast message.
+     */
     private void showToast() {
         // Show a Toast message
         Toast.makeText(requireContext(), "Song succesfully deleted", Toast.LENGTH_SHORT).show();

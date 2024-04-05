@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
             /********** CODE BELOW inside the onCreate ************/
 
-
         }) ;
 
         }

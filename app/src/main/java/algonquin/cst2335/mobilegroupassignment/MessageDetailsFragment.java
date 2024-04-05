@@ -40,7 +40,11 @@ import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-
+/**
+ * Fragment for displaying details of a selected Deezer song.
+ * This fragment allows users to view details of a selected Deezer song, including title, duration, album name, and cover image.
+ * Users can also mark a song as a favorite and view a list of favorite songs.
+ */
 public class MessageDetailsFragment extends Fragment {
     private RecyclerView recyclerView;
 
@@ -51,11 +55,15 @@ public class MessageDetailsFragment extends Fragment {
     private DeezerSongDAO dDAO;
     private SongAdapter songAdapter;
     DeezerRoom droom = new DeezerRoom();
-
-
+    /**
+     * Default constructor for the MessageDetailsFragment.
+     */
     public MessageDetailsFragment() {
     }
-
+    /**
+     * Constructor for the MessageDetailsFragment with a selected Deezer song.
+     * @param selected The selected Deezer song to display details for.
+     */
     public MessageDetailsFragment(DeezerSong selected) {
         this.selected = selected;
     }
@@ -171,13 +179,6 @@ public class MessageDetailsFragment extends Fragment {
 
             });
         });
-    }
-
-    // Method to set the view to invisible
-    public void setViewInvisible() {
-        if (getView() != null) {
-            getView().setVisibility(View.GONE);
-        }
     }
 
 }
