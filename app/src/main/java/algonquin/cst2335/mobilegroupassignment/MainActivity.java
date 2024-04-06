@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_rustom) {
             startActivity(new Intent(this, RustomClass.class));
             return true;
+        } else if (item.getItemId() == R.id.action_farock) {
+            startActivity(new Intent(this, DeezerRoom.class));
+            return true;
         }
         // Handle the action for displaying help dialog
         else if (item.getItemId() == R.id.action_help) {

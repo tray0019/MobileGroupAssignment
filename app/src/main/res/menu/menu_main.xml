@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item android:id="@+id/action_rustom"
         android:icon="@drawable/sun_icon"
         android:title="Sunrise and Sunset Lookup"
@@ -10,6 +11,11 @@
         android:id="@+id/action_help"
         android:title="test"
         app:showAsAction="never"/>
+
+    <item android:id="@+id/action_farock"
+        android:icon="@drawable/absent_cover"
+        android:title="Sunrise and Sunset Lookup"
+        app:showAsAction="ifRoom" />
 
 
 </menu>
