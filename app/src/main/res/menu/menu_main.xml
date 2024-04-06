@@ -17,33 +17,16 @@
         android:title="Sunrise and Sunset Lookup"
         app:showAsAction="always" />
 
-<!--    <item android:id="@+id/action_mahsa"-->
-<!--        android:icon="@drawable/sun_icon"-->
-<!--        android:title="Dictionary Api"-->
-<!--         />-->
 
     <item
         android:id="@+id/action_help"
         android:title="@string/sunRiseSetString"
         app:showAsAction="never"/>
 
-<!--    <item-->
-<!--        android:id="@+id/action_aram"-->
-<!--        android:title="Aram - Recipe"-->
-<!--        app:showAsAction="never" />-->
-
-<!--    <item android:id="@+id/icon_aram"-->
-<!--        android:icon="@drawable/recipe"-->
-<!--        android:title="Dictionary Api"-->
-<!--        />-->
-
-
-
-
 
     <item android:id="@+id/action_farock1"
         android:icon="@drawable/absent_cover"
-        android:title="Sunrise and Sunset Lookup"
+        android:title="Deezer app"
         app:showAsAction="always" />
 
 
