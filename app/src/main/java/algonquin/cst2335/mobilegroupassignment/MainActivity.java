@@ -1,4 +1,10 @@
 package algonquin.cst2335.mobilegroupassignment;
+/**
+ * This class represents the DeezerRoom activity, which allows users to search for songs from Deezer API.
+ * Author: Yandom Youmbi Farock Natanael
+ * Date : 04/04/2024
+ * Version: 01
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +19,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import algonquin.cst2335.mobilegroupassignment.aram.MainRecipeActivity;
 import algonquin.cst2335.mobilegroupassignment.mahsa.MainDictionaryActivity;
+
+import com.android.application.R;
 
 /**
  * These is the Menu or dashboard of
@@ -38,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         /** ~Rustom Function
@@ -52,12 +61,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RustomClass.class);//Make sure its your class from the class activity
                 startActivity(intent);
+                    Intent intent = new Intent(MainActivity.this, RustomClass.class);//Make sure its your class from the class activity
+                    startActivity(intent);
             }
+
+
 
             /********** CODE BELOW inside the onCreate ************/
 
 
         });
+
+        findViewById(R.id.NathanielButton).setOnClickListener(e -> startActivity(new Intent(this, DeezerRoom.class)));
 
         // ARAM RECIPE BTN (When this button is clicked, it launches an activity represented by the MainRecipeActivity class.)
         findViewById(R.id.action_aram).setOnClickListener(e -> startActivity(new Intent(this, MainRecipeActivity.class)));
@@ -78,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
         // Handle the action for Rustom's activity
         if (item.getItemId() == R.id.action_rustom) {
             startActivity(new Intent(this, RustomClass.class));
+            return true;
+        } else if (item.getItemId() == R.id.action_farock1) {
+            startActivity(new Intent(this, DeezerRoom.class));
             return true;
         }
 // Handle the action for Aram's activity

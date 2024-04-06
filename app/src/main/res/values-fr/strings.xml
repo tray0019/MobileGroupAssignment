@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MobileGroupAssignment</string>
+    <string name="sunRiseSetString">Soleil eleve</string>
+    <string name="empty_field">cest vide</string>
+    <string name="ce">cest correct</string>
+    <string name="help">Voici comment utuliser lapplication</string>
+    <string name="help_body">Cette application vous permet de rechercher des chansons en ligne, de les sélectionner et de les enregistrer sur votre appareil.  Pour utiliser l\'application : 1. Accédez à la barre de recherche et saisissez le nom de l\'artiste. 2. Une fois que vous avez saisi le nom de l\'artiste, vous verrez une liste de chansons de cet artiste. 3. Sélectionnez une chanson dans la liste pour afficher ses détails. 4. Pour ajouter une chanson à votre appareil, cliquez sur l\'icône en forme d\'étoile. Vous pouvez ensuite afficher votre liste de chansons préférées en cliquant sur le bouton \"Voir\". 5. Enfin, vous pouvez supprimer une chanson de la liste en cliquant sur le bouton de suppression.</string>
+    <string name="done">Fait</string>
+    <string name="question">Etes vous sure de vouloir suprimer c</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="adding_song">Suprime</string>
+    <string name="author">Cree par Farock Natanael</string>
+    <string name="error1">Erreur de donee</string>
+    <string name="error2">Erruer de donee</string>
+    <string name="search">Recherche</string>
+    <string name="list">Voici vos music prefere</string>
+    <string name="view_list">voir vos music prefere</string>
+    <string name="del">"Suprimer "</string>
+    <string name="my_hint">la liste des songs va ici</string>
+    <string name="place_holder">Entrez le nom dun artiste</string>
+
+</resources>

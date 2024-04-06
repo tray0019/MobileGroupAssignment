@@ -41,5 +41,10 @@
 
 
 
+    <item android:id="@+id/action_farock1"
+        android:icon="@drawable/absent_cover"
+        android:title="Sunrise and Sunset Lookup"
+        app:showAsAction="ifRoom" />
+
 
 </menu>

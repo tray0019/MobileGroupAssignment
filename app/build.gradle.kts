@@ -13,11 +13,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        //Added because of lab task
-        buildFeatures {
-            viewBinding = true
-        }
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,6 +26,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    namespace = "com.android.application"
 }
 
 dependencies {
@@ -68,4 +69,8 @@ dependencies {
     // https://mvnrepository.com/artifact/com.android.volley/volley
     implementation("com.android.volley:volley:1.2.1")
 
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 }

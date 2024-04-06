@@ -34,6 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+
     <Button
         android:id="@+id/action_aram"
         android:layout_width="0dp"
@@ -61,7 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="396dp"
-        android:text="Activity 4"
+        android:text="Deezer App"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
