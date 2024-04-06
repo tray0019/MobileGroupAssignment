@@ -107,20 +107,24 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            // Handle other menu items if there are any
-
+        }  // Handle other menu items if there are any
+        else if (item.getItemId() == R.id.action_help) {
+            showHelpDialog();
+            return true;
         }
         return super.onOptionsItemSelected(item);
 
     }
     private void showHelpDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Help")
-                .setMessage("Here's how to use the app: [Add your instructions here]")
+                .setTitle(R.string.help)
+                .setMessage(R.string.SunriseSunseHelp)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
     }
 }
+
+
 
 
 
