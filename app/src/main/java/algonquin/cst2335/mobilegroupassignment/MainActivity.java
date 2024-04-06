@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         /** ~Rustom Function
@@ -52,13 +53,17 @@ public class MainActivity extends AppCompatActivity {
         sunRiseSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, DeezerRoom.class);//Make sure its your class from the class activity
+                    Intent intent = new Intent(MainActivity.this, RustomClass.class);//Make sure its your class from the class activity
                     startActivity(intent);
             }
+
+
 
             /********** CODE BELOW inside the onCreate ************/
 
         }) ;
+
+        findViewById(R.id.NathanielButton).setOnClickListener(e -> startActivity(new Intent(this, DeezerRoom.class)));
 
         }
 
@@ -74,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_rustom) {
             startActivity(new Intent(this, RustomClass.class));
             return true;
-        } else if (item.getItemId() == R.id.action_farock) {
+        } else if (item.getItemId() == R.id.action_farock1) {
             startActivity(new Intent(this, DeezerRoom.class));
             return true;
         }

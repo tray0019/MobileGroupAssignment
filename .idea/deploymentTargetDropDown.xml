@@ -5,6 +5,9 @@
       <entry key="DeezerRoom">
         <State />
       </entry>
+      <entry key="MainActivity">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -22,12 +25,6 @@
         </State>
       </entry>
       <entry key="testEmptyField()">
-        <State />
-      </entry>
-      <entry key="testNonEmptyField()">
-        <State />
-      </entry>
-      <entry key="testNonEmptyFieldMix()">
         <State />
       </entry>
     </value>
