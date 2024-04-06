@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.android.application.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
@@ -30,7 +31,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import algonquin.cst2335.mobilegroupassignment.AppDatabase;
-import algonquin.cst2335.mobilegroupassignment.R;
 
 /**
  * @author Mahsa

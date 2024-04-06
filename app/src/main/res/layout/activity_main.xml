@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="algonquin.cst2335.mobilegroupassignment.MainActivity">
 
     <!--This XML class provide the 4 buttons for the menu application -->
     <!--Do not insert any of your xml code here -->

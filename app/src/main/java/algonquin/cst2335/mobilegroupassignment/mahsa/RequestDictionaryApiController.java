@@ -3,6 +3,7 @@ package algonquin.cst2335.mobilegroupassignment.mahsa;
 import android.app.Activity;
 import android.util.Log;
 
+import com.android.application.R;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -10,7 +11,6 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.function.Function;
 
-import algonquin.cst2335.mobilegroupassignment.R;
 
 /**
  * @author Mahsa

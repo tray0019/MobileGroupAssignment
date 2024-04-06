@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RustomClass.class);//Make sure its your class from the class activity
                 startActivity(intent);
-                    Intent intent = new Intent(MainActivity.this, RustomClass.class);//Make sure its your class from the class activity
-                    startActivity(intent);
             }
 
 

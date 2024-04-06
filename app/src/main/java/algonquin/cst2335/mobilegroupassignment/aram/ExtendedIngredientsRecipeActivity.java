@@ -13,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import algonquin.cst2335.mobilegroupassignment.R;
 import algonquin.cst2335.mobilegroupassignment.aram.dto.ExtendedIngredients;
 
+import com.android.application.R;
 import com.bumptech.glide.Glide;
 
 import java.util.List;

@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.android.application.R;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -35,7 +36,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import algonquin.cst2335.mobilegroupassignment.AppDatabase;
-import algonquin.cst2335.mobilegroupassignment.R;
+
 import algonquin.cst2335.mobilegroupassignment.aram.dto.RecipeDto;
 import algonquin.cst2335.mobilegroupassignment.aram.dto.RecipeResponse;
 

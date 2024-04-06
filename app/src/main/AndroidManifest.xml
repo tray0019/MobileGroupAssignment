@@ -28,39 +28,43 @@
         <activity android:name="algonquin.cst2335.mobilegroupassignment.DeezerRoom"
             android:exported="true"/>
 
+        <!-- Remove the LAUNCHER category from DeezerRoom -->
+        <activity android:name="algonquin.cst2335.mobilegroupassignment.RustomClass"
+            android:exported="true"/>
+
 
         <activity
-            android:name=".mahsa.StringListActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.mahsa.StringListActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name=".mahsa.MeaningsActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.mahsa.MeaningsActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name=".mahsa.DefinitionsActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.mahsa.DefinitionsActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name=".mahsa.MainDictionaryActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.mahsa.MainDictionaryActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>
 
         <activity
-            android:name=".aram.AnalyzedInstructionsItemStepRecipeActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.aram.AnalyzedInstructionsItemStepRecipeActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name=".aram.AnalyzedInstructionsRecipeActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.aram.AnalyzedInstructionsRecipeActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name=".aram.ExtendedIngredientsRecipeActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.aram.ExtendedIngredientsRecipeActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name=".aram.MainRecipeActivity"
+            android:name="algonquin.cst2335.mobilegroupassignment.aram.MainRecipeActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>

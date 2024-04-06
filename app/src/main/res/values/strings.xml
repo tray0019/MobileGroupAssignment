@@ -87,7 +87,7 @@
 
     <string name="empty_field">Empty field</string>
     <string name="ce">Correct entry</string>
-    <string name="help">This is how to use the application</string>
+    <string name="help2">This is how to use the application</string>
     <string name="help_body">This application allows you to search for songs online, select them, and save them to your device.
 
 To use the app:

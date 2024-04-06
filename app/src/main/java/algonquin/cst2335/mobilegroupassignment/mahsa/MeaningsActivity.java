@@ -15,9 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.application.R;
+
 import java.util.List;
 
-import algonquin.cst2335.mobilegroupassignment.R;
 
 /**
  * @author Mahsa
