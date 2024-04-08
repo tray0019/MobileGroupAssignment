@@ -51,6 +51,10 @@
             android:theme="@style/Theme.AppCompat">
         </activity>
 
+<!--        name: class name.-->
+<!--        exported: Other apps are either able toa access this or not. -->
+<!--        theme: this app follows the design guideline of appcompat library-->
+
         <activity
             android:name="algonquin.cst2335.mobilegroupassignment.aram.AnalyzedInstructionsItemStepRecipeActivity"
             android:exported="false"

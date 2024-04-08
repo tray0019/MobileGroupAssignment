@@ -4,24 +4,34 @@ import android.content.Context;
 
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import algonquin.cst2335.mobilegroupassignment.mahsa.*;
 
+@LargeTest
+@RunWith(AndroidJUnit4.class)
 public class TestTest {
 
+    public WordDao wordDao;
+
+    @Before
+    public void connDb() {
+        wordDao = Room.databaseBuilder(ApplicationProvider.getApplicationContext(), AppDatabase.class, "mahsa_dictionary_api").build().wordDao();
+    }
 
     @Test
-    void test() {
+    public void test() {
 
-        Context context = ApplicationProvider.getApplicationContext();
-        WordDao wordDao = Room.databaseBuilder(context, AppDatabase.class, "mahsa_dictionary_api").build().wordDao();
 
         WordEntity wordEntity = new WordEntity();
         wordEntity.setWord("hi");
@@ -52,3 +62,4 @@ public class TestTest {
     }
 
 }
+
