@@ -14,6 +14,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.android.application.R;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +29,7 @@ public class SunriseSunsetTest {
             new ActivityScenarioRule<>(RustomClass.class);
 
     @Test
+    
     public void testSunriseSunsetLookup() {
         onView(withId(R.id.latitudeEditText)).perform(replaceText("40.7128"), closeSoftKeyboard());
         onView(withId(R.id.longitudeEditText)).perform(replaceText("-74.0060"), closeSoftKeyboard());

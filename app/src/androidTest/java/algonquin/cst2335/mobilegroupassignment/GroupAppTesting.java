@@ -1,12 +1,22 @@
 package algonquin.cst2335.mobilegroupassignment;
 
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import android.content.Context;
 
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.filters.LargeTest;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import java.util.List;
 
 import algonquin.cst2335.mobilegroupassignment.aram.AnalyzedEntity;
 import algonquin.cst2335.mobilegroupassignment.aram.AnalyzedStepEntity;
@@ -18,7 +28,19 @@ import algonquin.cst2335.mobilegroupassignment.aram.RecipeEntity;
  * for testing. Ethier way are no problems.
  */
 
+@LargeTest
+@RunWith(AndroidJUnit4.class)
 public class GroupAppTesting {
+    public RecipeDao aramDb;
+
+    @Before
+    public void connectDb() {
+        aramDb = Room.databaseBuilder(ApplicationProvider.getApplicationContext(), AppDatabase.class, "aram_db").build().recipeDao();
+    }
+
+    @After
+    public void close() {
+    }
 
     /** This Boundary are rustom Test!
      **********************Rustom Test****************************/
@@ -41,23 +63,23 @@ public class GroupAppTesting {
      * This Boundary are Aram Test!
      * ********************Aram Test
      ***************************/
-    private void dbTest() {
-        Context context = ApplicationProvider.getApplicationContext();
-        RecipeDao aramDb = Room.databaseBuilder(context, AppDatabase.class, "aram_db").build().recipeDao();
+    @Test
+    public void dbTest() {
+
 
         final RecipeEntity recipeEntity = new RecipeEntity();
         recipeEntity.setId(1);
         recipeEntity.setImage("IMAGE");
-        recipeEntity.setRecipeName("RECIPE_NAME");
+        recipeEntity.setRecipeName(null);
         recipeEntity.setTitle("RECIPE_TITLE");
         recipeEntity.setImageType("JPEG");
 
         Long recipeId = aramDb.saveRecipe(recipeEntity);
-        assertTrue(recipeId != null);
+        assertTrue(recipeId != null && recipeId > 0);
 
         final AnalyzedEntity analyzedEntity = new AnalyzedEntity();
         analyzedEntity.setId(1);
-        analyzedEntity.setName("ANALYZE_NAME");
+        analyzedEntity.setName("DOG");
         analyzedEntity.setRecipeId(recipeEntity.getId());
 
         Long analyzeId = aramDb.saveAnalyzed(analyzedEntity);
@@ -71,6 +93,9 @@ public class GroupAppTesting {
         Long analyzedStepId = aramDb.saveAnalyzedStep(analyzedStepEntity);
         assertTrue(analyzedStepId != null);
 
+        List<AnalyzedEntity> analyzedEntities = aramDb.fetchAnalyzedEntities(recipeId);
+
+        assertTrue(analyzedEntities != null && analyzedEntities.size() > 0);
     }
 
 

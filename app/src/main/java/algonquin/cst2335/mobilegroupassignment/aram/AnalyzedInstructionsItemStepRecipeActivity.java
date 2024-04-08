@@ -40,6 +40,8 @@ public class AnalyzedInstructionsItemStepRecipeActivity extends AppCompatActivit
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analyzed_instructions_item_step_recipe);
 
+        //checks for extra information that was passed along with it
+        // if not, it moves on.
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
             return;
@@ -52,10 +54,12 @@ public class AnalyzedInstructionsItemStepRecipeActivity extends AppCompatActivit
         setAdapter();
     }
 
+    //sets up the Recycler view up for use and defines the layout of the list of steps
     private void setTools() {
         listView = findViewById(R.id.list_view);
     }
 
+    //sets the ingredients to display
     private void setAdapter() {
         listView.setLayoutManager(new LinearLayoutManager(this));
         listView.setAdapter(new AnalyzedInstructionsItemStepRecipeAdapter(this, MainRecipeActivity.recipeResponse.getRecipeDto().get(analyzedInstructionsIndex).getAnalyzedInstructions().get(index).getSteps()));
@@ -65,6 +69,7 @@ public class AnalyzedInstructionsItemStepRecipeActivity extends AppCompatActivit
 
         private AnalyzedInstructionsItemStepRecipeActivity activity;
         private List<AnalyzedInstructionsStep> analyzedInstructionsSteps;
+
 
         public AnalyzedInstructionsItemStepRecipeAdapter(final AnalyzedInstructionsItemStepRecipeActivity activity, List<AnalyzedInstructionsStep> analyzedInstructionsSteps) {
             this.activity = activity;

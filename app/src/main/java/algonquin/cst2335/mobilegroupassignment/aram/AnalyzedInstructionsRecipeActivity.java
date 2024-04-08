@@ -67,6 +67,7 @@ public class AnalyzedInstructionsRecipeActivity extends AppCompatActivity {
         listView.setAdapter(new AnalyzedInstructionsRecipeAdapter(this, MainRecipeActivity.recipeResponse.getRecipeDto().get(index).getAnalyzedInstructions()));
     }
 
+    //when an item is clicked, this method launches a new activity and passes data to the click
     public void onClickItem(int index) {
         Intent intent = new Intent(this, AnalyzedInstructionsItemStepRecipeActivity.class);
         intent.putExtra("index", index);

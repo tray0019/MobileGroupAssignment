@@ -2,6 +2,9 @@ package algonquin.cst2335.mobilegroupassignment.aram.dto;
 
 import java.util.List;
 
+
+// Transports the Step-by-step instruction of the recipes
+// from server to the mobile app
 public class AnalyzedInstructions {
 
     private String name;
